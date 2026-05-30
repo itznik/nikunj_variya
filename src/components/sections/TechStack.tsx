@@ -1,35 +1,76 @@
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 
-const stack = [
+import {
+  SiNextdotjs,
+  SiReact,
+  SiTypescript,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiExpress,
+  SiPostgresql,
+  SiMongodb,
+  SiGit,
+} from "react-icons/si";
+
+import { FaLinux } from "react-icons/fa";
+
+const categories = [
   {
     title: "Frontend",
-    technologies: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Framer Motion",
+    items: [
+      {
+        icon: SiNextdotjs,
+        name: "Next.js",
+      },
+      {
+        icon: SiReact,
+        name: "React",
+      },
+      {
+        icon: SiTypescript,
+        name: "TypeScript",
+      },
+      {
+        icon: SiTailwindcss,
+        name: "Tailwind",
+      },
     ],
   },
+
   {
     title: "Backend",
-    technologies: [
-      "Node.js",
-      "Express",
-      "REST APIs",
-      "PostgreSQL",
-      "MongoDB",
+    items: [
+      {
+        icon: SiNodedotjs,
+        name: "Node.js",
+      },
+      {
+        icon: SiExpress,
+        name: "Express",
+      },
+      {
+        icon: SiPostgresql,
+        name: "PostgreSQL",
+      },
+      {
+        icon: SiMongodb,
+        name: "MongoDB",
+      },
     ],
   },
+
   {
     title: "Engineering",
-    technologies: [
-      "Data Structures",
-      "Algorithms",
-      "System Design",
-      "Git",
-      "Linux",
+    items: [
+      {
+        icon: SiGit,
+        name: "Git",
+      },
+      {
+        icon: FaLinux,
+        name: "Linux",
+      },
     ],
   },
 ];
@@ -43,41 +84,52 @@ export default function TechStack() {
       <Container>
         <SectionHeading
           label="Capabilities"
-          title="The technologies and principles I use to build."
-          description="Tools, frameworks and engineering practices that shape how I approach software development."
+          title="Technologies I use to design and build software."
+          description="A growing toolkit focused on engineering fundamentals, modern web technologies and scalable systems."
         />
 
         <div className="grid gap-8 lg:grid-cols-3">
-          {stack.map((category) => (
+          {categories.map((category) => (
             <div
               key={category.title}
               className="
                 rounded-[32px]
                 bg-white
                 p-8
-                shadow-sm
               "
             >
               <h3 className="text-2xl font-bold text-zinc-950">
                 {category.title}
               </h3>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                {category.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="
-                      rounded-full
-                      bg-zinc-100
-                      px-4
-                      py-2
-                      text-sm
-                      text-zinc-700
-                    "
-                  >
-                    {tech}
-                  </span>
-                ))}
+              <div className="mt-8 space-y-4">
+                {category.items.map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <div
+                      key={item.name}
+                      className="
+                        flex
+                        items-center
+                        gap-4
+                        rounded-2xl
+                        bg-zinc-50
+                        px-4
+                        py-4
+                      "
+                    >
+                      <Icon
+                        size={22}
+                        className="text-zinc-950"
+                      />
+
+                      <span className="font-medium text-zinc-800">
+                        {item.name}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           ))}
