@@ -1,6 +1,6 @@
 import ParticleCloud from "@/components/ParticleCloud";
 import { WebGLBoundary } from "@/components/WebGLBoundary";
-import { ArrowUpRight, Code2, Database, Server, Cpu, Layers, GitBranch, Terminal } from "lucide-react";
+import { ArrowUpRight, Code2, Database, Server, Cpu, Layers, GitBranch, Terminal, Network } from "lucide-react";
 
 export default function Home() {
   return (
