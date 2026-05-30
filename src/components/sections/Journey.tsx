@@ -1,32 +1,30 @@
 import Container from "@/components/ui/Container";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const timeline = [
   {
     year: "2024",
     title: "Started Programming",
     description:
-      "Began learning programming fundamentals, problem solving and computer science concepts while pursuing BHMS.",
+      "Began learning programming fundamentals and problem solving while pursuing BHMS.",
   },
-
   {
     year: "2025",
-    title: "Focused on Data Structures & Algorithms",
+    title: "Focused on DSA",
     description:
-      "Built a strong foundation in arrays, linked lists, trees, recursion, dynamic programming and algorithmic thinking.",
+      "Built a strong foundation in algorithms, recursion, trees, dynamic programming and optimization.",
   },
-
   {
     year: "2026",
-    title: "Full-Stack Development",
+    title: "Full Stack Development",
     description:
-      "Started building modern web applications using Next.js, TypeScript and scalable engineering practices.",
+      "Started building modern applications using Next.js, TypeScript and scalable engineering practices.",
   },
-
   {
     year: "Next",
     title: "Systems at Scale",
     description:
-      "Expanding into system design, distributed systems and high-performance software architecture.",
+      "Exploring distributed systems, system design and performance engineering.",
   },
 ];
 
@@ -34,18 +32,13 @@ export default function Journey() {
   return (
     <section
       id="journey"
-      className="py-32"
+      className="bg-white py-32"
     >
       <Container>
-        <div className="mb-20">
-          <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">
-            Journey
-          </p>
-
-          <h2 className="mt-4 max-w-4xl text-5xl font-bold tracking-tight text-zinc-950 md:text-7xl">
-            A timeline of learning, building and continuous improvement.
-          </h2>
-        </div>
+        <SectionHeading
+          label="Journey"
+          title="A timeline of learning, building and continuous improvement."
+        />
 
         <div className="relative">
           <div className="absolute left-[23px] top-0 h-full w-px bg-black/10" />
@@ -56,24 +49,7 @@ export default function Journey() {
                 key={item.year}
                 className="relative pl-16"
               >
-                <div
-                  className="
-                    absolute
-                    left-0
-                    top-2
-                    h-12
-                    w-12
-                    rounded-full
-                    border
-                    border-black/10
-                    bg-white
-                    flex
-                    items-center
-                    justify-center
-                    font-semibold
-                    text-zinc-950
-                  "
-                >
+                <div className="absolute left-0 top-2 flex h-12 w-12 items-center justify-center rounded-full bg-zinc-950 text-white">
                   •
                 </div>
 
