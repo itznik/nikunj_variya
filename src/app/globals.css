@@ -1,26 +1,27 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-canvas text-text-main antialiased selection:bg-accent selection:text-canvas;
+    /* Prevent iOS rubber-banding for a more app-like feel */
+    overscroll-behavior-y: none; 
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    /* Extreme tracking for that architectural editorial look */
+    letter-spacing: -0.04em; 
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom Webkit Scrollbar to match the brutalist aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-canvas;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-edge rounded-full;
 }
