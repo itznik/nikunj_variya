@@ -243,15 +243,15 @@ function ArchitectureShowcase() {
                  />
                </svg>
                
-               {/* Terminal Overlay */}
+               {/* Terminal Overlay - FIXED JSX PARSING ERROR */}
                <div className="absolute bottom-4 left-4 right-4 bg-[#050505] border border-[#222] p-4 rounded flex flex-col gap-2 font-mono text-[9px] text-[#888]">
                   <div className="flex justify-between items-center border-b border-[#222] pb-2">
                      <span className="text-white">System Trace</span>
                      <span className="text-[#FF4433] animate-pulse">Running</span>
                   </div>
-                  <span>> initializing connection pool... OK</span>
-                  <span>> routing traffic via shard_02... OK</span>
-                  <span>> executing transaction block... <span className="text-[#EDEDED]">0.014ms</span></span>
+                  <span>&gt; initializing connection pool... OK</span>
+                  <span>&gt; routing traffic via shard_02... OK</span>
+                  <span>&gt; executing transaction block... <span className="text-[#EDEDED]">0.014ms</span></span>
                </div>
              </div>
           </div>
@@ -284,7 +284,7 @@ function CapabilitiesMatrix() {
            </p>
         </div>
 
-        {/* Editorial Table Layout (Not generic pills) */}
+        {/* Editorial Table Layout */}
         <div className="flex flex-col border-t border-[#222]">
           {categories.map((category, idx) => (
              <div key={idx} className="flex flex-col md:flex-row border-b border-[#222] py-8 group hover:bg-[#0C0C0C] transition-colors">
@@ -353,4 +353,3 @@ export default function Portfolio() {
     </div>
   );
 }
-
