@@ -1,65 +1,39 @@
-import Image from "next/image";
+import ParticleCloud from "@/components/ParticleCloud";
+import { WebGLBoundary } from "@/components/WebGLBoundary";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="relative w-full min-h-screen flex flex-col justify-center">
+      {/* Robust WebGL isolation boundary */}
+      <WebGLBoundary fallback={<div className="absolute inset-0 -z-10 bg-canvas" />}>
+        <ParticleCloud />
+      </WebGLBoundary>
+
+      {/* Hero Content Layer */}
+      <div className="max-w-2xl flex flex-col items-start gap-6 select-none">
+        <div className="flex items-center gap-2 px-3 py-1 bg-surface border border-edge rounded-full">
+          <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
+          <span className="font-mono text-xs text-text-sub uppercase tracking-widest">Available for Architecture Contract</span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <h1 className="text-4xl sm:text-6xl font-semibold text-text-main leading-[1.05]">
+          Engineering digital <br />
+          <span className="text-accent">infrastructure.</span>
+        </h1>
+
+        <p className="text-base sm:text-lg text-text-sub max-w-lg leading-relaxed font-sans font-light">
+          Senior full-stack software engineer specialized in crafting raw architecture, heavy application scale, and responsive pixel systems. Driven by pure code clarity.
+        </p>
+
+        <div className="flex flex-row items-center gap-4 w-full sm:w-auto mt-2">
+          <button className="w-full sm:w-auto px-6 py-3 bg-accent text-canvas font-medium rounded-lg text-sm hover:opacity-90 active:scale-[0.98] transition-all duration-150">
+            Inspect Architecture
+          </button>
+          <button className="w-full sm:w-auto px-6 py-3 bg-surface border border-edge text-text-main font-medium rounded-lg text-sm hover:bg-edge active:scale-[0.98] transition-all duration-150 font-mono">
+            /contact
+          </button>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
