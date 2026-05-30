@@ -1,27 +1,49 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Espresso & Crimson Design System */
+  --color-canvas: #121110;      /* Warm Obsidian (Base) */
+  --color-surface: #1C1A19;     /* Espresso Dark (Cards) */
+  --color-edge: #2A2726;        /* Warm Edge (Borders) */
+  --color-text-main: #F4F0E6;   /* Alabaster White (H1/H2) */
+  --color-text-sub: #A6A19C;    /* Muted Sand (Paragraphs) */
+  --color-accent: #FF331F;      /* Volt Crimson (Highlights) */
+
+  /* Font mapping */
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+}
 
 @layer base {
   body {
-    @apply bg-canvas text-text-main antialiased selection:bg-accent selection:text-canvas;
-    /* Prevent iOS rubber-banding for a more app-like feel */
+    background-color: var(--color-canvas);
+    color: var(--color-text-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent iOS rubber-banding for a premium app-like feel */
     overscroll-behavior-y: none; 
   }
   
+  /* Custom selection color */
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-canvas);
+  }
+
+  /* Architectural editorial tracking */
   h1, h2, h3, h4, h5, h6 {
-    /* Extreme tracking for that architectural editorial look */
     letter-spacing: -0.04em; 
   }
 }
 
-/* Custom Webkit Scrollbar to match the brutalist aesthetic */
+/* Custom Webkit Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  @apply bg-canvas;
+  background-color: var(--color-canvas);
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-edge rounded-full;
+  background-color: var(--color-edge);
+  border-radius: 9999px;
 }
