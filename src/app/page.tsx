@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import Projects from "@/components/sections/Projects";
 import TechStack from "@/components/sections/TechStack";
+import Journey from "@/components/sections/Journey";
 
 export default function HomePage() {
   return (
@@ -16,6 +17,8 @@ export default function HomePage() {
         <Projects />
 
         <TechStack />
+
+        <Journey />
       </main>
 
       <Footer />
