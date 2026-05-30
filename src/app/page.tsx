@@ -1,309 +1,356 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, CheckCircle2, ChevronRight } from "lucide-react";
-import { 
-  SiPython, SiReact, SiNextdotjs, SiNodedotjs, SiExpress,
-  SiPostgresql, SiMongodb, SiFirebase, SiSupabase, 
-  SiDocker, SiRedis, SiWebgl, SiThreedotjs, SiMysql,
-  SiVercel, SiAmazon, SiStripe
-} from "react-icons/si";
-import { FaJava } from "react-icons/fa";
+import { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
-import Navbar from "@/components/Navbar";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+// ==========================================
+// BESPOKE SVG ICON SYSTEM (Zero Dependencies)
+// ==========================================
+const Icons = {
+  ArrowRight: () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  External: () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
+      <path d="M7 17L17 7M17 7H7M17 7v10" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  Github: () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.698 1.026 1.591 1.026 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/>
+    </svg>
+  ),
+  Node: () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <rect x="3" y="3" width="18" height="18" rx="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="8" cy="12" r="2"/>
+      <path d="M10 12h6M16 12l-2-2M16 12l-2 2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  )
 };
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
-};
 
-export default function Home() {
+// ==========================================
+// DYNAMIC NAVIGATION
+// ==========================================
+function Navigation() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="w-full min-h-screen bg-white text-[#0A2540] selection:bg-[#635BFF] selection:text-white font-sans overflow-x-hidden">
-      <Navbar />
-      
-      {/* --- HERO SECTION --- */}
-      <main className="relative w-full pt-32 sm:pt-48 pb-24 sm:pb-32 px-6 sm:px-12 flex flex-col justify-center overflow-hidden">
-        {/* Stripe Diagonal Background */}
-        <div className="absolute top-0 left-0 w-full h-[95vh] overflow-hidden -z-10 origin-top-left skew-y-[-6deg] bg-white border-b border-gray-100">
-          <div className="absolute top-0 right-0 w-[80vw] h-[80vw] rounded-full bg-gradient-to-br from-[#80E9FF] via-[#7A73FF] to-[#FF80FF] blur-[100px] opacity-[0.25] mix-blend-multiply translate-x-1/4 -translate-y-1/4"></div>
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${scrolled ? "bg-[#050505]/80 backdrop-blur-xl border-[#1A1A1A] py-4" : "bg-transparent border-transparent py-8"}`}
+    >
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-12 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <svg viewBox="0 0 24 24" className="w-5 h-5 text-[#FF4433]" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="2"/></svg>
+          <span className="font-bold text-white tracking-widest text-sm uppercase">NV.ARCH</span>
         </div>
-
-        <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-7xl mx-auto w-full relative z-10">
-          <div className="max-w-3xl">
-            <motion.h1 variants={fadeUp} className="text-[11vw] sm:text-[5.5rem] lg:text-[6.5rem] font-black leading-[0.95] tracking-tighter text-[#0A2540]">
-              Software <br />
-              <span className="text-[#635BFF]">infrastructure</span> <br />
-              to scale ideas.
-            </motion.h1>
-            <motion.p variants={fadeUp} className="mt-8 text-lg sm:text-xl text-[#425466] font-medium max-w-xl leading-relaxed">
-              Engineering fault-tolerant distributed systems, high-performance web applications, and uncompromising digital infrastructure.
-            </motion.p>
-            <motion.div variants={fadeUp} className="mt-10">
-              <a href="#deployments" className="bg-[#635BFF] text-white px-8 py-4 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-[#0A2540] transition-all hover:shadow-[0_10px_20px_rgba(99,91,255,0.3)] hover:-translate-y-0.5 w-max">
-                Explore Deployments <ChevronRight size={18} />
-              </a>
-            </motion.div>
-          </div>
-        </motion.div>
-      </main>
-
-      {/* --- PROJECTS / FLOATING WIDGETS --- */}
-      <section id="deployments" className="w-full py-24 sm:py-32 bg-white relative z-20">
-        <div className="w-full max-w-7xl mx-auto px-6 sm:px-12">
-          
-          <div className="flex flex-col gap-24 sm:gap-40">
-            
-            {/* 1. SILLAGE (Recreating the "Daybreak Yoga" Receipt UI) */}
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
-              <div className="w-full lg:w-1/2 flex flex-col gap-6 order-2 lg:order-1">
-                <motion.h4 variants={fadeUp} className="text-3xl sm:text-4xl font-bold text-[#0A2540]">Sillage E-Commerce</motion.h4>
-                <motion.p variants={fadeUp} className="text-lg text-[#425466] leading-relaxed">
-                  High-performance architecture for luxury fragrances. Focused heavily on visually driven sales logic, optimizing asset delivery, and providing a fluid, app-like checkout experience.
-                </motion.p>
-                <motion.div variants={fadeUp} className="flex flex-col gap-3 mt-2">
-                  <div className="flex items-center gap-2 text-[#425466] font-medium"><CheckCircle2 className="text-[#635BFF]" size={18}/> React & Next.js Frontend</div>
-                  <div className="flex items-center gap-2 text-[#425466] font-medium"><CheckCircle2 className="text-[#635BFF]" size={18}/> Express API Backend</div>
-                  <div className="flex items-center gap-2 text-[#425466] font-medium"><CheckCircle2 className="text-[#635BFF]" size={18}/> Stripe Payment Integration</div>
-                </motion.div>
-              </div>
-              
-              <motion.div variants={fadeUp} className="w-full lg:w-1/2 order-1 lg:order-2 relative">
-                {/* Background flourish */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#FF80FF]/20 to-transparent rounded-3xl transform rotate-3 scale-105 -z-10"></div>
-                
-                {/* The "Receipt" UI Widget */}
-                <div className="bg-white rounded-2xl shadow-[0_50px_100px_-20px_rgba(50,50,93,0.15),0_30px_60px_-30px_rgba(0,0,0,0.1)] border border-gray-100 p-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 bg-[#FF80FF]/10 text-[#FF80FF] rounded-full flex items-center justify-center font-black">S</div>
-                    <span className="font-bold text-[#0A2540] text-lg">Sillage Perfumes</span>
-                  </div>
-                  <div className="text-sm font-semibold text-[#425466] mb-6">Hello, User<br/><span className="font-normal text-gray-500">Your order is now confirmed.</span></div>
-                  
-                  <div className="w-full bg-[#F6F9FC] rounded-xl p-6 border border-gray-100">
-                     <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-4">
-                        <span className="text-[#425466] font-medium text-sm">Order number</span>
-                        <span className="text-[#0A2540] font-bold text-sm">#9803890</span>
-                     </div>
-                     <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-4">
-                        <span className="text-[#425466] font-medium text-sm">Payment method</span>
-                        <span className="bg-[#0A2540] text-white text-[10px] px-2 py-0.5 rounded font-bold">VISA</span>
-                     </div>
-                     <div className="flex justify-between items-center">
-                        <span className="text-[#425466] font-medium text-sm">Total</span>
-                        <span className="text-[#0A2540] font-black text-lg">US$290.00</span>
-                     </div>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* 2. HELPIO (Recreating the "Agentic Commerce Chat" UI) */}
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-24">
-              <div className="w-full lg:w-1/2 flex flex-col gap-6">
-                <motion.h4 variants={fadeUp} className="text-3xl sm:text-4xl font-bold text-[#0A2540]">Helpio Platform</motion.h4>
-                <motion.p variants={fadeUp} className="text-lg text-[#425466] leading-relaxed">
-                  A gamified wishlist and donor fulfillment platform featuring real-time verification systems. Built with a robust relational architecture to handle concurrent transactions securely.
-                </motion.p>
-                <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mt-2">
-                  <span className="px-3 py-1 bg-[#F6F9FC] border border-gray-200 text-[#425466] text-xs font-semibold rounded-full">Next.js</span>
-                  <span className="px-3 py-1 bg-[#F6F9FC] border border-gray-200 text-[#425466] text-xs font-semibold rounded-full">PostgreSQL</span>
-                </motion.div>
-              </div>
-              
-              <motion.div variants={fadeUp} className="w-full lg:w-1/2 relative">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#635BFF_0%,transparent_50%)] opacity-10 blur-xl"></div>
-                
-                {/* The "Chat/Feed" UI Widget */}
-                <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-[0_50px_100px_-20px_rgba(50,50,93,0.15)] border border-gray-100 p-6 sm:p-8 flex flex-col gap-4">
-                  {/* Sender Bubble */}
-                  <div className="self-end max-w-[80%] bg-[#F6F9FC] border border-gray-100 rounded-2xl rounded-tr-none p-4 shadow-sm">
-                    <p className="text-sm text-[#0A2540] font-medium">I'm looking to donate medical supplies. Can you verify this recipient?</p>
-                  </div>
-                  {/* Receiver Bubble */}
-                  <div className="self-start max-w-[90%] bg-white border border-gray-100 rounded-2xl rounded-tl-none p-4 shadow-sm flex flex-col gap-4">
-                    <p className="text-sm text-[#425466]">Absolutely. Here is the verified wishlist for Hospital #8920:</p>
-                    <div className="flex gap-3">
-                       <div className="w-1/2 bg-[#F6F9FC] border border-gray-200 rounded-xl p-3 flex flex-col">
-                          <div className="w-full h-20 bg-[#635BFF]/10 rounded-lg mb-3 flex items-center justify-center font-bold text-[#635BFF] text-[10px]">O2 CONCENTRATOR</div>
-                          <span className="text-xs font-bold text-[#0A2540]">Medical Grade</span>
-                          <span className="text-[10px] text-[#425466] mt-1">₹45,000.00</span>
-                       </div>
-                       <div className="w-1/2 bg-[#F6F9FC] border border-gray-200 rounded-xl p-3 flex flex-col">
-                          <div className="w-full h-20 bg-[#00D4FF]/10 rounded-lg mb-3 flex items-center justify-center font-bold text-[#00D4FF] text-[10px]">SUPPLIES KIT</div>
-                          <span className="text-xs font-bold text-[#0A2540]">Essential Care</span>
-                          <span className="text-[10px] text-[#425466] mt-1">₹4,560.00</span>
-                       </div>
-                    </div>
-                    <button className="w-full bg-[#635BFF] text-white font-bold text-sm py-2 rounded-lg mt-2 shadow-md hover:bg-[#0A2540] transition-colors">Fulfill Request</button>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* 3. GOTRIP (Recreating the "Globe/Map" UI) */}
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
-              <div className="w-full lg:w-1/2 flex flex-col gap-6 order-2 lg:order-1">
-                <motion.h4 variants={fadeUp} className="text-3xl sm:text-4xl font-bold text-[#0A2540]">Gotrip Tourism</motion.h4>
-                <motion.p variants={fadeUp} className="text-lg text-[#425466] leading-relaxed">
-                  Scalable tourism web application integrated with interactive mapping and secure administrative content management.
-                </motion.p>
-                <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mt-2">
-                  <span className="px-3 py-1 bg-[#F6F9FC] border border-gray-200 text-[#425466] text-xs font-semibold rounded-full">MongoDB</span>
-                  <span className="px-3 py-1 bg-[#F6F9FC] border border-gray-200 text-[#425466] text-xs font-semibold rounded-full">WebGL</span>
-                </motion.div>
-              </div>
-              
-              <motion.div variants={fadeUp} className="w-full lg:w-1/2 order-1 lg:order-2 relative">
-                {/* The "Map" UI Widget */}
-                <div className="bg-white rounded-2xl shadow-[0_50px_100px_-20px_rgba(50,50,93,0.15)] border border-gray-100 h-80 relative overflow-hidden flex items-center justify-center bg-gradient-to-b from-[#F6F9FC] to-white">
-                   {/* Abstract dotted globe pattern */}
-                   <div className="absolute inset-0 opacity-30" style={{ backgroundImage: 'radial-gradient(#635BFF 1px, transparent 1px)', backgroundSize: '16px 16px', maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 70%)' }}></div>
-                   
-                   {/* Connection Arc */}
-                   <svg className="absolute inset-0 w-full h-full" pointerEvents="none">
-                      <path d="M 100 200 Q 200 100 300 250" fill="none" stroke="#FF80FF" strokeWidth="2" strokeDasharray="4 4" />
-                   </svg>
-                   
-                   {/* Floating Tags */}
-                   <div className="absolute top-[35%] left-[25%] bg-white px-3 py-1.5 rounded-lg shadow-lg border border-gray-100 flex items-center gap-2">
-                     <div className="w-4 h-4 bg-[#635BFF] rounded flex items-center justify-center text-white text-[8px] font-bold">G</div>
-                     <span className="font-bold text-[#0A2540] text-xs">Destination A</span>
-                   </div>
-
-                   <div className="absolute top-[50%] right-[20%] bg-white px-3 py-1.5 rounded-lg shadow-lg border border-gray-100 flex items-center gap-2">
-                     <div className="w-4 h-4 bg-[#00D4FF] rounded flex items-center justify-center text-white text-[8px] font-bold">G</div>
-                     <span className="font-bold text-[#0A2540] text-xs">Destination B</span>
-                   </div>
-                </div>
-              </motion.div>
-            </motion.div>
-
-          </div>
+        <div className="hidden md:flex items-center gap-8 font-mono text-[10px] uppercase tracking-widest text-[#888888]">
+          <a href="#logic" className="hover:text-white transition-colors">Algorithms</a>
+          <a href="#systems" className="hover:text-white transition-colors">Architecture</a>
+          <a href="#capabilities" className="hover:text-white transition-colors">Capabilities</a>
+          <a href="#contact" className="text-white hover:text-[#FF4433] transition-colors ml-4">Initialize</a>
         </div>
-      </section>
+      </div>
+    </motion.nav>
+  );
+}
 
-      {/* --- THE BACKBONE / STATS SCREEN --- */}
-      <section className="w-full py-24 sm:py-32 bg-[#0A2540] relative overflow-hidden">
-        {/* Swooping curved lines background */}
-        <svg className="absolute inset-0 w-full h-full opacity-20 pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <path d="M -20 100 Q 50 0 120 100" fill="none" stroke="#635BFF" strokeWidth="0.5" />
-          <path d="M -20 120 Q 50 20 120 120" fill="none" stroke="#00D4FF" strokeWidth="0.5" />
-          <path d="M 0 140 Q 50 40 100 140" fill="none" stroke="#FF80FF" strokeWidth="0.5" />
+// ==========================================
+// KINETIC HERO & GRAPH VISUALIZATION
+// ==========================================
+function HeroSection() {
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 1000], [0, 200]);
+  const opacity = useTransform(scrollY, [0, 500], [1, 0]);
+
+  return (
+    <section className="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden bg-[#050505]">
+      {/* Abstract Algorithmic Background */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center opacity-30 pointer-events-none">
+        <svg viewBox="0 0 1000 1000" className="w-full h-full max-w-[1200px]" fill="none" stroke="#222222" strokeWidth="1">
+          {/* Animated Graph Traversal Paths */}
+          <motion.path d="M100 500 Q 300 200 500 500 T 900 500" 
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 3, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" }}
+            stroke="#FF4433" strokeWidth="1.5" strokeDasharray="5 5"
+          />
+          <motion.path d="M100 500 C 300 800 400 200 900 500" 
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 4, ease: "easeInOut", repeat: Infinity, repeatType: "mirror", delay: 0.5 }}
+            stroke="#EDEDED" strokeWidth="0.5"
+          />
+          {/* Nodes */}
+          {[100, 300, 500, 700, 900].map((cx, i) => (
+             <circle key={i} cx={cx} cy={cx % 3 === 0 ? 300 : cx % 4 === 0 ? 700 : 500} r="4" fill="#050505" stroke="#444444" strokeWidth="2"/>
+          ))}
         </svg>
+      </div>
 
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 relative z-10">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight mb-16">The backbone of the architecture</h2>
+      <motion.div style={{ y: y1, opacity }} className="relative z-10 w-full max-w-[1400px] px-6 sm:px-12">
+        <div className="flex flex-col items-start gap-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex items-center gap-3 px-3 py-1.5 border border-[#222] rounded-full bg-[#0A0A0A]"
+          >
+             <span className="w-2 h-2 rounded-full bg-[#FF4433] animate-pulse"></span>
+             <span className="font-mono text-[9px] uppercase tracking-widest text-[#888]">System Architecture & Algorithms</span>
           </motion.div>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-[12vw] sm:text-[8rem] md:text-[10rem] font-bold leading-[0.85] tracking-tighter text-white"
+          >
+            LOGIC.<br/><span className="text-[#333333]">SYSTEMS.</span>
+          </motion.h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-20">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <h3 className="text-5xl sm:text-7xl font-light text-white tracking-tighter">99.999%</h3>
-              <p className="text-[#ADBDCC] text-lg font-medium mt-2">Target uptime for scalable deployment services</p>
-            </motion.div>
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <h3 className="text-5xl sm:text-7xl font-light text-white tracking-tighter">O(1)</h3>
-              <p className="text-[#ADBDCC] text-lg font-medium mt-2">Algorithmic efficiency focus for core data structures</p>
-            </motion.div>
+          <motion.div 
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-col sm:flex-row gap-8 mt-8 w-full max-w-3xl items-start sm:items-center justify-between border-t border-[#222] pt-8"
+          >
+            <p className="text-[#888888] text-sm sm:text-base leading-relaxed max-w-md font-light">
+              Engineering deterministic software solutions. I design fault-tolerant backend architectures, efficient data pipelines, and highly optimized frontend interfaces.
+            </p>
+            <button className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-white hover:text-[#FF4433] transition-colors group">
+              Explore Architecture 
+              <span className="p-2 border border-[#222] rounded-full group-hover:border-[#FF4433] transition-colors">
+                <Icons.ArrowRight />
+              </span>
+            </button>
+          </motion.div>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+// ==========================================
+// DSA / SYSTEM ARCHITECTURE SHOWCASE (Split Scroll)
+// ==========================================
+function ArchitectureShowcase() {
+  return (
+    <section id="systems" className="w-full bg-[#050505] border-t border-[#111111] py-32 relative">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-12">
+        <div className="flex flex-col mb-24">
+           <h2 className="font-mono text-[10px] text-[#FF4433] uppercase tracking-widest mb-4">Case Studies</h2>
+           <h3 className="text-4xl sm:text-6xl font-bold tracking-tight text-white">Engineering <br/>Outcomes.</h3>
+        </div>
+
+        {/* Immersive Sticky Layout */}
+        <div className="flex flex-col lg:flex-row gap-16 relative items-start">
+          
+          {/* Left: Scrollable Narrative Narrative */}
+          <div className="w-full lg:w-1/2 flex flex-col gap-32">
+            
+            {/* Project 1 Narrative */}
+            <div className="flex flex-col gap-6">
+               <div className="pb-6 border-b border-[#222]">
+                  <h4 className="text-3xl font-bold text-white mb-2">Helpio Distributed DB</h4>
+                  <p className="font-mono text-xs text-[#888] uppercase tracking-widest">Relational Architecture • Concurrent Processing</p>
+               </div>
+               <p className="text-[#EDEDED] leading-relaxed font-light">
+                 Designed a fault-tolerant database schema for a gamified fulfillment platform. Handled high-throughput concurrent requests (wishlist claims) ensuring strict ACID compliance and zero race conditions during peak donor loads.
+               </p>
+               <div className="grid grid-cols-2 gap-4 mt-4">
+                  <div className="flex flex-col gap-1 p-4 bg-[#0A0A0A] border border-[#1A1A1A] rounded-lg">
+                    <span className="font-mono text-[10px] text-[#888] uppercase">Complexity</span>
+                    <span className="font-mono text-sm text-white">O(log N) Query</span>
+                  </div>
+                  <div className="flex flex-col gap-1 p-4 bg-[#0A0A0A] border border-[#1A1A1A] rounded-lg">
+                    <span className="font-mono text-[10px] text-[#888] uppercase">Throughput</span>
+                    <span className="font-mono text-sm text-white">4.2k TPS</span>
+                  </div>
+               </div>
+               <div className="flex gap-4 mt-4">
+                  <button className="flex items-center gap-2 font-mono text-[10px] uppercase text-white hover:text-[#FF4433] transition-colors"><Icons.External /> Live System</button>
+                  <button className="flex items-center gap-2 font-mono text-[10px] uppercase text-white hover:text-[#FF4433] transition-colors"><Icons.Github /> Repository</button>
+               </div>
+            </div>
+
+            {/* Project 2 Narrative */}
+            <div className="flex flex-col gap-6">
+               <div className="pb-6 border-b border-[#222]">
+                  <h4 className="text-3xl font-bold text-white mb-2">RadView WebGL Engine</h4>
+                  <p className="font-mono text-xs text-[#888] uppercase tracking-widest">Graphics Pipeline • Memory Management</p>
+               </div>
+               <p className="text-[#EDEDED] leading-relaxed font-light">
+                 Engineered a zero-latency DICOM medical imaging viewer directly in the browser. Bypassed heavy DOM manipulations by utilizing a custom WebGL shading pipeline to render complex volumetric data streams asynchronously.
+               </p>
+               <div className="grid grid-cols-2 gap-4 mt-4">
+                  <div className="flex flex-col gap-1 p-4 bg-[#0A0A0A] border border-[#1A1A1A] rounded-lg">
+                    <span className="font-mono text-[10px] text-[#888] uppercase">Frame Rate</span>
+                    <span className="font-mono text-sm text-white">Strict 60fps</span>
+                  </div>
+                  <div className="flex flex-col gap-1 p-4 bg-[#0A0A0A] border border-[#1A1A1A] rounded-lg">
+                    <span className="font-mono text-[10px] text-[#888] uppercase">Memory</span>
+                    <span className="font-mono text-sm text-white">Garbage Collected</span>
+                  </div>
+               </div>
+               <div className="flex gap-4 mt-4">
+                  <button className="flex items-center gap-2 font-mono text-[10px] uppercase text-white hover:text-[#FF4433] transition-colors"><Icons.External /> Interface</button>
+                  <button className="flex items-center gap-2 font-mono text-[10px] uppercase text-white hover:text-[#FF4433] transition-colors"><Icons.Github /> Repository</button>
+               </div>
+            </div>
+
+          </div>
+
+          {/* Right: Sticky Visualizations (Custom SVG Logic Diagrams) */}
+          <div className="hidden lg:block w-1/2 h-[600px] sticky top-32">
+             <div className="w-full h-full bg-[#0A0A0A] border border-[#1A1A1A] rounded-xl overflow-hidden relative flex items-center justify-center p-8">
+               
+               {/* Grid Background */}
+               <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+               
+               {/* Interactive Tree/Graph Visualization representing Architecture */}
+               <svg viewBox="0 0 400 400" className="w-full h-full relative z-10">
+                 <defs>
+                   <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="1">
+                     <stop offset="0%" stopColor="#222"/>
+                     <stop offset="100%" stopColor="#FF4433"/>
+                   </linearGradient>
+                 </defs>
+                 
+                 {/* Hierarchy Lines */}
+                 <motion.path d="M200 50 L100 150 M200 50 L300 150 M100 150 L50 250 M100 150 L150 250 M300 150 L250 250 M300 150 L350 250" 
+                    fill="none" stroke="url(#lineGrad)" strokeWidth="2"
+                    initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1.5, ease: "easeInOut" }} viewport={{ once: true }}
+                 />
+                 
+                 {/* Nodes */}
+                 {[
+                   {x: 200, y: 50, label: "API"},
+                   {x: 100, y: 150, label: "Auth"}, {x: 300, y: 150, label: "Queue"},
+                   {x: 50, y: 250, label: "DB"}, {x: 150, y: 250, label: "Cache"}, {x: 250, y: 250, label: "Worker"}, {x: 350, y: 250, label: "Worker"}
+                 ].map((node, i) => (
+                    <motion.g key={i} initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.15 + 0.5 }} viewport={{ once: true }}>
+                      <circle cx={node.x} cy={node.y} r="20" fill="#050505" stroke="#444" strokeWidth="2" />
+                      <text x={node.x} y={node.y + 40} fill="#888" fontSize="10" fontFamily="monospace" textAnchor="middle" letterSpacing="1">{node.label}</text>
+                    </motion.g>
+                 ))}
+                 
+                 {/* Active Processing Simulation */}
+                 <motion.circle cx="200" cy="50" r="4" fill="#FF4433" 
+                    animate={{ cx: [200, 300, 250], cy: [50, 150, 250], opacity: [1, 1, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                 />
+               </svg>
+               
+               {/* Terminal Overlay */}
+               <div className="absolute bottom-4 left-4 right-4 bg-[#050505] border border-[#222] p-4 rounded flex flex-col gap-2 font-mono text-[9px] text-[#888]">
+                  <div className="flex justify-between items-center border-b border-[#222] pb-2">
+                     <span className="text-white">System Trace</span>
+                     <span className="text-[#FF4433] animate-pulse">Running</span>
+                  </div>
+                  <span>> initializing connection pool... OK</span>
+                  <span>> routing traffic via shard_02... OK</span>
+                  <span>> executing transaction block... <span className="text-[#EDEDED]">0.014ms</span></span>
+               </div>
+             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+  );
+}
 
-      {/* --- INFRASTRUCTURE: THE NODE DIAGRAM & TECH STACK --- */}
-      <section id="infrastructure" className="w-full py-24 sm:py-32 bg-[#0A2540] relative z-20 border-t border-[#1D3958]">
-        {/* Deep grid background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1D3958_1px,transparent_1px),linear-gradient(to_bottom,#1D3958_1px,transparent_1px)] bg-[size:30px_30px] opacity-20"></div>
-        
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 relative z-10 flex flex-col lg:flex-row gap-16 items-center">
-          
-          {/* Left Side: The Tech Logo Cluster (Recreating the Hubspot/Quickbooks cluster) */}
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="w-full lg:w-1/3 order-2 lg:order-1">
-            <h3 className="text-3xl font-bold text-white mb-6">Scale with confidence.</h3>
-            <p className="text-[#ADBDCC] text-lg mb-8 leading-relaxed">
-              Integrate seamlessly with industry-leading tools. A meticulously curated technology stack ensuring reliability, speed, and clean code architecture.
-            </p>
-            
-            {/* Logo Cluster Grid */}
-            <div className="grid grid-cols-4 gap-3">
-              {[
-                { Icon: SiPython, color: "text-[#3776AB]", bg: "bg-white" },
-                { Icon: FaJava, color: "text-[#007396]", bg: "bg-white" },
-                { Icon: SiReact, color: "text-[#61DAFB]", bg: "bg-[#112A46]" },
-                { Icon: SiNextdotjs, color: "text-[#000000]", bg: "bg-white" },
-                { Icon: SiNodedotjs, color: "text-[#339933]", bg: "bg-white" },
-                { Icon: SiExpress, color: "text-white", bg: "bg-[#112A46]" },
-                { Icon: SiPostgresql, color: "text-[#4169E1]", bg: "bg-white" },
-                { Icon: SiMongodb, color: "text-[#47A248]", bg: "bg-white" },
-                { Icon: SiFirebase, color: "text-[#FFCA28]", bg: "bg-white" },
-                { Icon: SiSupabase, color: "text-[#3ECF8E]", bg: "bg-[#112A46]" },
-                { Icon: SiDocker, color: "text-[#2496ED]", bg: "bg-white" },
-                { Icon: SiRedis, color: "text-[#DC382D]", bg: "bg-white" },
-              ].map((tech, idx) => (
-                <div key={idx} className={`w-full aspect-square rounded-xl flex items-center justify-center shadow-lg ${tech.bg}`}>
-                  <tech.Icon className={`text-2xl ${tech.color}`} />
-                </div>
-              ))}
-            </div>
-          </motion.div>
+// ==========================================
+// CAPABILITY MAPPING (Technical Matrix)
+// ==========================================
+function CapabilitiesMatrix() {
+  const categories = [
+    { title: "Languages & Logic", items: ["Python", "TypeScript", "C++", "Java"] },
+    { title: "Architecture & Data", items: ["Node.js", "PostgreSQL", "MongoDB", "Redis", "Docker"] },
+    { title: "Interface & Graphics", items: ["React", "Next.js", "WebGL", "Three.js", "Tailwind CSS"] }
+  ];
 
-          {/* Right Side: The Node Diagram */}
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="w-full lg:w-2/3 h-[500px] relative order-1 lg:order-2">
-            
-            {/* Central Node */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="bg-[#635BFF] w-32 h-32 rounded-2xl shadow-[0_0_50px_rgba(99,91,255,0.4)] flex items-center justify-center relative">
-                <span className="text-white font-black text-xl tracking-widest">NV.SYS</span>
-              </div>
-            </div>
-
-            {/* Sub-Nodes */}
-            <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-40 bg-[#112A46] border border-[#1D3958] rounded-lg p-3 text-center z-10 shadow-xl">
-              <span className="text-white text-xs font-bold">Client Interface</span>
-            </div>
-            
-            <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-48 bg-[#635BFF] rounded-lg p-3 text-center z-10 shadow-[0_10px_30px_rgba(99,91,255,0.3)]">
-              <span className="text-white text-xs font-bold">Orchestration</span>
-            </div>
-
-            <div className="absolute top-1/2 -translate-y-1/2 left-[5%] w-32 bg-[#112A46] border border-[#1D3958] rounded-lg p-3 text-center z-10 shadow-xl">
-              <span className="text-white text-xs font-bold">REST API</span>
-            </div>
-
-            <div className="absolute top-1/2 -translate-y-1/2 right-[5%] w-32 bg-[#112A46] border border-[#1D3958] rounded-lg p-3 text-center z-10 shadow-xl">
-              <span className="text-white text-xs font-bold">Data Pipeline</span>
-            </div>
-
-            {/* SVG Connecting Lines (Dashed) */}
-            <svg className="absolute inset-0 w-full h-full -z-10" pointerEvents="none">
-              <path d="M50% 50% L50% 15%" stroke="#635BFF" strokeWidth="2" strokeDasharray="4,4" className="animate-[dashAnim_20s_linear_infinite]" />
-              <path d="M50% 50% L50% 85%" stroke="#00D4FF" strokeWidth="2" strokeDasharray="4,4" className="animate-[dashAnim_20s_linear_infinite]" />
-              <path d="M50% 50% L15% 50%" stroke="#FF80FF" strokeWidth="2" strokeDasharray="4,4" className="animate-[dashAnim_20s_linear_infinite]" />
-              <path d="M50% 50% L85% 50%" stroke="#635BFF" strokeWidth="2" strokeDasharray="4,4" className="animate-[dashAnim_20s_linear_infinite]" />
-            </svg>
-
-            {/* Little sub-blocks simulating the small rectangles at the bottom of the Stripe diagram */}
-            <div className="absolute bottom-[2%] left-1/2 -translate-x-1/2 flex gap-2 opacity-50">
-               <div className="w-12 h-6 border border-[#1D3958] rounded"></div>
-               <div className="w-12 h-6 border border-[#1D3958] rounded"></div>
-               <div className="w-12 h-6 border border-[#1D3958] rounded"></div>
-               <div className="w-12 h-6 border border-[#1D3958] rounded"></div>
-            </div>
-
-          </motion.div>
+  return (
+    <section id="capabilities" className="w-full bg-[#0A0A0A] border-t border-[#111111] py-32">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
+           <div>
+             <h2 className="font-mono text-[10px] text-[#FF4433] uppercase tracking-widest mb-4">Capability Map</h2>
+             <h3 className="text-4xl sm:text-5xl font-bold tracking-tight text-white">The Engineering Stack.</h3>
+           </div>
+           <p className="text-[#888] font-mono text-xs max-w-sm uppercase leading-relaxed">
+             A highly structured ecosystem of tools used to translate abstract logic into production-grade deployments.
+           </p>
         </div>
-        
-        <style dangerouslySetInnerHTML={{ __html: `@keyframes dashAnim { to { stroke-dashoffset: -1000; } }`}} />
-      </section>
 
-      <Contact />
+        {/* Editorial Table Layout (Not generic pills) */}
+        <div className="flex flex-col border-t border-[#222]">
+          {categories.map((category, idx) => (
+             <div key={idx} className="flex flex-col md:flex-row border-b border-[#222] py-8 group hover:bg-[#0C0C0C] transition-colors">
+               <div className="w-full md:w-1/3 mb-4 md:mb-0 flex items-center gap-4">
+                  <span className="font-mono text-[#444] text-xs">0{idx + 1}</span>
+                  <h4 className="text-xl font-bold text-white group-hover:text-[#FF4433] transition-colors">{category.title}</h4>
+               </div>
+               <div className="w-full md:w-2/3 flex flex-wrap gap-x-8 gap-y-4">
+                  {category.items.map((item, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                       <Icons.Node />
+                       <span className="font-mono text-sm text-[#EDEDED]">{item}</span>
+                    </div>
+                  ))}
+               </div>
+             </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ==========================================
+// PREMIUM FOOTER & CONTACT
+// ==========================================
+function Footer() {
+  return (
+    <footer id="contact" className="w-full bg-[#050505] border-t border-[#111111] pt-32 pb-12">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-12 flex flex-col items-center text-center">
+        
+        <h2 className="text-4xl sm:text-6xl font-bold tracking-tighter text-white mb-6">Initialize a connection.</h2>
+        <p className="text-[#888] max-w-lg mb-12 font-light">
+          Whether constructing scalable backend infrastructure or refining algorithmic efficiency, I am open to discussing complex engineering challenges.
+        </p>
+        
+        <button className="px-8 py-4 bg-white text-[#050505] font-bold uppercase tracking-widest text-xs hover:bg-[#FF4433] hover:text-white transition-colors duration-300">
+          Transmit Message
+        </button>
+
+        <div className="w-full border-t border-[#222] mt-32 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+           <span className="font-black text-2xl tracking-tighter text-white">NIKUNJ<span className="text-[#FF4433]">.</span></span>
+           <div className="flex gap-8 font-mono text-[10px] uppercase tracking-widest text-[#666]">
+              <a href="#" className="hover:text-white transition-colors">Github</a>
+              <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
+              <a href="#" className="hover:text-white transition-colors">X.com</a>
+           </div>
+           <span className="font-mono text-[10px] text-[#444] uppercase tracking-widest">© {new Date().getFullYear()} All Rights Reserved</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ==========================================
+// MASTER PAGE EXPORT
+// ==========================================
+export default function Portfolio() {
+  return (
+    <div className="w-full bg-[#050505] selection:bg-[#FF4433] selection:text-white">
+      <Navigation />
+      <HeroSection />
+      <ArchitectureShowcase />
+      <CapabilitiesMatrix />
       <Footer />
     </div>
   );
 }
+
