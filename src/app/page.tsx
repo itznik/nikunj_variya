@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 
 import Hero from "@/components/sections/Hero";
 import Projects from "@/components/sections/Projects";
+import TechStack from "@/components/sections/TechStack";
 
 export default function HomePage() {
   return (
@@ -11,7 +12,10 @@ export default function HomePage() {
 
       <main>
         <Hero />
+
         <Projects />
+
+        <TechStack />
       </main>
 
       <Footer />
