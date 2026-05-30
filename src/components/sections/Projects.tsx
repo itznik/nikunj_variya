@@ -5,74 +5,101 @@ export default function Projects() {
   return (
     <section
       id="work"
-      className="py-32"
+      className="py-40"
     >
       <Container>
-        <div className="mb-20">
+        <div className="mb-24">
           <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">
             Selected Work
           </p>
 
-          <h2 className="mt-4 max-w-3xl text-5xl font-bold tracking-tight text-zinc-950 md:text-7xl">
-            Projects that reflect how I think, build and solve.
+          <h2 className="mt-4 max-w-5xl text-5xl font-bold tracking-tight text-zinc-950 md:text-7xl">
+            Solving meaningful problems through software.
           </h2>
         </div>
 
-        <div className="space-y-32">
-          {projects.map((project, index) => (
+        <div className="space-y-40">
+          {projects.map((project) => (
             <article
               key={project.id}
-              className={`
-                grid gap-12 lg:grid-cols-2 lg:items-center
-                ${index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}
-              `}
+              className="grid gap-12 lg:grid-cols-2 lg:items-center"
             >
               <div>
                 <span className="text-sm text-zinc-500">
                   PROJECT {project.id}
                 </span>
 
-                <h3 className="mt-4 text-4xl font-bold text-zinc-950 md:text-5xl">
+                <h3 className="mt-4 text-5xl font-bold text-zinc-950">
                   {project.title}
                 </h3>
 
-                <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-600">
+                <p className="mt-3 text-zinc-500">
+                  {project.category}
+                </p>
+
+                <p className="mt-8 text-lg leading-relaxed text-zinc-600">
                   {project.description}
                 </p>
 
+                <div className="mt-10 space-y-6">
+                  <div>
+                    <p className="font-semibold">
+                      Challenge
+                    </p>
+
+                    <p className="mt-2 text-zinc-600">
+                      {project.challenge}
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="font-semibold">
+                      Solution
+                    </p>
+
+                    <p className="mt-2 text-zinc-600">
+                      {project.solution}
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="font-semibold">
+                      Impact
+                    </p>
+
+                    <p className="mt-2 text-zinc-600">
+                      {project.impact}
+                    </p>
+                  </div>
+                </div>
+
                 <div className="mt-8 flex flex-wrap gap-2">
-                  {project.stack.map((tech) => (
+                  {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-full bg-zinc-100 px-4 py-2 text-sm text-zinc-700"
+                      className="
+                        rounded-full
+                        bg-zinc-100
+                        px-4
+                        py-2
+                        text-sm
+                      "
                     >
                       {tech}
                     </span>
                   ))}
-                </div>
-
-                <div className="mt-8 flex items-center gap-6">
-                  <span className="text-zinc-500">
-                    {project.year}
-                  </span>
-
-                  <a
-                    href={project.link}
-                    className="font-medium text-zinc-950"
-                  >
-                    View Project →
-                  </a>
                 </div>
               </div>
 
               <div
                 className="
                   aspect-[4/3]
-                  rounded-[32px]
+                  rounded-[40px]
                   border
                   border-black/10
-                  bg-white
-                  shadow-sm
+                  bg-gradient-to-br
+                  from-white
+                  to-zinc-100
                 "
               />
             </article>
