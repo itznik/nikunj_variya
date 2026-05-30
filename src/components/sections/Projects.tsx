@@ -2,7 +2,17 @@ import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { projects } from "@/data/projects";
 
+import AlgorithmVisualizerGraphic from "@/components/projects/AlgorithmVisualizerGraphic";
+import CmsGraphic from "@/components/projects/CmsGraphic";
+import SystemDesignGraphic from "@/components/projects/SystemDesignGraphic";
+
 export default function Projects() {
+  const graphics = [
+    <AlgorithmVisualizerGraphic key="algo" />,
+    <CmsGraphic key="cms" />,
+    <SystemDesignGraphic key="system" />,
+  ];
+
   return (
     <section
       id="work"
@@ -16,17 +26,26 @@ export default function Projects() {
         />
 
         <div className="space-y-40">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <article
               key={project.id}
-              className="grid gap-12 lg:grid-cols-2 lg:items-center"
+              className={`
+                grid gap-16 lg:grid-cols-2 lg:items-center
+                ${
+                  index % 2 === 1
+                    ? "lg:[&>*:first-child]:order-2"
+                    : ""
+                }
+              `}
             >
+              {/* Content */}
+
               <div>
-                <span className="text-sm text-zinc-500">
-                  PROJECT {project.id}
+                <span className="text-sm uppercase tracking-[0.2em] text-zinc-500">
+                  Project {project.id}
                 </span>
 
-                <h3 className="mt-4 text-5xl font-bold tracking-tight text-zinc-950">
+                <h3 className="mt-4 text-4xl font-bold tracking-tight text-zinc-950 md:text-5xl">
                   {project.title}
                 </h3>
 
@@ -38,13 +57,13 @@ export default function Projects() {
                   {project.description}
                 </p>
 
-                <div className="mt-10 space-y-6">
+                <div className="mt-10 space-y-8">
                   <div>
                     <p className="font-semibold text-zinc-950">
                       Challenge
                     </p>
 
-                    <p className="mt-2 text-zinc-600">
+                    <p className="mt-2 leading-relaxed text-zinc-600">
                       {project.challenge}
                     </p>
                   </div>
@@ -54,7 +73,7 @@ export default function Projects() {
                       Solution
                     </p>
 
-                    <p className="mt-2 text-zinc-600">
+                    <p className="mt-2 leading-relaxed text-zinc-600">
                       {project.solution}
                     </p>
                   </div>
@@ -64,17 +83,24 @@ export default function Projects() {
                       Impact
                     </p>
 
-                    <p className="mt-2 text-zinc-600">
+                    <p className="mt-2 leading-relaxed text-zinc-600">
                       {project.impact}
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-8 flex flex-wrap gap-2">
+                <div className="mt-8 flex flex-wrap gap-3">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-full bg-zinc-100 px-4 py-2 text-sm text-zinc-700"
+                      className="
+                        rounded-full
+                        bg-zinc-100
+                        px-4
+                        py-2
+                        text-sm
+                        text-zinc-700
+                      "
                     >
                       {tech}
                     </span>
@@ -82,15 +108,21 @@ export default function Projects() {
                 </div>
               </div>
 
+              {/* Visual */}
+
               <div
                 className="
                   aspect-[4/3]
+                  overflow-hidden
                   rounded-[40px]
-                  bg-gradient-to-br
-                  from-zinc-50
-                  to-zinc-200
+                  border
+                  border-black/10
+                  bg-white
+                  shadow-sm
                 "
-              />
+              >
+                {graphics[index]}
+              </div>
             </article>
           ))}
         </div>
