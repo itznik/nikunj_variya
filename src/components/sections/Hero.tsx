@@ -5,7 +5,7 @@ import Container from "@/components/ui/Container";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pt-40 pb-32">
+    <section className="relative overflow-hidden pt-40 pb-40">
       <Container>
         <div className="max-w-7xl">
           <motion.p
@@ -18,24 +18,24 @@ export default function Hero() {
               text-zinc-500
             "
           >
-            Nikunj Variya
+            Software Engineer · DSA · System Design
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="
-              mt-6
+              mt-8
               font-heading
               font-bold
-              leading-[0.85]
+              leading-[0.82]
               tracking-[-0.08em]
               text-zinc-950
               text-[4.5rem]
               sm:text-[6rem]
               md:text-[8rem]
-              lg:text-[10rem]
+              lg:text-[11rem]
             "
           >
             NIKUNJ
@@ -67,153 +67,89 @@ export default function Hero() {
                   text-zinc-600
                 "
               >
-                Focused on data structures, system design and
-                full-stack development. I enjoy transforming
-                complex problems into simple, scalable solutions.
+                Focused on data structures, scalable systems and
+                full-stack engineering. I enjoy transforming
+                complexity into clarity.
               </p>
-
-              <div className="mt-10 flex flex-wrap gap-4">
-                <a
-                  href="/resume.pdf"
-                  className="
-                    rounded-2xl
-                    bg-zinc-950
-                    px-6
-                    py-3
-                    text-white
-                    transition-all
-                    hover:-translate-y-1
-                  "
-                >
-                  Resume
-                </a>
-
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    rounded-2xl
-                    border
-                    border-black/10
-                    bg-white
-                    px-6
-                    py-3
-                    text-zinc-950
-                    transition-all
-                    hover:-translate-y-1
-                  "
-                >
-                  GitHub
-                </a>
-              </div>
             </div>
 
-            <div
-              className="
-                flex
-                flex-col
-                justify-end
-                gap-8
-                border-l
-                border-black/10
-                pl-8
-              "
-            >
-              <div>
-                <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
-                  Focus
-                </p>
+            <div className="flex flex-col justify-end gap-10">
+              <Metric
+                value="250+"
+                label="Problems Solved"
+              />
 
-                <p className="mt-2 text-2xl font-semibold text-zinc-950">
-                  Data Structures & Algorithms
-                </p>
-              </div>
+              <Metric
+                value="15+"
+                label="Projects Built"
+              />
 
-              <div>
-                <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
-                  Learning
-                </p>
-
-                <p className="mt-2 text-2xl font-semibold text-zinc-950">
-                  System Design
-                </p>
-              </div>
-
-              <div>
-                <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
-                  Building
-                </p>
-
-                <p className="mt-2 text-2xl font-semibold text-zinc-950">
-                  Full Stack Applications
-                </p>
-              </div>
+              <Metric
+                value="3+"
+                label="Years Learning"
+              />
             </div>
           </div>
 
-          <div className="mt-24 border-t border-black/10 pt-10">
-            <div className="grid gap-10 sm:grid-cols-3">
-              <div>
-                <p
-                  className="
-                    text-6xl
-                    font-bold
-                    tracking-tight
-                    text-zinc-950
-                  "
-                >
-                  250+
-                </p>
+          <div className="mt-24 border-t border-black/10 pt-8">
+            <div className="flex flex-wrap items-center gap-8 text-sm text-zinc-500">
+              <a
+                href="/resume.pdf"
+                className="hover:text-zinc-950"
+              >
+                Resume
+              </a>
 
-                <p className="mt-2 text-zinc-500">
-                  Problems Solved
-                </p>
-              </div>
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-zinc-950"
+              >
+                GitHub
+              </a>
 
-              <div>
-                <p
-                  className="
-                    text-6xl
-                    font-bold
-                    tracking-tight
-                    text-zinc-950
-                  "
-                >
-                  15+
-                </p>
+              <a
+                href="#contact"
+                className="hover:text-zinc-950"
+              >
+                Contact
+              </a>
 
-                <p className="mt-2 text-zinc-500">
-                  Projects Built
-                </p>
-              </div>
-
-              <div>
-                <p
-                  className="
-                    text-6xl
-                    font-bold
-                    tracking-tight
-                    text-zinc-950
-                  "
-                >
-                  3+
-                </p>
-
-                <p className="mt-2 text-zinc-500">
-                  Years Learning
-                </p>
-              </div>
+              <span className="ml-auto">
+                Scroll ↓
+              </span>
             </div>
-          </div>
-
-          <div className="mt-20">
-            <p className="text-sm text-zinc-500">
-              Scroll to explore ↓
-            </p>
           </div>
         </div>
       </Container>
     </section>
+  );
+}
+
+function Metric({
+  value,
+  label,
+}: {
+  value: string;
+  label: string;
+}) {
+  return (
+    <div>
+      <p
+        className="
+          text-5xl
+          font-bold
+          tracking-tight
+          text-zinc-950
+        "
+      >
+        {value}
+      </p>
+
+      <p className="mt-2 text-zinc-500">
+        {label}
+      </p>
+    </div>
   );
 }
