@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, CheckCircle2, ChevronRight, Activity, Cpu } from "lucide-react";
-// Corrected Official Imports - Zero Build Errors
+import { ArrowUpRight, CheckCircle2, ChevronRight, Activity, Cpu, Server } from "lucide-react";
 import { 
   SiPython, SiReact, SiNextdotjs, SiNodedotjs, SiExpress, 
   SiPostgresql, SiMongodb, SiFirebase, SiSupabase, 
