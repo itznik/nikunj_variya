@@ -5,16 +5,16 @@ import Container from "@/components/ui/Container";
 
 export default function Hero() {
   return (
-    <section className="pt-40 pb-32">
+    <section className="relative overflow-hidden pt-40 pb-32">
       <Container>
-        <div className="max-w-6xl">
+        <div className="max-w-7xl">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="
-              text-sm
+              text-xs
               uppercase
-              tracking-[0.3em]
+              tracking-[0.4em]
               text-zinc-500
             "
           >
@@ -22,109 +22,147 @@ export default function Hero() {
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="
               mt-6
               font-heading
-              text-[4rem]
-              leading-[0.9]
               font-bold
-              tracking-[-0.07em]
+              leading-[0.85]
+              tracking-[-0.08em]
               text-zinc-950
-              sm:text-[5rem]
-              lg:text-[8rem]
+              text-[4.5rem]
+              sm:text-[6rem]
+              md:text-[8rem]
+              lg:text-[10rem]
             "
           >
-            Software Engineer
-            <br />
-            & Problem Solver
+            NIKUNJ
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.15 }}
-            className="
-              mt-10
-              max-w-2xl
-              text-xl
-              leading-relaxed
-              text-zinc-600
-            "
-          >
-            Building software through algorithms,
-            systems thinking and relentless curiosity.
-            Focused on creating scalable, efficient and
-            meaningful digital experiences.
-          </motion.p>
+          <div className="mt-12 grid gap-16 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+              <h2
+                className="
+                  max-w-3xl
+                  text-3xl
+                  font-semibold
+                  leading-tight
+                  tracking-tight
+                  text-zinc-950
+                  md:text-5xl
+                "
+              >
+                Building software through algorithms,
+                systems thinking and relentless curiosity.
+              </h2>
 
-          <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href="/resume.pdf"
-              className="
-                rounded-2xl
-                bg-zinc-950
-                px-6
-                py-3
-                text-white
-              "
-            >
-              Resume
-            </a>
+              <p
+                className="
+                  mt-8
+                  max-w-2xl
+                  text-lg
+                  leading-relaxed
+                  text-zinc-600
+                "
+              >
+                Focused on data structures, system design and
+                full-stack development. I enjoy transforming
+                complex problems into simple, scalable solutions.
+              </p>
 
-            <a
-              href="https://github.com"
+              <div className="mt-10 flex flex-wrap gap-4">
+                <a
+                  href="/resume.pdf"
+                  className="
+                    rounded-2xl
+                    bg-zinc-950
+                    px-6
+                    py-3
+                    text-white
+                    transition-all
+                    hover:-translate-y-1
+                  "
+                >
+                  Resume
+                </a>
+
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    rounded-2xl
+                    border
+                    border-black/10
+                    bg-white
+                    px-6
+                    py-3
+                    text-zinc-950
+                    transition-all
+                    hover:-translate-y-1
+                  "
+                >
+                  GitHub
+                </a>
+              </div>
+            </div>
+
+            <div
               className="
-                rounded-2xl
-                border
+                flex
+                flex-col
+                justify-end
+                gap-8
+                border-l
                 border-black/10
-                bg-white
-                px-6
-                py-3
+                pl-8
               "
             >
-              GitHub
-            </a>
-          </div>
-
-          <div className="mt-24 grid gap-6 lg:grid-cols-3">
-            <div className="rounded-[28px] border border-black/10 bg-white p-8">
-              <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
-                Learning
-              </p>
-
-              <h3 className="mt-3 text-2xl font-bold">
-                System Design
-              </h3>
-            </div>
-
-            <div className="rounded-[28px] border border-black/10 bg-white p-8">
-              <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
-                Building
-              </p>
-
-              <h3 className="mt-3 text-2xl font-bold">
-                Full Stack Apps
-              </h3>
-            </div>
-
-            <div className="rounded-[28px] border border-black/10 bg-white p-8">
-              <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
-                Solving
-              </p>
-
-              <h3 className="mt-3 text-2xl font-bold">
-                DSA Problems
-              </h3>
-            </div>
-          </div>
-
-          <div className="mt-16 border-t border-black/10 pt-10">
-            <div className="grid grid-cols-3 gap-6">
               <div>
-                <p className="text-5xl font-bold">
+                <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
+                  Focus
+                </p>
+
+                <p className="mt-2 text-2xl font-semibold text-zinc-950">
+                  Data Structures & Algorithms
+                </p>
+              </div>
+
+              <div>
+                <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
+                  Learning
+                </p>
+
+                <p className="mt-2 text-2xl font-semibold text-zinc-950">
+                  System Design
+                </p>
+              </div>
+
+              <div>
+                <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
+                  Building
+                </p>
+
+                <p className="mt-2 text-2xl font-semibold text-zinc-950">
+                  Full Stack Applications
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-24 border-t border-black/10 pt-10">
+            <div className="grid gap-10 sm:grid-cols-3">
+              <div>
+                <p
+                  className="
+                    text-6xl
+                    font-bold
+                    tracking-tight
+                    text-zinc-950
+                  "
+                >
                   250+
                 </p>
 
@@ -134,7 +172,14 @@ export default function Hero() {
               </div>
 
               <div>
-                <p className="text-5xl font-bold">
+                <p
+                  className="
+                    text-6xl
+                    font-bold
+                    tracking-tight
+                    text-zinc-950
+                  "
+                >
                   15+
                 </p>
 
@@ -144,7 +189,14 @@ export default function Hero() {
               </div>
 
               <div>
-                <p className="text-5xl font-bold">
+                <p
+                  className="
+                    text-6xl
+                    font-bold
+                    tracking-tight
+                    text-zinc-950
+                  "
+                >
                   3+
                 </p>
 
@@ -153,6 +205,12 @@ export default function Hero() {
                 </p>
               </div>
             </div>
+          </div>
+
+          <div className="mt-20">
+            <p className="text-sm text-zinc-500">
+              Scroll to explore ↓
+            </p>
           </div>
         </div>
       </Container>
