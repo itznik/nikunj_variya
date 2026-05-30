@@ -5,6 +5,7 @@ import Hero from "@/components/sections/Hero";
 import Projects from "@/components/sections/Projects";
 import TechStack from "@/components/sections/TechStack";
 import Journey from "@/components/sections/Journey";
+import Philosophy from "@/components/sections/Philosophy";
 
 export default function HomePage() {
   return (
@@ -19,6 +20,8 @@ export default function HomePage() {
         <TechStack />
 
         <Journey />
+
+        <Philosophy />
       </main>
 
       <Footer />
