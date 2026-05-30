@@ -4,7 +4,7 @@ import Hero from "@/components/sections/Hero";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#f6f5f2]">
+    <div className="min-h-screen bg-[#f6f5f2] text-zinc-950">
       <Navbar />
 
       <main>
