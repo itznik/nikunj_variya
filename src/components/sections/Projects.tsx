@@ -1,22 +1,19 @@
 import Container from "@/components/ui/Container";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { projects } from "@/data/projects";
 
 export default function Projects() {
   return (
     <section
       id="work"
-      className="py-40"
+      className="bg-white py-40"
     >
       <Container>
-        <div className="mb-24">
-          <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">
-            Selected Work
-          </p>
-
-          <h2 className="mt-4 max-w-5xl text-5xl font-bold tracking-tight text-zinc-950 md:text-7xl">
-            Solving meaningful problems through software.
-          </h2>
-        </div>
+        <SectionHeading
+          label="Selected Work"
+          title="Solving meaningful problems through software."
+          description="A collection of projects focused on engineering, problem solving and building useful digital experiences."
+        />
 
         <div className="space-y-40">
           {projects.map((project) => (
@@ -29,7 +26,7 @@ export default function Projects() {
                   PROJECT {project.id}
                 </span>
 
-                <h3 className="mt-4 text-5xl font-bold text-zinc-950">
+                <h3 className="mt-4 text-5xl font-bold tracking-tight text-zinc-950">
                   {project.title}
                 </h3>
 
@@ -43,7 +40,7 @@ export default function Projects() {
 
                 <div className="mt-10 space-y-6">
                   <div>
-                    <p className="font-semibold">
+                    <p className="font-semibold text-zinc-950">
                       Challenge
                     </p>
 
@@ -53,7 +50,7 @@ export default function Projects() {
                   </div>
 
                   <div>
-                    <p className="font-semibold">
+                    <p className="font-semibold text-zinc-950">
                       Solution
                     </p>
 
@@ -63,7 +60,7 @@ export default function Projects() {
                   </div>
 
                   <div>
-                    <p className="font-semibold">
+                    <p className="font-semibold text-zinc-950">
                       Impact
                     </p>
 
@@ -77,13 +74,7 @@ export default function Projects() {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="
-                        rounded-full
-                        bg-zinc-100
-                        px-4
-                        py-2
-                        text-sm
-                      "
+                      className="rounded-full bg-zinc-100 px-4 py-2 text-sm text-zinc-700"
                     >
                       {tech}
                     </span>
@@ -95,11 +86,9 @@ export default function Projects() {
                 className="
                   aspect-[4/3]
                   rounded-[40px]
-                  border
-                  border-black/10
                   bg-gradient-to-br
-                  from-white
-                  to-zinc-100
+                  from-zinc-50
+                  to-zinc-200
                 "
               />
             </article>
