@@ -5,16 +5,16 @@ import Container from "@/components/ui/Container";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-20">
+    <section className="pt-40 pb-24">
       <Container>
-        <div className="flex flex-col gap-12 lg:grid lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+        <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <span className="inline-flex rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-zinc-400">
+              <span className="inline-flex rounded-full border border-black/10 bg-white px-4 py-2 text-sm text-zinc-600">
                 Engineering • Algorithms • Product Thinking
               </span>
             </motion.div>
@@ -27,19 +27,17 @@ export default function Hero() {
                 mt-8
                 font-heading
                 font-bold
-                tracking-[-0.05em]
-                leading-[0.92]
-                text-[4rem]
-                sm:text-[5rem]
-                lg:text-[7rem]
-                text-white
+                tracking-[-0.06em]
+                text-zinc-950
+                leading-[0.95]
+                text-[3.5rem]
+                sm:text-[4.5rem]
+                lg:text-[6.5rem]
               "
             >
-              Engineering
+              Engineering Systems
               <br />
-              Systems That
-              <br />
-              Scale Beyond
+              That Scale Beyond
               <br />
               Code.
             </motion.h1>
@@ -53,12 +51,11 @@ export default function Hero() {
                 max-w-xl
                 text-lg
                 leading-relaxed
-                text-zinc-400
+                text-zinc-600
               "
             >
-              I design and build performant software through data
-              structures, algorithms, modern web technologies,
-              and systematic problem solving.
+              I build performant software through data structures,
+              algorithms, system design, and modern web technologies.
             </motion.p>
 
             <div className="mt-10 flex flex-wrap gap-4">
@@ -66,12 +63,11 @@ export default function Hero() {
                 href="#work"
                 className="
                   rounded-2xl
-                  bg-white
+                  bg-zinc-950
                   px-6
                   py-3
-                  font-medium
-                  text-black
-                  transition-transform
+                  text-white
+                  transition-all
                   hover:-translate-y-1
                 "
               >
@@ -83,12 +79,12 @@ export default function Hero() {
                 className="
                   rounded-2xl
                   border
-                  border-white/10
-                  bg-white/[0.03]
+                  border-black/10
+                  bg-white
                   px-6
                   py-3
-                  text-white
-                  transition-transform
+                  text-zinc-900
+                  transition-all
                   hover:-translate-y-1
                 "
               >
@@ -97,57 +93,58 @@ export default function Hero() {
             </div>
           </div>
 
-          <ProblemSolvingCard />
+          <PipelineCard />
         </div>
       </Container>
     </section>
   );
 }
 
-function ProblemSolvingCard() {
+function PipelineCard() {
   return (
     <div
       className="
         rounded-[32px]
         border
-        border-white/10
-        bg-white/[0.03]
+        border-black/10
+        bg-white
         p-8
+        shadow-sm
       "
     >
-      <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
+      <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">
         Problem Solving Pipeline
       </p>
 
       <div className="mt-10 space-y-8">
-        <Step
+        <PipelineStep
           title="Input"
-          description="Array of integers"
+          value="Array of Integers"
         />
 
         <Arrow />
 
-        <Step
+        <PipelineStep
           title="Algorithm"
-          description="Binary Search"
+          value="Binary Search"
         />
 
         <Arrow />
 
-        <Step
+        <PipelineStep
           title="Optimization"
-          description="O(log n)"
+          value="O(log n)"
         />
 
         <Arrow />
 
-        <Step
+        <PipelineStep
           title="Output"
-          description="Target Found"
+          value="Target Found"
         />
       </div>
 
-      <div className="mt-12 border-t border-white/10 pt-6">
+      <div className="mt-12 border-t border-black/10 pt-6">
         <p className="text-sm text-zinc-500">
           Current Focus
         </p>
@@ -162,12 +159,12 @@ function ProblemSolvingCard() {
   );
 }
 
-function Step({
+function PipelineStep({
   title,
-  description,
+  value,
 }: {
   title: string;
-  description: string;
+  value: string;
 }) {
   return (
     <div>
@@ -175,8 +172,8 @@ function Step({
         {title}
       </p>
 
-      <p className="mt-1 text-xl font-semibold text-white">
-        {description}
+      <p className="mt-1 text-xl font-semibold text-zinc-950">
+        {value}
       </p>
     </div>
   );
@@ -184,7 +181,7 @@ function Step({
 
 function Arrow() {
   return (
-    <div className="text-zinc-600">
+    <div className="text-zinc-400 text-lg">
       ↓
     </div>
   );
@@ -199,13 +196,11 @@ function Tag({
     <span
       className="
         rounded-full
-        border
-        border-white/10
-        bg-white/[0.04]
+        bg-zinc-100
         px-3
         py-1
         text-sm
-        text-zinc-300
+        text-zinc-700
       "
     >
       {children}
