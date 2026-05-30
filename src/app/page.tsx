@@ -64,7 +64,6 @@ export default function Home() {
             <button className="bg-[#635BFF] text-white px-8 py-4 rounded-full font-semibold flex items-center justify-center gap-2 hover:bg-[#0A2540] transition-all hover:scale-105 shadow-[0_10px_20px_rgba(99,91,255,0.3)]">
               View Architecture <ArrowRight size={18} />
             </button>
-          </button>
           </motion.div>
         </motion.div>
       </main>
@@ -80,7 +79,7 @@ export default function Home() {
 
           <div className="flex flex-col gap-12 sm:gap-24">
             
-            {/* PROJECT 1: HELP.IO (The "Agentic Commerce" Vibe) */}
+            {/* PROJECT 1: HELP.IO */}
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}
               className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24"
@@ -101,10 +100,8 @@ export default function Home() {
               
               {/* Fake UI Graphic (Mimicking Stripe's Product Shots) */}
               <motion.div variants={fadeUp} className="w-full lg:w-1/2 order-1 lg:order-2 relative">
-                {/* Decorative background splatter */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#635BFF]/10 to-transparent rounded-3xl transform rotate-3 scale-105 -z-10"></div>
                 <div className="bg-white rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border border-gray-100 p-6 sm:p-8 relative overflow-hidden">
-                   {/* Mock UI Interface */}
                    <div className="w-full bg-[#F6F9FC] rounded-xl p-4 mb-4 flex justify-between items-center">
                      <div className="flex items-center gap-3">
                        <div className="w-8 h-8 rounded-full bg-[#635BFF] text-white flex items-center justify-center font-bold text-xs">H</div>
@@ -140,7 +137,6 @@ export default function Home() {
               <motion.div variants={fadeUp} className="w-full lg:w-1/2 relative">
                 <div className="absolute inset-0 bg-gradient-to-bl from-[#FF80FF]/10 to-transparent rounded-3xl transform -rotate-3 scale-105 -z-10"></div>
                 <div className="bg-white rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border border-gray-100 p-6 sm:p-8 flex flex-col gap-4">
-                  {/* Mock Checkout UI */}
                   <div className="text-lg font-bold text-[#0A2540] mb-2 border-b border-gray-100 pb-4">Checkout Session</div>
                   {[1,2,3].map((i) => (
                     <div key={i} className="flex justify-between items-center py-2">
@@ -177,7 +173,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* THE DEEP DARK ARCHITECTURE SECTION (Mimicking the Blue/Navy Stripe Screenshots) */}
+      {/* THE DEEP DARK ARCHITECTURE SECTION */}
       <section id="infrastructure" className="w-full py-32 bg-[#0A2540] relative z-20 overflow-hidden">
         {/* Abstract Data Lines Background */}
         <svg className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -196,30 +192,25 @@ export default function Home() {
             </motion.p>
           </motion.div>
 
-          {/* THE NODE GRAPHIC (Recreating Screenshot #7) */}
+          {/* THE NODE GRAPHIC */}
           <div className="relative w-full max-w-4xl mx-auto h-[600px] sm:h-[500px] flex items-center justify-center">
             
-            {/* Background Grid inside the Node Area */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#1D3958_1px,transparent_1px),linear-gradient(to_bottom,#1D3958_1px,transparent_1px)] bg-[size:20px_20px] opacity-30 mask-image-[radial-gradient(ellipse_at_center,black,transparent)]"></div>
 
-            {/* Central Node */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
               <div className="w-32 h-32 bg-gradient-to-br from-[#635BFF] to-[#0A2540] rounded-2xl shadow-[0_0_50px_rgba(99,91,255,0.4)] flex items-center justify-center border border-[#635BFF]/50 relative">
                 <span className="text-white font-black text-xl tracking-widest">NV.SYS</span>
-                {/* Glowing pulse behind center */}
                 <div className="absolute inset-0 bg-[#635BFF] rounded-2xl animate-ping opacity-20"></div>
               </div>
             </div>
 
-            {/* Connecting SVG Lines (Dashed) */}
             <svg className="absolute inset-0 w-full h-full -z-10" pointerEvents="none">
-              <path d="M50% 50% L20% 25%" stroke="#635BFF" strokeWidth="2" strokeDasharray="5,5" className="animate-[dash_20s_linear_infinite]" />
-              <path d="M50% 50% L80% 25%" stroke="#00D4FF" strokeWidth="2" strokeDasharray="5,5" className="animate-[dash_20s_linear_infinite]" />
-              <path d="M50% 50% L20% 75%" stroke="#FF80FF" strokeWidth="2" strokeDasharray="5,5" className="animate-[dash_20s_linear_infinite]" />
-              <path d="M50% 50% L80% 75%" stroke="#635BFF" strokeWidth="2" strokeDasharray="5,5" className="animate-[dash_20s_linear_infinite]" />
+              <path d="M50% 50% L20% 25%" stroke="#635BFF" strokeWidth="2" strokeDasharray="5,5" className="animate-dash" />
+              <path d="M50% 50% L80% 25%" stroke="#00D4FF" strokeWidth="2" strokeDasharray="5,5" className="animate-dash" />
+              <path d="M50% 50% L20% 75%" stroke="#FF80FF" strokeWidth="2" strokeDasharray="5,5" className="animate-dash" />
+              <path d="M50% 50% L80% 75%" stroke="#635BFF" strokeWidth="2" strokeDasharray="5,5" className="animate-dash" />
             </svg>
 
-            {/* Floating Tech Nodes */}
             <div className="absolute top-[15%] left-[10%] sm:left-[20%] w-24 h-24 bg-[#112A46] border border-[#1D3958] rounded-xl flex flex-col items-center justify-center gap-2 shadow-xl hover:-translate-y-2 transition-transform cursor-pointer">
               <SiReact size={28} className="text-[#00D4FF]" />
               <span className="text-[#ADBDCC] text-[10px] font-bold uppercase tracking-wider">Frontend</span>
@@ -240,7 +231,6 @@ export default function Home() {
               <span className="text-[#ADBDCC] text-[10px] font-bold uppercase tracking-wider">Deploy</span>
             </div>
 
-            {/* Extra Tech Icons grouped like Stripe's partner logos */}
             <div className="absolute top-1/2 -translate-y-1/2 left-[5%] grid grid-cols-2 gap-2">
               <div className="w-10 h-10 bg-[#112A46] rounded flex items-center justify-center"><SiPython className="text-white" /></div>
               <div className="w-10 h-10 bg-[#112A46] rounded flex items-center justify-center"><FaJava className="text-white" /></div>
@@ -251,12 +241,15 @@ export default function Home() {
           </div>
         </div>
         
-        {/* CSS for animating the dashed lines */}
-        <style jsx>{`
-          @keyframes dash {
+        {/* Safe, Turbopack-compatible inline styles for the dashed line animation */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          @keyframes dashAnim {
             to { stroke-dashoffset: -1000; }
           }
-        `}</style>
+          .animate-dash {
+            animation: dashAnim 20s linear infinite;
+          }
+        `}} />
       </section>
 
     </div>
