@@ -11,6 +11,7 @@ import {
   SiPostgresql,
   SiMongodb,
   SiGit,
+  SiFramer,
 } from "react-icons/si";
 
 import { FaLinux } from "react-icons/fa";
@@ -18,58 +19,68 @@ import { FaLinux } from "react-icons/fa";
 const categories = [
   {
     title: "Frontend",
-    items: [
+    description:
+      "Building modern, responsive and performant user experiences.",
+    technologies: [
       {
-        icon: SiNextdotjs,
         name: "Next.js",
+        icon: SiNextdotjs,
       },
       {
-        icon: SiReact,
         name: "React",
+        icon: SiReact,
       },
       {
-        icon: SiTypescript,
         name: "TypeScript",
+        icon: SiTypescript,
       },
       {
+        name: "Tailwind CSS",
         icon: SiTailwindcss,
-        name: "Tailwind",
+      },
+      {
+        name: "Framer Motion",
+        icon: SiFramer,
       },
     ],
   },
 
   {
     title: "Backend",
-    items: [
+    description:
+      "Creating APIs, databases and scalable application logic.",
+    technologies: [
       {
-        icon: SiNodedotjs,
         name: "Node.js",
+        icon: SiNodedotjs,
       },
       {
-        icon: SiExpress,
         name: "Express",
+        icon: SiExpress,
       },
       {
-        icon: SiPostgresql,
         name: "PostgreSQL",
+        icon: SiPostgresql,
       },
       {
-        icon: SiMongodb,
         name: "MongoDB",
+        icon: SiMongodb,
       },
     ],
   },
 
   {
     title: "Engineering",
-    items: [
+    description:
+      "Strong focus on fundamentals, tooling and problem solving.",
+    technologies: [
       {
-        icon: SiGit,
         name: "Git",
+        icon: SiGit,
       },
       {
-        icon: FaLinux,
         name: "Linux",
+        icon: FaLinux,
       },
     ],
   },
@@ -79,13 +90,13 @@ export default function TechStack() {
   return (
     <section
       id="capabilities"
-      className="bg-[#efede7] py-32"
+      className="bg-[#efede7] py-40"
     >
       <Container>
         <SectionHeading
           label="Capabilities"
           title="Technologies I use to design and build software."
-          description="A growing toolkit focused on engineering fundamentals, modern web technologies and scalable systems."
+          description="Focused on engineering fundamentals, modern web technologies and scalable application development."
         />
 
         <div className="grid gap-8 lg:grid-cols-3">
@@ -93,22 +104,29 @@ export default function TechStack() {
             <div
               key={category.title}
               className="
-                rounded-[32px]
+                rounded-[40px]
                 bg-white
                 p-8
+                transition-all
+                duration-300
+                hover:-translate-y-1
               "
             >
-              <h3 className="text-2xl font-bold text-zinc-950">
+              <h3 className="text-3xl font-bold text-zinc-950">
                 {category.title}
               </h3>
 
-              <div className="mt-8 space-y-4">
-                {category.items.map((item) => {
-                  const Icon = item.icon;
+              <p className="mt-4 text-zinc-600 leading-relaxed">
+                {category.description}
+              </p>
+
+              <div className="mt-8 space-y-3">
+                {category.technologies.map((tech) => {
+                  const Icon = tech.icon;
 
                   return (
                     <div
-                      key={item.name}
+                      key={tech.name}
                       className="
                         flex
                         items-center
@@ -125,7 +143,7 @@ export default function TechStack() {
                       />
 
                       <span className="font-medium text-zinc-800">
-                        {item.name}
+                        {tech.name}
                       </span>
                     </div>
                   );
