@@ -49,17 +49,13 @@ export default function Navbar() {
       <Container>
         <div
           className={cn(
-            "flex items-center justify-between rounded-3xl border transition-all duration-300",
-            "border-white/10",
-            "bg-[#111111]/90",
-            "backdrop-blur-xl",
+            "flex items-center justify-between rounded-3xl border backdrop-blur-xl transition-all duration-300",
+            "border-black/10 bg-white/80",
             scrolled
-              ? "h-16 px-5 shadow-[0_10px_40px_rgba(0,0,0,0.35)]"
+              ? "h-16 px-5 shadow-[0_10px_40px_rgba(0,0,0,0.08)]"
               : "h-20 px-6"
           )}
         >
-          {/* LOGO */}
-
           <Link
             href="/"
             className="
@@ -67,27 +63,22 @@ export default function Navbar() {
               text-lg
               font-semibold
               tracking-tight
-              text-white
-              transition-opacity
-              hover:opacity-80
+              text-zinc-950
             "
           >
             Nikunj Variya
           </Link>
 
-          {/* DESKTOP NAV */}
-
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden md:flex items-center gap-8">
             {links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 className="
                   text-sm
-                  text-zinc-400
+                  text-zinc-600
                   transition-colors
-                  duration-200
-                  hover:text-white
+                  hover:text-zinc-950
                 "
               >
                 {link.label}
@@ -95,22 +86,18 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* CTA */}
-
           <a
             href="#contact"
             className="
               rounded-2xl
-              bg-white
+              bg-zinc-950
               px-5
               py-3
               text-sm
               font-medium
-              text-black
+              text-white
               transition-all
-              duration-200
               hover:-translate-y-0.5
-              hover:shadow-lg
             "
           >
             Let's Talk
