@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ 
-  subsets: ["latin"], 
-  variable: "--font-inter" 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
 });
 
-const jetbrainsMono = JetBrains_Mono({ 
-  subsets: ["latin"], 
-  variable: "--font-jetbrains-mono" 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-heading",
 });
 
 export const metadata: Metadata = {
-  title: "Software Engineer | Portfolio",
-  description: "Engineering high-performance web applications and scalable architectures.",
+  title: "Nikunj Variya",
+  description:
+    "Engineering systems through algorithms, product thinking, and modern web technologies.",
 };
 
 export default function RootLayout({
@@ -23,9 +24,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      {/* We removed the boxed main container and padding. It is now 100% full-bleed. */}
-      <body className="min-h-screen bg-white font-sans antialiased overflow-x-hidden">
+    <html lang="en">
+      <body
+        className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
+      >
         {children}
       </body>
     </html>
