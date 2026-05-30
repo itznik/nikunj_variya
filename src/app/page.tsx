@@ -7,8 +7,9 @@ import { ArrowUpRight, Network, Code2, Database, Server } from "lucide-react";
 import { 
   SiPython, SiReact, SiNextdotjs, SiNodedotjs, SiExpress, 
   SiPostgresql, SiMongodb, SiFirebase, SiSupabase, 
-  SiDocker, SiRedis, SiWebgl, SiThreejs, SiMysql, SiJava 
+  SiDocker, SiRedis, SiWebgl, SiThreejs, SiMysql
 } from "react-icons/si";
+import { FaJava } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -133,7 +134,7 @@ export default function Home() {
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
             {[
               { label: "Python", Icon: SiPython, color: "hover:border-[#3776AB]", textGlow: "group-hover:text-[#3776AB]" },
-              { label: "Java", Icon: SiJava, color: "hover:border-[#007396]", textGlow: "group-hover:text-[#007396]" },
+              { label: "Java", Icon: FaJava, color: "hover:border-[#007396]", textGlow: "group-hover:text-[#007396]" },
               { label: "React", Icon: SiReact, color: "hover:border-[#61DAFB]", textGlow: "group-hover:text-[#61DAFB]" },
               { label: "Next.js", Icon: SiNextdotjs, color: "hover:border-white", textGlow: "group-hover:text-white" },
               { label: "Node.js", Icon: SiNodedotjs, color: "hover:border-[#339933]", textGlow: "group-hover:text-[#339933]" },
