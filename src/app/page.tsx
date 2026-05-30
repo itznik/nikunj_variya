@@ -6,6 +6,7 @@ import Projects from "@/components/sections/Projects";
 import TechStack from "@/components/sections/TechStack";
 import Journey from "@/components/sections/Journey";
 import Philosophy from "@/components/sections/Philosophy";
+import Stats from "@/components/sections/Stats";
 
 export default function HomePage() {
   return (
@@ -22,6 +23,8 @@ export default function HomePage() {
         <Journey />
 
         <Philosophy />
+        
+        <Stats />
       </main>
 
       <Footer />
