@@ -1,60 +1,29 @@
 @import "tailwindcss";
 
-@theme {
-  /* Espresso & Crimson Design System */
-  --color-canvas: #121110;      /* Warm Obsidian (Base) */
-  --color-surface: #1C1A19;     /* Espresso Dark (Cards) */
-  --color-edge: #2A2726;        /* Warm Edge (Borders) */
-  --color-text-main: #F4F0E6;   /* Alabaster White (H1/H2) */
-  --color-text-sub: #A6A19C;    /* Muted Sand (Paragraphs) */
-  --color-accent: #FF331F;      /* Volt Crimson (Highlights) */
-
-  /* Font mapping */
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-jetbrains-mono);
+:root {
+  --background: #f6f5f2;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #6d5df6;
+  --accent-soft: #edeafe;
 }
 
-@layer base {
-  body {
-    background-color: var(--color-canvas);
-    color: var(--color-text-main);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    /* Prevent iOS rubber-banding for a premium app-like feel */
-    overscroll-behavior-y: none; 
-  }
-  
-  /* Custom selection color */
-  ::selection {
-    background-color: var(--color-accent);
-    color: var(--color-canvas);
-  }
-
-  /* Architectural editorial tracking */
-  h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.04em; 
-  }
+html {
+  scroll-behavior: smooth;
 }
 
-/* Custom Webkit Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background-color: var(--color-canvas);
-}
-::-webkit-scrollbar-thumb {
-  background-color: var(--color-edge);
-  border-radius: 9999px;
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font-body);
 }
 
-/* adding extra utilities */
-@layer utilities {
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
 }
