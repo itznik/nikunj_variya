@@ -1,94 +1,69 @@
 "use client";
 
-import { Binary, LayoutTemplate, Database, Terminal } from "lucide-react";
+import { Binary, LayoutTemplate, Database } from "lucide-react";
 
 const capabilities = [
   {
-    layer: "01 // LOGIC & ALGORITHMS",
-    title: "Data Structures",
-    description: "Deep expertise in algorithmic efficiency, graph theory, and advanced data structures. Writing highly optimized, bug-free logic.",
+    layer: "01",
+    title: "Data Structures & Logic",
+    description: "Deep expertise in algorithmic efficiency and graph theory. Writing highly optimized, bug-free core logic.",
     tech: ["Python", "TypeScript", "C++"],
     icon: Binary,
   },
   {
-    layer: "02 // SYSTEM ARCHITECTURE",
-    title: "Backend Design",
-    description: "Architecting scalable server environments, building robust APIs, and designing relational databases for high throughput.",
-    tech: ["Node.js", "PostgreSQL", "MongoDB"],
+    layer: "02",
+    title: "Backend & Database",
+    description: "Architecting scalable server environments and designing relational databases for high throughput.",
+    tech: ["Node.js", "PostgreSQL", "Firebase", "Supabase"],
     icon: Database,
   },
   {
-    layer: "03 // INTERFACE & STATE",
-    title: "UI Engineering",
-    description: "Translating complex data into high-performance, pixel-perfect user interfaces using strict typed state management.",
-    tech: ["Next.js", "React", "Framer"],
+    layer: "03",
+    title: "Full-Stack UI Engineering",
+    description: "Translating complex logic into high-performance, pixel-perfect user interfaces using strict state management.",
+    tech: ["React", "Next.js", "Tailwind"],
     icon: LayoutTemplate,
   },
 ];
 
 export default function CapabilityMatrix() {
   return (
-    // Mobile: Full bleed horizontal scrolling. Desktop: Standard boxed vertical layout.
-    <div className="w-full relative">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-accent opacity-[0.03] blur-[100px] rounded-full pointer-events-none hidden md:block"></div>
+    <div className="w-full relative pl-6 sm:pl-10">
+      {/* The Continuous Connecting Line */}
+      <div className="absolute left-[15px] sm:left-[27px] top-2 bottom-2 w-[1px] bg-edge">
+        {/* Animated glowing progress indicator */}
+        <div className="w-full h-1/3 bg-gradient-to-b from-transparent via-accent to-transparent animate-[pulse_4s_ease-in-out_infinite]"></div>
+      </div>
 
-      {/* THE MAGIC: 
-        flex-row on mobile with overflow-x-auto and snap-mandatory.
-        flex-col on desktop, removing the scroll.
-      */}
-      <div className="flex flex-row md:flex-col gap-4 md:gap-12 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar pb-6 md:pb-0 md:bg-surface md:border md:border-edge md:rounded-2xl md:p-12 relative z-10 w-[calc(100vw-40px)] md:w-full -ml-5 sm:-ml-12 md:ml-0 px-5 sm:px-12 md:px-0">
-        
+      <div className="flex flex-col gap-12">
         {capabilities.map((cap, idx) => {
           const Icon = cap.icon;
-          const isLast = idx === capabilities.length - 1;
-
           return (
-            <div 
-              key={idx} 
-              // Snap center on mobile, shrink-0 ensures it doesn't get crushed
-              className="relative flex flex-col md:flex-row gap-5 md:gap-12 group w-[85vw] sm:w-[60vw] md:w-full shrink-0 snap-center md:snap-align-none bg-surface md:bg-transparent border border-edge md:border-none p-6 md:p-0 rounded-2xl md:rounded-none"
-            >
+            <div key={idx} className="relative flex flex-col sm:flex-row gap-6 group pl-6 sm:pl-10">
               
-              {/* Desktop Vertical Pipeline Line */}
-              {!isLast && (
-                <div className="absolute left-[1.15rem] top-[3rem] bottom-[-3rem] w-[1px] bg-edge hidden md:block">
-                  <div className="w-full h-0 bg-accent group-hover:h-full transition-all duration-700 ease-in-out"></div>
-                </div>
-              )}
-
-              {/* Icon Node */}
-              <div className="shrink-0 relative">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-edge bg-canvas flex items-center justify-center text-text-sub group-hover:text-accent group-hover:border-accent/50 transition-colors z-10 relative">
-                  <Icon size={20} strokeWidth={1.5} />
-                </div>
+              {/* The Node on the line */}
+              <div className="absolute -left-[30px] sm:-left-[39px] top-0 w-8 h-8 rounded-full border-2 border-surface bg-canvas flex items-center justify-center z-10 group-hover:border-accent transition-colors shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <Icon size={14} className="text-text-sub group-hover:text-accent transition-colors" />
               </div>
 
-              {/* Content */}
-              <div className="flex flex-col gap-3 sm:gap-4 w-full">
-                <div>
-                  <span className="font-mono text-[9px] sm:text-[10px] text-text-sub tracking-widest uppercase">
-                    {cap.layer}
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-semibold text-text-main mt-1 tracking-tight">
-                    {cap.title}
-                  </h3>
-                </div>
-                
-                <p className="text-xs sm:text-sm text-text-sub leading-relaxed max-w-2xl font-light">
-                  {cap.description}
-                </p>
-                
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2 mt-auto pt-2 md:pt-0">
-                  {cap.tech.map((tech, i) => (
-                    <div key={i} className="flex items-center gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 bg-canvas border border-edge rounded-md text-text-main group-hover:border-text-sub/30 transition-colors">
-                      <Terminal size={10} className="text-accent opacity-70 hidden sm:block" strokeWidth={2} />
-                      <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider">{tech}</span>
-                    </div>
-                  ))}
+              <div className="bg-surface border border-edge rounded-2xl p-6 sm:p-8 w-full group-hover:border-text-sub/30 transition-colors relative overflow-hidden">
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="font-mono text-xs text-accent">//{cap.layer}</span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-text-main tracking-tight">{cap.title}</h3>
+                  </div>
+                  <p className="text-sm text-text-sub leading-relaxed max-w-2xl font-light mb-6">
+                    {cap.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {cap.tech.map((tech, i) => (
+                      <span key={i} className="px-3 py-1.5 bg-canvas border border-edge rounded-md text-text-main font-mono text-[10px] uppercase tracking-wider">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-
             </div>
           );
         })}
