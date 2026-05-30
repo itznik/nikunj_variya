@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+
 import Container from "@/components/ui/Container";
-import { cn } from "@/lib/cn";
 
 const links = [
   {
@@ -11,7 +11,7 @@ const links = [
     href: "#work",
   },
   {
-    label: "Capabilities",
+    label: "Stack",
     href: "#capabilities",
   },
   {
@@ -28,48 +28,73 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const onScroll = () => {
       setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
   return (
     <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled ? "py-3" : "py-5"
-      )}
+      className="
+        fixed
+        inset-x-0
+        top-0
+        z-50
+      "
     >
       <Container>
         <div
-          className={cn(
-            "flex items-center justify-between rounded-3xl border backdrop-blur-xl transition-all duration-300",
-            "border-black/10 bg-white/80",
-            scrolled
-              ? "h-16 px-5 shadow-[0_10px_40px_rgba(0,0,0,0.08)]"
-              : "h-20 px-6"
-          )}
+          className={`
+            mt-4
+            flex
+            items-center
+            justify-between
+            rounded-full
+            border
+            border-black/10
+            bg-white/80
+            backdrop-blur-xl
+            transition-all
+            duration-300
+
+            ${
+              scrolled
+                ? "px-5 py-3"
+                : "px-6 py-4"
+            }
+          `}
         >
+          {/* BRAND */}
+
           <Link
             href="/"
             className="
-              font-heading
-              text-lg
+              text-sm
               font-semibold
-              tracking-tight
+              uppercase
+              tracking-[0.35em]
               text-zinc-950
             "
           >
-            Nikunj Variya
+            NV
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
+          {/* NAV */}
+
+          <nav
+            className="
+              hidden
+              items-center
+              gap-8
+              md:flex
+            "
+          >
             {links.map((link) => (
               <a
                 key={link.label}
@@ -86,21 +111,22 @@ export default function Navbar() {
             ))}
           </nav>
 
+          {/* CTA */}
+
           <a
-            href="#contact"
+            href="/resume.pdf"
             className="
-              rounded-2xl
+              rounded-full
               bg-zinc-950
               px-5
-              py-3
+              py-2.5
               text-sm
-              font-medium
               text-white
               transition-all
               hover:-translate-y-0.5
             "
           >
-            Let's Talk
+            Resume
           </a>
         </div>
       </Container>
