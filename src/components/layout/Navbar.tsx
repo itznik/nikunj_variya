@@ -29,7 +29,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -43,37 +43,75 @@ export default function Navbar() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled && "py-2"
+        scrolled ? "py-3" : "py-5"
       )}
     >
       <Container>
         <div
           className={cn(
-            "mt-4 flex h-16 items-center justify-between rounded-2xl border border-black/5 bg-white/90 px-6 backdrop-blur-sm transition-all duration-300",
-            scrolled && "h-14 shadow-sm"
+            "flex items-center justify-between rounded-3xl border transition-all duration-300",
+            "border-white/10",
+            "bg-[#111111]/90",
+            "backdrop-blur-xl",
+            scrolled
+              ? "h-16 px-5 shadow-[0_10px_40px_rgba(0,0,0,0.35)]"
+              : "h-20 px-6"
           )}
         >
-          <Link href="/" className="group">
-            <span className="font-heading text-lg font-semibold tracking-tight">
-              Nikunj Variya
-            </span>
+          {/* LOGO */}
+
+          <Link
+            href="/"
+            className="
+              font-heading
+              text-lg
+              font-semibold
+              tracking-tight
+              text-white
+              transition-opacity
+              hover:opacity-80
+            "
+          >
+            Nikunj Variya
           </Link>
+
+          {/* DESKTOP NAV */}
 
           <nav className="hidden items-center gap-8 md:flex">
             {links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm text-neutral-600 transition-colors hover:text-black"
+                className="
+                  text-sm
+                  text-zinc-400
+                  transition-colors
+                  duration-200
+                  hover:text-white
+                "
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
+          {/* CTA */}
+
           <a
             href="#contact"
-            className="rounded-xl bg-black px-4 py-2 text-sm text-white transition-transform hover:scale-[1.03]"
+            className="
+              rounded-2xl
+              bg-white
+              px-5
+              py-3
+              text-sm
+              font-medium
+              text-black
+              transition-all
+              duration-200
+              hover:-translate-y-0.5
+              hover:shadow-lg
+            "
           >
             Let's Talk
           </a>
