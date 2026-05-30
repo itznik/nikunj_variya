@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-// Primary UI Font
 const inter = Inter({ 
   subsets: ["latin"], 
   variable: "--font-inter" 
 });
 
-// Technical Metadata Font
 const jetbrainsMono = JetBrains_Mono({ 
   subsets: ["latin"], 
   variable: "--font-jetbrains-mono" 
@@ -26,12 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      {/* We apply our base canvas color globally here */}
-      <body className="min-h-screen bg-canvas font-sans flex flex-col items-center">
-        {/* Maximum width constraint to keep the grid tight on ultra-wide screens */}
-        <main className="w-full max-w-7xl px-6 md:px-12 flex flex-col">
-          {children}
-        </main>
+      {/* We removed the boxed main container and padding. It is now 100% full-bleed. */}
+      <body className="min-h-screen bg-white font-sans antialiased overflow-x-hidden">
+        {children}
       </body>
     </html>
   );
