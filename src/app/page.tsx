@@ -7,7 +7,7 @@ import { ArrowUpRight, Network, Code2, Database, Server } from "lucide-react";
 import { 
   SiPython, SiReact, SiNextdotjs, SiNodedotjs, SiExpress, 
   SiPostgresql, SiMongodb, SiFirebase, SiSupabase, 
-  SiDocker, SiRedis, SiWebgl, SiThreejs, SiMysql
+  SiDocker, SiRedis, SiWebgl, SiThreedotjs, SiMysql
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 
@@ -145,7 +145,7 @@ export default function Home() {
               { label: "Firebase", Icon: SiFirebase, color: "hover:border-[#FFCA28]", textGlow: "group-hover:text-[#FFCA28]" },
               { label: "Supabase", Icon: SiSupabase, color: "hover:border-[#3ECF8E]", textGlow: "group-hover:text-[#3ECF8E]" },
               { label: "WebGL", Icon: SiWebgl, color: "hover:border-[#990000]", textGlow: "group-hover:text-[#990000]" },
-              { label: "Three.js", Icon: SiThreejs, color: "hover:border-white", textGlow: "group-hover:text-white" },
+              { label: "Three.js", Icon: SiThreedotjs, color: "hover:border-white", textGlow: "group-hover:text-white" },
               { label: "Docker", Icon: SiDocker, color: "hover:border-[#2496ED]", textGlow: "group-hover:text-[#2496ED]" },
               { label: "Redis", Icon: SiRedis, color: "hover:border-[#DC382D]", textGlow: "group-hover:text-[#DC382D]" },
             ].map((tech, idx) => (
