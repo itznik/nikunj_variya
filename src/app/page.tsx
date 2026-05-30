@@ -1,21 +1,20 @@
 import ParticleCloud from "@/components/ParticleCloud";
 import { WebGLBoundary } from "@/components/WebGLBoundary";
 import ProjectGrid from "@/components/ProjectGrid";
+import CapabilityMatrix from "@/components/CapabilityMatrix";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
     <div className="relative w-full min-h-screen flex flex-col selection:bg-text-main selection:text-canvas">
-      {/* Background Layer */}
       <WebGLBoundary fallback={<div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--color-surface),_var(--color-canvas))] " />}>
         <ParticleCloud />
       </WebGLBoundary>
 
       <div className="fixed inset-0 -z-10 pointer-events-none bg-[linear-gradient(to_right,var(--color-edge)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-edge)_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-5 mask-image-[radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)]"></div>
 
-      {/* Main Content Constraint */}
       <div className="w-full max-w-7xl mx-auto px-5 sm:px-12 flex flex-col">
         
-        {/* Top Navbar */}
         <header className="h-20 w-full flex items-center justify-between border-b border-edge/50">
           <span className="font-sans text-sm text-text-main font-semibold tracking-wide">NV<span className="text-text-sub">.SYS</span></span>
           <span className="font-mono text-[10px] text-text-sub uppercase tracking-widest px-2 py-1 bg-surface border border-edge rounded-md">
@@ -23,11 +22,9 @@ export default function Home() {
           </span>
         </header>
 
-        {/* Hero Section (Viewport Height constrained) */}
         <main className="min-h-[calc(100vh-80px)] flex flex-col justify-center py-12 border-b border-edge/50">
           <div className="flex flex-col gap-8 md:gap-12">
             
-            {/* Fluid Typography Fix - Scales perfectly to viewport width */}
             <div className="w-full">
               <h1 className="text-[clamp(2.4rem,11.5vw,7rem)] font-bold text-text-main leading-[0.95] tracking-tighter">
                 SOFTWARE
@@ -44,7 +41,8 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full">
                 <button className="w-full sm:w-auto px-6 py-3.5 bg-text-main text-canvas font-semibold rounded-lg text-sm hover:scale-[0.98] transition-transform flex justify-center items-center gap-2 group shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                   <span>DEPLOY WORK</span>
-                  <span className="font-mono text-xs opacity-70 group-hover:translate-x-1 transition-transform">&rarr;</span>
+                  {/* Replaced text arrow with premium Lucide SVG */}
+                  <ArrowRight size={16} strokeWidth={2} className="opacity-70 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <button className="w-full sm:w-auto px-6 py-3.5 bg-transparent border border-edge text-text-main font-medium rounded-lg text-sm hover:bg-surface transition-colors flex justify-center items-center">
                   INITIALIZE CONTACT
@@ -55,17 +53,24 @@ export default function Home() {
           </div>
         </main>
 
-        {/* Phase 3: Project Architecture Section */}
-        <section className="py-24 w-full">
+        {/* Projects Section */}
+        <section className="py-24 w-full border-b border-edge/50">
           <div className="flex flex-col gap-4 mb-16">
             <span className="font-mono text-xs text-accent tracking-widest uppercase">01 // Deployments</span>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-main">Selected Works</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-main">System Architecture</h2>
           </div>
-          
           <ProjectGrid />
         </section>
 
-        {/* Footer */}
+        {/* New Capabilities Pipeline Section */}
+        <section className="py-24 w-full">
+          <div className="flex flex-col gap-4 mb-16">
+            <span className="font-mono text-xs text-accent tracking-widest uppercase">02 // The Stack</span>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-main">Capability Matrix</h2>
+          </div>
+          <CapabilityMatrix />
+        </section>
+
         <footer className="py-8 w-full flex flex-wrap gap-y-4 items-center justify-between border-t border-edge/50">
           <div className="flex flex-wrap items-center gap-4 sm:gap-8 font-mono text-[10px] sm:text-xs text-text-sub uppercase tracking-widest w-full">
             <span className="flex items-center gap-2">
