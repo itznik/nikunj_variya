@@ -1,266 +1,298 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, CheckCircle2, ChevronRight, Activity, Cpu, Server } from "lucide-react";
+import { ArrowRight, CheckCircle2, ShieldCheck, ShoppingCart, MapPin, ActivitySquare, Server, Cpu, Database, Network } from "lucide-react";
 import { 
-  SiPython, SiReact, SiNextdotjs, SiNodedotjs, SiExpress, 
+  SiPython, SiReact, SiNextdotjs, SiNodedotjs, SiExpress,
   SiPostgresql, SiMongodb, SiFirebase, SiSupabase, 
-  SiDocker, SiRedis, SiWebgl, SiThreedotjs 
+  SiDocker, SiRedis, SiWebgl, SiThreedotjs, SiMysql
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 
+// Scroll animations
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
+};
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+};
+
 export default function Home() {
   return (
-    <div className="relative w-full min-h-screen bg-[#030816] text-[#F4F0E6] selection:bg-[#635BFF] selection:text-white font-sans overflow-x-hidden">
+    <div className="relative w-full min-h-screen bg-white text-[#0A2540] selection:bg-[#635BFF] selection:text-white font-sans overflow-x-hidden">
       
-      {/* BACKGROUND GRAPHICS: Full-bleed radial glows to prevent edge gaps */}
-      <div className="fixed top-[-10%] right-[-5%] w-[80vw] h-[80vw] rounded-full bg-[#635BFF] opacity-[0.07] blur-[120px] pointer-events-none -z-10"></div>
-      <div className="fixed bottom-[-10%] left-[-5%] w-[60vw] h-[60vw] rounded-full bg-[#00D4FF] opacity-[0.04] blur-[120px] pointer-events-none -z-10"></div>
-      
-      <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.02] mix-blend-overlay" 
-           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}>
+      {/* --- STRIPE HERO: SKEWED BACKGROUND & MESH GRADIENTS --- */}
+      <div className="absolute top-0 left-0 w-full h-[95vh] overflow-hidden -z-10 origin-top-left skew-y-[-6deg] bg-gradient-to-b from-[#F6F9FC] to-white border-b border-gray-100/50">
+        <div className="absolute top-[-10%] right-[-5%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-br from-[#80E9FF] to-[#7A73FF] blur-[100px] opacity-[0.35] mix-blend-multiply"></div>
+        <div className="absolute top-[20%] right-[10%] w-[40vw] h-[40vw] rounded-full bg-gradient-to-bl from-[#FF80FF] to-[#FF80A2] blur-[100px] opacity-[0.25] mix-blend-multiply"></div>
       </div>
 
-      {/* EDGE-TO-EDGE NAVBAR */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-[#030816]/80 backdrop-blur-xl border-b border-white/5">
-        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-12 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-2 bg-[#635BFF] shadow-[0_0_12px_#635BFF] rounded-full"></div>
-            <span className="font-bold text-sm sm:text-base tracking-widest text-white">NV.SYS</span>
-          </div>
-          <nav className="flex gap-4 sm:gap-8 font-mono text-[10px] sm:text-xs uppercase tracking-widest text-[#8A9FB1] overflow-x-auto no-scrollbar">
-            <a href="#deployments" className="hover:text-white transition-colors shrink-0">Deployments</a>
-            <a href="#infrastructure" className="hover:text-white transition-colors shrink-0">Infrastructure</a>
+      {/* NAVBAR */}
+      <header className="w-full absolute top-0 left-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 h-20 flex items-center justify-between">
+          <span className="font-black text-xl tracking-tighter text-[#0A2540]">NV<span className="text-[#635BFF]">.</span></span>
+          <nav className="hidden md:flex gap-8 font-semibold text-sm text-[#425466]">
+            <a href="#deployments" className="hover:text-[#0A2540] transition-colors">Deployments</a>
+            <a href="#infrastructure" className="hover:text-[#0A2540] transition-colors">Infrastructure</a>
           </nav>
+          <button className="bg-[#635BFF]/10 text-[#635BFF] px-5 py-2.5 rounded-full font-bold text-sm hover:bg-[#635BFF] hover:text-white transition-all">
+            Initialize Contact
+          </button>
         </div>
       </header>
 
-      {/* MAIN CONTAINER */}
-      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-12 flex flex-col relative pt-24 sm:pt-32 pb-24">
-        
-        {/* HERO SECTION */}
-        <main className="min-h-[75vh] sm:min-h-[80vh] flex flex-col justify-center relative z-10 border-b border-white/5 pb-16">
-          <div className="relative w-full">
-            <h1 className="text-[13vw] sm:text-[clamp(4.5rem,9.5vw,9.5rem)] font-black leading-[0.85] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 z-20 relative">
-              SYSTEMS.<br />ARCHITECT.
-            </h1>
-            <div className="absolute right-0 top-10 sm:top-1/4 w-32 h-32 sm:w-64 sm:h-64 opacity-10 pointer-events-none -z-10 animate-[spin_40s_linear_infinite]">
-               <svg viewBox="0 0 100 100" className="w-full h-full text-[#635BFF]" fill="none" stroke="currentColor" strokeWidth="0.5">
-                  <circle cx="50" cy="50" r="40" strokeDasharray="4 4" />
-                  <circle cx="50" cy="50" r="30" />
-                  <path d="M50 0 L50 100 M0 50 L100 50" strokeDasharray="2 2" />
-               </svg>
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row gap-8 md:items-end justify-between mt-8 sm:mt-12 w-full">
-            <p className="text-sm sm:text-lg text-[#8A9FB1] font-light max-w-md leading-relaxed border-l-2 border-[#635BFF] pl-4 sm:pl-6">
-              Engineering fault-tolerant distributed systems, high-performance web applications, and uncompromising UI/UX. Driven by pure code clarity.
-            </p>
-            <button className="bg-[#635BFF] text-white px-6 sm:px-8 py-4 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-3 w-full md:w-auto hover:bg-white hover:text-[#030816] transition-colors duration-300 shadow-[0_0_20px_rgba(99,91,255,0.2)]">
-              Initialize Sequence <ArrowUpRight size={16} />
+      {/* HERO CONTENT */}
+      <main className="w-full pt-32 sm:pt-48 pb-32 px-6 sm:px-12 max-w-7xl mx-auto relative z-10">
+        <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-3xl">
+          <motion.h1 variants={fadeUp} className="text-[12vw] sm:text-[5rem] lg:text-[6rem] font-black leading-[0.95] tracking-tighter text-[#0A2540]">
+            Digital <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#635BFF] to-[#00D4FF]">infrastructure</span> <br />
+            to scale ideas.
+          </motion.h1>
+          <motion.p variants={fadeUp} className="mt-8 text-lg sm:text-xl text-[#425466] font-medium max-w-xl leading-relaxed">
+            Engineering fault-tolerant distributed systems, high-performance web applications, and uncompromising UI/UX.
+          </motion.p>
+          <motion.div variants={fadeUp} className="mt-10 flex flex-col sm:flex-row gap-4">
+            <button className="bg-[#635BFF] text-white px-8 py-4 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-[#0A2540] transition-all hover:scale-105 shadow-[0_10px_20px_rgba(99,91,255,0.3)] w-full sm:w-auto">
+              View Deployments <ArrowRight size={18} />
             </button>
-          </div>
-        </main>
+          </motion.div>
+        </motion.div>
+      </main>
 
-        {/* BENTO GRID: HTML MOCK-UI PROJECTS */}
-        <section id="deployments" className="py-24 relative z-10 border-b border-white/5">
-          <div className="flex items-center gap-4 mb-16">
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tighter text-white">Deployments.</h2>
-            <div className="h-[1px] flex-1 bg-white/5"></div>
-          </div>
+      {/* --- PROJECTS: STRIPE-STYLE CSS UI GRAPHICS --- */}
+      <section id="deployments" className="w-full py-24 relative z-20">
+        <div className="max-w-7xl mx-auto px-6 sm:px-12">
+          
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <h2 className="text-[#635BFF] font-bold tracking-widest uppercase text-sm mb-4">Selected Works</h2>
+            <h3 className="text-3xl sm:text-5xl font-black text-[#0A2540] tracking-tight mb-20">High-performance applications.</h3>
+          </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="flex flex-col gap-24 sm:gap-32">
             
-            {/* HELPIO - Massive Mock UI Card */}
-            <div className="col-span-1 lg:col-span-2 bg-[#0B1221] border border-[#1E293B] rounded-2xl overflow-hidden flex flex-col md:flex-row group hover:border-[#635BFF]/50 transition-all duration-500 shadow-xl">
-              <div className="w-full md:w-3/5 p-6 sm:p-10 bg-[#050B14] border-b md:border-b-0 md:border-r border-[#1E293B] relative overflow-hidden flex flex-col justify-center min-h-[300px]">
-                {/* HTML Dashboard Graphic */}
-                <div className="w-full bg-[#0B1221] rounded-xl border border-[#1E293B] p-4 shadow-2xl relative z-10 group-hover:scale-105 transition-transform duration-700">
-                  <div className="flex justify-between items-center mb-4 border-b border-[#1E293B] pb-3">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded bg-[#635BFF] flex items-center justify-center text-[10px] font-bold text-white">H</div>
-                      <span className="text-xs font-bold text-white">Helpio DB_Auth</span>
-                    </div>
-                    <span className="px-2 py-1 bg-[#10B981]/10 text-[#10B981] text-[9px] font-mono rounded border border-[#10B981]/20">200 OK</span>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="h-2 w-full bg-[#1E293B] rounded overflow-hidden">
-                      <div className="h-full w-[85%] bg-[#635BFF]"></div>
-                    </div>
-                    <div className="flex justify-between text-[10px] font-mono text-[#8A9FB1]">
-                      <span>Query Latency: 12ms</span>
-                      <span>Nodes: Active</span>
-                    </div>
-                  </div>
-                </div>
-                {/* Background Glow */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,91,255,0.1),transparent_70%)]"></div>
+            {/* 1. HELPIO (Wishlist/Donor Platform) */}
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+              <div className="w-full lg:w-1/2 flex flex-col gap-6 order-2 lg:order-1">
+                <motion.h4 variants={fadeUp} className="text-3xl sm:text-4xl font-black text-[#0A2540]">Helpio Platform</motion.h4>
+                <motion.p variants={fadeUp} className="text-lg text-[#425466] leading-relaxed">
+                  A gamified wishlist and donor fulfillment platform. Engineered with a complex relational database architecture to handle real-time verification systems and user leaderboards with zero lag.
+                </motion.p>
+                <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mt-2">
+                  <span className="px-3 py-1 bg-[#F6F9FC] text-[#425466] font-bold text-xs rounded-full">Next.js</span>
+                  <span className="px-3 py-1 bg-[#F6F9FC] text-[#425466] font-bold text-xs rounded-full">PostgreSQL</span>
+                </motion.div>
               </div>
               
-              <div className="w-full md:w-2/5 p-6 sm:p-10 flex flex-col justify-center gap-4">
-                <span className="font-mono text-[10px] text-[#635BFF] uppercase tracking-widest">Full-Stack Platform</span>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Helpio</h3>
-                <p className="text-sm text-[#8A9FB1] leading-relaxed">A gamified wishlist and donor fulfillment platform featuring real-time verification systems, complex relational architecture, and user leaderboards.</p>
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {["Next.js", "PostgreSQL", "Tailwind"].map(t => (
-                    <span key={t} className="px-2 py-1 bg-white/5 border border-white/10 rounded font-mono text-[9px] text-white uppercase">{t}</span>
-                  ))}
+              {/* Graphic: Dashboard Mock UI */}
+              <motion.div variants={fadeUp} className="w-full lg:w-1/2 order-1 lg:order-2 relative">
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#635BFF]/10 to-[#00D4FF]/10 rounded-3xl transform rotate-3 scale-105 -z-10"></div>
+                <div className="bg-white rounded-2xl shadow-[0_50px_100px_-20px_rgba(50,50,93,0.15),0_30px_60px_-30px_rgba(0,0,0,0.1)] border border-gray-100 p-6 sm:p-8 relative overflow-hidden">
+                   <div className="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+                     <ShieldCheck className="text-[#635BFF]" size={24} />
+                     <span className="font-bold text-[#0A2540]">Real-Time Verification</span>
+                   </div>
+                   <div className="flex flex-col gap-3">
+                      <div className="w-full bg-[#F6F9FC] p-4 rounded-xl flex justify-between items-center border border-gray-100">
+                         <div className="flex flex-col gap-1">
+                            <span className="text-sm font-bold text-[#0A2540]">Wishlist #8920</span>
+                            <span className="text-xs text-[#425466]">Oxygen Concentrator</span>
+                         </div>
+                         <span className="bg-[#10B981]/10 text-[#10B981] px-3 py-1 rounded-full text-xs font-bold">Fulfilled</span>
+                      </div>
+                      <div className="w-full bg-white p-4 rounded-xl flex justify-between items-center border border-gray-100 shadow-sm">
+                         <div className="flex flex-col gap-1">
+                            <span className="text-sm font-bold text-[#0A2540]">Wishlist #8921</span>
+                            <span className="text-xs text-[#425466]">Medical Supplies</span>
+                         </div>
+                         <span className="bg-[#F59E0B]/10 text-[#F59E0B] px-3 py-1 rounded-full text-xs font-bold">Pending DB Auth</span>
+                      </div>
+                   </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            {/* SILLAGE E-COMMERCE */}
-            <div className="col-span-1 bg-[#0B1221] border border-[#1E293B] rounded-2xl overflow-hidden flex flex-col group hover:border-[#00D4FF]/50 transition-all duration-500 shadow-xl">
-              <div className="h-56 p-6 bg-[#050B14] border-b border-[#1E293B] relative overflow-hidden flex items-center justify-center">
-                {/* Fake E-Comm UI */}
-                <div className="w-4/5 bg-[#0B1221] border border-[#1E293B] rounded-lg p-4 group-hover:-translate-y-2 transition-transform duration-500 shadow-2xl">
-                  <div className="flex justify-between items-center mb-3">
-                    <div className="h-3 w-16 bg-[#1E293B] rounded"></div>
-                    <div className="h-3 w-8 bg-[#00D4FF] rounded"></div>
-                  </div>
-                  <div className="h-16 w-full bg-[#1E293B]/50 rounded mb-3 flex items-center justify-center">
-                    <Activity size={20} className="text-[#8A9FB1]" />
-                  </div>
-                  <div className="h-6 w-full bg-[#00D4FF] rounded flex items-center justify-center text-[8px] font-bold text-[#030816]">CHECKOUT</div>
-                </div>
+            {/* 2. RADVIEW CLOUD (Medical Radiology) */}
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-24">
+              <div className="w-full lg:w-1/2 flex flex-col gap-6">
+                <motion.h4 variants={fadeUp} className="text-3xl sm:text-4xl font-black text-[#0A2540]">RadView Cloud</motion.h4>
+                <motion.p variants={fadeUp} className="text-lg text-[#425466] leading-relaxed">
+                  A high-performance, cloud-based DICOM viewer engineered for medical practitioners. Utilizes hardware-accelerated WebGL to render complex anatomical scans with zero latency directly in the browser.
+                </motion.p>
+                <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mt-2">
+                  <span className="px-3 py-1 bg-[#F6F9FC] text-[#425466] font-bold text-xs rounded-full">WebGL</span>
+                  <span className="px-3 py-1 bg-[#F6F9FC] text-[#425466] font-bold text-xs rounded-full">Three.js</span>
+                </motion.div>
               </div>
-              <div className="p-6 sm:p-8 flex flex-col gap-3">
-                <h3 className="text-xl font-bold text-white">Sillage</h3>
-                <p className="text-sm text-[#8A9FB1]">High-performance e-commerce architecture for luxury fragrances, optimizing asset delivery and eliminating layout shifts.</p>
-                <div className="flex gap-2 mt-auto pt-4">
-                   <span className="px-2 py-1 bg-white/5 border border-white/10 rounded font-mono text-[9px] text-white uppercase">React</span>
-                   <span className="px-2 py-1 bg-white/5 border border-white/10 rounded font-mono text-[9px] text-white uppercase">Express</span>
-                </div>
-              </div>
-            </div>
-
-            {/* GOTRIP */}
-            <div className="col-span-1 bg-[#0B1221] border border-[#1E293B] rounded-2xl overflow-hidden flex flex-col group hover:border-[#FFCA28]/50 transition-all duration-500 shadow-xl">
-              <div className="h-56 p-6 bg-[#050B14] border-b border-[#1E293B] relative overflow-hidden flex items-center justify-center">
-                 {/* Fake Map UI */}
-                 <div className="w-full h-full border border-[#1E293B] rounded-lg relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] bg-[size:10px_10px] opacity-20"></div>
-                    <div className="absolute top-1/2 left-1/2 w-4 h-4 bg-[#FFCA28] rounded-full -translate-x-1/2 -translate-y-1/2 shadow-[0_0_15px_#FFCA28] animate-pulse"></div>
-                    <div className="absolute bottom-3 left-3 right-3 h-8 bg-[#0B1221] border border-[#1E293B] rounded flex items-center px-2 gap-2">
-                       <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
-                       <div className="h-2 w-12 bg-[#8A9FB1] rounded"></div>
-                    </div>
-                 </div>
-              </div>
-              <div className="p-6 sm:p-8 flex flex-col gap-3">
-                <h3 className="text-xl font-bold text-white">Gotrip</h3>
-                <p className="text-sm text-[#8A9FB1]">Scalable tourism web application integrated with interactive mapping and secure administrative content management.</p>
-                <div className="flex gap-2 mt-auto pt-4">
-                   <span className="px-2 py-1 bg-white/5 border border-white/10 rounded font-mono text-[9px] text-white uppercase">Next.js</span>
-                   <span className="px-2 py-1 bg-white/5 border border-white/10 rounded font-mono text-[9px] text-white uppercase">MongoDB</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* ACTIVE NODE TECH MATRIX (Stripe-like flow diagram) */}
-        <section id="infrastructure" className="py-24 relative z-10">
-          <div className="flex items-center gap-4 mb-16 flex-row-reverse">
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tighter text-white">Infrastructure.</h2>
-            <div className="h-[1px] flex-1 bg-white/5"></div>
-          </div>
-
-          <div className="w-full bg-[#0B1221] border border-[#1E293B] rounded-3xl p-6 sm:p-12 relative overflow-hidden">
-            {/* Grid Pattern inside Matrix */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] bg-[size:24px_24px] opacity-20"></div>
-            
-            <div className="relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-8 items-center justify-between">
               
-              {/* Layer 1: Core Logic */}
-              <div className="flex flex-col gap-4 w-full lg:w-1/4">
-                <div className="flex items-center gap-2 mb-2">
-                  <Cpu size={16} className="text-[#635BFF]" />
-                  <span className="font-mono text-xs uppercase tracking-widest text-white">Logic Layer</span>
+              {/* Graphic: Dark Medical UI inside light theme */}
+              <motion.div variants={fadeUp} className="w-full lg:w-1/2 relative">
+                <div className="absolute inset-0 bg-gradient-to-bl from-[#0A2540]/10 to-transparent rounded-3xl transform -rotate-3 scale-105 -z-10"></div>
+                <div className="bg-[#0A2540] rounded-2xl shadow-[0_50px_100px_-20px_rgba(50,50,93,0.3)] border border-[#1D3958] p-6 relative overflow-hidden">
+                   {/* Grid pattern simulating medical interface */}
+                   <div className="absolute inset-0 bg-[linear-gradient(to_right,#1D3958_1px,transparent_1px),linear-gradient(to_bottom,#1D3958_1px,transparent_1px)] bg-[size:20px_20px] opacity-30"></div>
+                   <div className="relative z-10 flex flex-col gap-4">
+                     <div className="flex justify-between items-center text-[#ADBDCC]">
+                       <span className="font-mono text-xs">DICOM_RENDER_ACTIVE</span>
+                       <ActivitySquare size={18} className="text-[#00D4FF]" />
+                     </div>
+                     <div className="w-full h-40 bg-[#030816] rounded-xl border border-[#1D3958] flex items-center justify-center relative overflow-hidden">
+                       <div className="w-24 h-24 rounded-full border border-dashed border-[#00D4FF]/50 animate-[spin_10s_linear_infinite]"></div>
+                       <div className="absolute font-mono text-[#00D4FF] text-xs font-bold">60 FPS</div>
+                     </div>
+                     <div className="w-full bg-[#1D3958] h-2 rounded-full overflow-hidden">
+                       <div className="w-[85%] h-full bg-[#00D4FF]"></div>
+                     </div>
+                   </div>
                 </div>
-                {[
-                  { name: "Python", icon: SiPython, color: "text-[#3776AB]" },
-                  { name: "Java", icon: FaJava, color: "text-[#007396]" }
-                ].map((t) => (
-                  <div key={t.name} className="flex items-center gap-4 bg-[#050B14] border border-[#1E293B] p-4 rounded-xl shadow-lg hover:border-[#635BFF]/50 transition-colors">
-                    <t.icon size={24} className={t.color} />
-                    <span className="font-bold text-sm text-white">{t.name}</span>
-                  </div>
-                ))}
-              </div>
+              </motion.div>
+            </motion.div>
 
-              {/* Connecting Line (Desktop horizontal, Mobile vertical) */}
-              <div className="hidden lg:block h-[1px] flex-1 bg-gradient-to-r from-[#635BFF]/10 via-[#635BFF] to-[#00D4FF]/10 relative">
-                 <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-[#635BFF] rounded-full -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_#635BFF]"></div>
+            {/* 3. SILLAGE E-COMMERCE */}
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+              <div className="w-full lg:w-1/2 flex flex-col gap-6 order-2 lg:order-1">
+                <motion.h4 variants={fadeUp} className="text-3xl sm:text-4xl font-black text-[#0A2540]">Sillage</motion.h4>
+                <motion.p variants={fadeUp} className="text-lg text-[#425466] leading-relaxed">
+                  High-performance e-commerce architecture for luxury fragrances. Focused heavily on visually driven sales logic, optimizing asset delivery, and eliminating DOM layout shifts.
+                </motion.p>
+                <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mt-2">
+                  <span className="px-3 py-1 bg-[#F6F9FC] text-[#425466] font-bold text-xs rounded-full">React</span>
+                  <span className="px-3 py-1 bg-[#F6F9FC] text-[#425466] font-bold text-xs rounded-full">Express</span>
+                </motion.div>
               </div>
-              <div className="block lg:hidden w-[1px] h-12 bg-gradient-to-b from-[#635BFF]/10 via-[#635BFF] to-[#00D4FF]/10"></div>
-
-              {/* Layer 2: API & Backend */}
-              <div className="flex flex-col gap-4 w-full lg:w-1/4">
-                <div className="flex items-center gap-2 mb-2">
-                  <Server size={16} className="text-[#00D4FF]" />
-                  <span className="font-mono text-xs uppercase tracking-widest text-white">API & Data</span>
+              
+              {/* Graphic: Checkout / Cart Mock UI */}
+              <motion.div variants={fadeUp} className="w-full lg:w-1/2 order-1 lg:order-2 relative">
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#FF80FF]/10 to-[#7A73FF]/10 rounded-3xl transform rotate-2 scale-105 -z-10"></div>
+                <div className="bg-white rounded-2xl shadow-[0_50px_100px_-20px_rgba(50,50,93,0.15)] border border-gray-100 p-6 sm:p-8">
+                   <div className="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
+                     <span className="font-bold text-[#0A2540]">Checkout Session</span>
+                     <ShoppingCart className="text-[#FF80FF]" size={20} />
+                   </div>
+                   <div className="flex flex-col gap-4">
+                     {[1,2].map((i) => (
+                       <div key={i} className="flex justify-between items-center">
+                         <div className="flex items-center gap-4">
+                           <div className="w-12 h-12 bg-[#F6F9FC] rounded-lg"></div>
+                           <div className="flex flex-col gap-1">
+                             <div className="w-24 h-2.5 bg-[#0A2540] rounded"></div>
+                             <div className="w-16 h-2 bg-[#425466] rounded"></div>
+                           </div>
+                         </div>
+                         <div className="font-bold text-[#0A2540] text-sm">$145.00</div>
+                       </div>
+                     ))}
+                     <div className="mt-2 pt-4 border-t border-gray-100 flex justify-between items-center">
+                        <span className="text-[#425466] font-medium text-sm">Total</span>
+                        <span className="text-[#635BFF] font-black text-lg">$290.00</span>
+                     </div>
+                     <div className="w-full mt-2 py-3 bg-[#0A2540] rounded-xl text-white text-center font-bold text-sm shadow-md">Pay Now</div>
+                   </div>
                 </div>
-                {[
-                  { name: "Node.js", icon: SiNodedotjs, color: "text-[#339933]" },
-                  { name: "Express", icon: SiExpress, color: "text-white" },
-                  { name: "PostgreSQL", icon: SiPostgresql, color: "text-[#4169E1]" },
-                  { name: "MongoDB", icon: SiMongodb, color: "text-[#47A248]" }
-                ].map((t) => (
-                  <div key={t.name} className="flex items-center gap-4 bg-[#050B14] border border-[#1E293B] p-4 rounded-xl shadow-lg hover:border-[#00D4FF]/50 transition-colors">
-                    <t.icon size={24} className={t.color} />
-                    <span className="font-bold text-sm text-white">{t.name}</span>
-                  </div>
-                ))}
-              </div>
+              </motion.div>
+            </motion.div>
 
-              {/* Connecting Line */}
-              <div className="hidden lg:block h-[1px] flex-1 bg-gradient-to-r from-[#00D4FF]/10 via-[#00D4FF] to-[#10B981]/10 relative">
-                 <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-[#00D4FF] rounded-full -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_#00D4FF]"></div>
-              </div>
-              <div className="block lg:hidden w-[1px] h-12 bg-gradient-to-b from-[#00D4FF]/10 via-[#00D4FF] to-[#10B981]/10"></div>
+          </div>
+        </div>
+      </section>
 
-              {/* Layer 3: Interface & BaaS */}
-              <div className="flex flex-col gap-4 w-full lg:w-1/4">
-                <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle2 size={16} className="text-[#10B981]" />
-                  <span className="font-mono text-xs uppercase tracking-widest text-white">Client Edge</span>
-                </div>
-                {[
-                  { name: "Next.js", icon: SiNextdotjs, color: "text-white" },
-                  { name: "React", icon: SiReact, color: "text-[#61DAFB]" },
-                  { name: "Firebase", icon: SiFirebase, color: "text-[#FFCA28]" },
-                  { name: "Three.js", icon: SiThreedotjs, color: "text-white" }
-                ].map((t) => (
-                  <div key={t.name} className="flex items-center gap-4 bg-[#050B14] border border-[#1E293B] p-4 rounded-xl shadow-lg hover:border-[#10B981]/50 transition-colors">
-                    <t.icon size={24} className={t.color} />
-                    <span className="font-bold text-sm text-white">{t.name}</span>
-                  </div>
-                ))}
-              </div>
+      {/* --- STRIPE NODE DIAGRAM & TECH STACK (Deep Navy) --- */}
+      <section id="infrastructure" className="w-full py-32 bg-[#0A2540] relative z-20 overflow-hidden">
+        {/* Abstract Background Dotted Grid */}
+        <div className="absolute inset-0 bg-[radial-gradient(#1D3958_1px,transparent_1px)] bg-[size:24px_24px] opacity-40"></div>
 
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 relative z-10">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="text-center max-w-3xl mx-auto mb-20">
+            <motion.h2 variants={fadeUp} className="text-[#00D4FF] font-bold tracking-widest uppercase text-sm mb-4">Infrastructure</motion.h2>
+            <motion.h3 variants={fadeUp} className="text-3xl sm:text-5xl font-black text-white tracking-tight">The backbone of the stack.</motion.h3>
+            <motion.p variants={fadeUp} className="mt-6 text-lg text-[#ADBDCC]">
+              Engineered with industry-standard technologies to handle complex state, API orchestration, and distributed data processing.
+            </motion.p>
+          </motion.div>
+
+          {/* THE NODE MAP (Recreating the uploaded screenshot) */}
+          <div className="relative w-full max-w-4xl mx-auto h-[450px] flex items-center justify-center mb-16">
+            
+            {/* Dashed Connecting Lines */}
+            <svg className="absolute inset-0 w-full h-full -z-10" pointerEvents="none">
+              <path d="M50% 50% L25% 30%" stroke="#635BFF" strokeWidth="2" strokeDasharray="6,6" className="animate-[dashAnim_20s_linear_infinite]" />
+              <path d="M50% 50% L75% 30%" stroke="#00D4FF" strokeWidth="2" strokeDasharray="6,6" className="animate-[dashAnim_20s_linear_infinite]" />
+              <path d="M50% 50% L25% 70%" stroke="#FF80FF" strokeWidth="2" strokeDasharray="6,6" className="animate-[dashAnim_20s_linear_infinite]" />
+              <path d="M50% 50% L75% 70%" stroke="#635BFF" strokeWidth="2" strokeDasharray="6,6" className="animate-[dashAnim_20s_linear_infinite]" />
+              <path d="M50% 50% L50% 85%" stroke="#00D4FF" strokeWidth="2" strokeDasharray="6,6" className="animate-[dashAnim_20s_linear_infinite]" />
+            </svg>
+
+            {/* Central Node */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+              <div className="w-32 h-32 bg-gradient-to-br from-[#635BFF] to-[#0A2540] rounded-2xl shadow-[0_0_50px_rgba(99,91,255,0.5)] flex items-center justify-center border border-[#635BFF]/50 relative">
+                <span className="text-white font-black text-xl tracking-widest">NV.SYS</span>
+              </div>
             </div>
 
-            {/* Bottom Row Infrastructure Nodes */}
-            <div className="mt-12 pt-8 border-t border-[#1E293B] flex flex-wrap justify-center gap-4 relative z-10">
-               {[
-                  { name: "Docker", icon: SiDocker, color: "text-[#2496ED]" },
-                  { name: "Redis", icon: SiRedis, color: "text-[#DC382D]" },
-                  { name: "Supabase", icon: SiSupabase, color: "text-[#3ECF8E]" },
-                  { name: "WebGL", icon: SiWebgl, color: "text-[#990000]" }
-               ].map((t) => (
-                 <div key={t.name} className="flex items-center gap-2 px-4 py-2 bg-[#050B14] border border-[#1E293B] rounded-lg">
-                    <t.icon size={16} className={t.color} />
-                    <span className="font-mono text-[10px] text-white uppercase">{t.name}</span>
-                 </div>
-               ))}
+            {/* Sub-Nodes */}
+            <div className="absolute top-[15%] left-[10%] sm:left-[15%] w-32 bg-[#112A46] border border-[#1D3958] rounded-lg p-3 text-center shadow-2xl">
+              <span className="text-white text-xs font-bold">Client Edge</span>
+            </div>
+            <div className="absolute top-[15%] right-[10%] sm:right-[15%] w-32 bg-[#112A46] border border-[#1D3958] rounded-lg p-3 text-center shadow-2xl">
+              <span className="text-white text-xs font-bold">REST API</span>
+            </div>
+            <div className="absolute bottom-[15%] left-[10%] sm:left-[15%] w-32 bg-[#112A46] border border-[#1D3958] rounded-lg p-3 text-center shadow-2xl">
+              <span className="text-white text-xs font-bold">Message Queue</span>
+            </div>
+            <div className="absolute bottom-[15%] right-[10%] sm:right-[15%] w-32 bg-[#112A46] border border-[#1D3958] rounded-lg p-3 text-center shadow-2xl">
+              <span className="text-white text-xs font-bold">Data Pipeline</span>
+            </div>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-40 bg-[#635BFF] border border-[#7A73FF] rounded-lg p-3 text-center shadow-[0_10px_30px_rgba(99,91,255,0.4)] z-10">
+              <span className="text-white text-xs font-bold">Orchestration</span>
+            </div>
+
+            {/* Integration Logos Block (Left Side) */}
+            <div className="absolute top-1/2 -translate-y-1/2 left-[2%] sm:left-[5%] grid grid-cols-2 gap-2 bg-[#0A2540] p-2 rounded-xl border border-[#1D3958]">
+              <div className="w-10 h-10 bg-white rounded flex items-center justify-center shadow-sm"><SiPython className="text-[#3776AB] text-xl" /></div>
+              <div className="w-10 h-10 bg-white rounded flex items-center justify-center shadow-sm"><FaJava className="text-[#007396] text-xl" /></div>
+              <div className="w-10 h-10 bg-white rounded flex items-center justify-center shadow-sm"><SiReact className="text-[#61DAFB] text-xl" /></div>
+              <div className="w-10 h-10 bg-[#0A2540] border border-[#1D3958] rounded flex items-center justify-center"><SiWebgl className="text-white text-xl" /></div>
             </div>
           </div>
-        </section>
 
-      </div>
+          {/* ALL TECHNOLOGIES GRID (Bottom Integrations) */}
+          <div className="max-w-5xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4 relative z-20 pt-12 border-t border-[#1D3958]">
+            {[
+              { label: "Next.js", Icon: SiNextdotjs, color: "hover:border-white", glow: "group-hover:text-white" },
+              { label: "Express", Icon: SiExpress, color: "hover:border-white", glow: "group-hover:text-white" },
+              { label: "Node.js", Icon: SiNodedotjs, color: "hover:border-[#339933]", glow: "group-hover:text-[#339933]" },
+              { label: "Postgres", Icon: SiPostgresql, color: "hover:border-[#4169E1]", glow: "group-hover:text-[#4169E1]" },
+              { label: "MongoDB", Icon: SiMongodb, color: "hover:border-[#47A248]", glow: "group-hover:text-[#47A248]" },
+              { label: "Firebase", Icon: SiFirebase, color: "hover:border-[#FFCA28]", glow: "group-hover:text-[#FFCA28]" },
+              { label: "Supabase", Icon: SiSupabase, color: "hover:border-[#3ECF8E]", glow: "group-hover:text-[#3ECF8E]" },
+              { label: "SQL", Icon: SiMysql, color: "hover:border-[#4479A1]", glow: "group-hover:text-[#4479A1]" },
+              { label: "Three.js", Icon: SiThreedotjs, color: "hover:border-white", glow: "group-hover:text-white" },
+              { label: "Docker", Icon: SiDocker, color: "hover:border-[#2496ED]", glow: "group-hover:text-[#2496ED]" },
+              { label: "Redis", Icon: SiRedis, color: "hover:border-[#DC382D]", glow: "group-hover:text-[#DC382D]" },
+              { label: "System", Icon: Server, color: "hover:border-[#00D4FF]", glow: "group-hover:text-[#00D4FF]" },
+            ].map((tech, idx) => (
+              <div key={idx} className={`group bg-[#112A46]/30 border border-[#1D3958] ${tech.color} transition-all duration-300 flex flex-col items-center justify-center gap-3 p-4 aspect-square rounded-2xl hover:-translate-y-1 shadow-lg`}>
+                <div className={`text-2xl sm:text-3xl text-[#5A748F] ${tech.glow} transition-colors duration-300`}>
+                  <tech.Icon />
+                </div>
+                <span className={`font-mono text-[9px] sm:text-[10px] uppercase tracking-widest text-[#5A748F] ${tech.glow} transition-colors duration-300`}>
+                  {tech.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Keyframes for dashed line animation */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          @keyframes dashAnim {
+            to { stroke-dashoffset: -1000; }
+          }
+        `}} />
+      </section>
+
     </div>
   );
 }
