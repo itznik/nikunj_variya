@@ -2,30 +2,72 @@ export const projects = [
   {
     id: "01",
     title: "Algorithm Visualizer",
+    category: "Data Structures & Algorithms",
+
     description:
-      "Interactive visual learning platform for understanding sorting, graph traversal, recursion and search algorithms through real-time animations.",
-    stack: ["Next.js", "TypeScript", "Framer Motion"],
-    year: "2026",
-    link: "#",
+      "Interactive visual learning platform for understanding algorithms through real-time animations.",
+
+    challenge:
+      "Most students struggle to understand how algorithms behave internally.",
+
+    solution:
+      "Built an interactive visualization system showing algorithm execution step-by-step.",
+
+    impact:
+      "Improved conceptual understanding and algorithm intuition.",
+
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Framer Motion",
+    ],
   },
 
   {
     id: "02",
     title: "Portfolio CMS",
+    category: "Full Stack Development",
+
     description:
-      "Custom content management system designed for creators to manage projects, blogs and media from a unified dashboard.",
-    stack: ["React", "Node.js", "MongoDB"],
-    year: "2026",
-    link: "#",
+      "Custom content management platform for creators and developers.",
+
+    challenge:
+      "Managing content across multiple platforms is repetitive.",
+
+    solution:
+      "Created a centralized content workflow and publishing system.",
+
+    impact:
+      "Reduced manual publishing effort significantly.",
+
+    technologies: [
+      "React",
+      "Node.js",
+      "MongoDB",
+    ],
   },
 
   {
     id: "03",
     title: "System Design Explorer",
+    category: "Distributed Systems",
+
     description:
-      "Interactive platform for learning distributed systems, caching, load balancing and scalability concepts.",
-    stack: ["Next.js", "Tailwind", "PostgreSQL"],
-    year: "2026",
-    link: "#",
+      "Interactive educational platform for system design concepts.",
+
+    challenge:
+      "System design resources are often fragmented and theoretical.",
+
+    solution:
+      "Built visual simulations for architecture concepts.",
+
+    impact:
+      "Made complex systems easier to understand.",
+
+    technologies: [
+      "Next.js",
+      "PostgreSQL",
+      "TypeScript",
+    ],
   },
 ];
