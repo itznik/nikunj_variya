@@ -1,4 +1,5 @@
 import Container from "@/components/ui/Container";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const stack = [
   {
@@ -11,7 +12,6 @@ const stack = [
       "Framer Motion",
     ],
   },
-
   {
     title: "Backend",
     technologies: [
@@ -22,7 +22,6 @@ const stack = [
       "MongoDB",
     ],
   },
-
   {
     title: "Engineering",
     technologies: [
@@ -39,18 +38,14 @@ export default function TechStack() {
   return (
     <section
       id="capabilities"
-      className="py-32"
+      className="bg-[#efede7] py-32"
     >
       <Container>
-        <div className="mb-20">
-          <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">
-            Capabilities
-          </p>
-
-          <h2 className="mt-4 max-w-3xl text-5xl font-bold tracking-tight text-zinc-950 md:text-7xl">
-            The technologies and principles I use to build.
-          </h2>
-        </div>
+        <SectionHeading
+          label="Capabilities"
+          title="The technologies and principles I use to build."
+          description="Tools, frameworks and engineering practices that shape how I approach software development."
+        />
 
         <div className="grid gap-8 lg:grid-cols-3">
           {stack.map((category) => (
@@ -58,8 +53,6 @@ export default function TechStack() {
               key={category.title}
               className="
                 rounded-[32px]
-                border
-                border-black/10
                 bg-white
                 p-8
                 shadow-sm
