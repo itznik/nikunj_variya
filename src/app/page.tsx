@@ -1,5 +1,3 @@
-// src/app/page.tsx
-
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -19,12 +17,11 @@ export default function HomePage() {
   return (
     <>
       <ScrollProgress />
-
       <NoiseTexture />
 
       <Navbar />
 
-      <main className="relative overflow-hidden bg-[#f5f4ef]">
+      <main className="bg-[#f5f4ef] overflow-hidden">
         <Hero />
 
         <Featured />
