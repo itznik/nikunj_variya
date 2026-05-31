@@ -8,6 +8,7 @@ import Journey from "@/components/sections/Journey";
 import Philosophy from "@/components/sections/Philosophy";
 import Stats from "@/components/sections/Stats";
 import Contact from "@/components/sections/Contact";
+import Featured from "@/components/sections/Featured";
 
 import ScrollProgress from "@/components/visuals/ScrollProgress";
 import NoiseTexture from "@/components/visuals/NoiseTexture";
@@ -27,6 +28,10 @@ export default function HomePage() {
 
       <main className="relative z-10 overflow-hidden bg-[#f5f4ef]">
         <Hero />
+
+        <SectionDivider />
+
+        <Featured />
 
         <SectionDivider />
 
