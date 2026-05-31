@@ -9,6 +9,7 @@ import Philosophy from "@/components/sections/Philosophy";
 import Stats from "@/components/sections/Stats";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
+import BackgroundAccent from "@/components/visuals/BackgroundAccent";
 
 export default function HomePage() {
   return (
@@ -22,6 +23,7 @@ export default function HomePage() {
       <Philosophy />
       <Stats />
       <Contact />
+      <BackgroundAccent />
 
       <Footer />
     </main>
