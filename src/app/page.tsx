@@ -11,7 +11,7 @@ import Contact from "@/components/sections/Contact";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#f6f5f2] text-zinc-950">
+    <div className="bg-[#f6f5f2]">
       <Navbar />
 
       <main>
@@ -24,7 +24,7 @@ export default function HomePage() {
         <Journey />
 
         <Philosophy />
-        
+
         <Stats />
 
         <Contact />
