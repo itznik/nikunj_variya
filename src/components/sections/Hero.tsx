@@ -1,80 +1,104 @@
 import AlgorithmVisual from "@/components/visuals/AlgorithmVisual";
-import Marquee from "@/components/visuals/Marquee";
-import HorizontalReveal from "@/components/visuals/HorizontalReveal";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden px-6 pt-28 pb-24 md:px-12 lg:px-20">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-8">
-          <span className="text-[11px] uppercase tracking-[0.5em] text-neutral-500">
-            Software Engineer • DSA • System Design
-          </span>
+    <section className="relative pt-32 pb-24 md:pt-40 md:pb-32">
+      <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-20">
+        <div className="mb-6 text-xs uppercase tracking-[0.5em] text-neutral-500">
+          Software Engineer • DSA • System Design
         </div>
 
-        <div className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+        <h1
+          className="
+            max-w-6xl
+            text-[4.5rem]
+            font-black
+            leading-[0.9]
+            tracking-[-0.08em]
+            md:text-[8rem]
+            lg:text-[10rem]
+          "
+        >
+          Building
+          <br />
+          software that
+          <br />
+          solves problems.
+        </h1>
+
+        <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_420px] lg:items-end">
           <div>
-            <h1 className="max-w-4xl text-[4rem] font-black leading-[0.9] tracking-[-0.06em] text-black md:text-[6rem] lg:text-[8rem]">
-              NIKUNJ
-            </h1>
-
-            <h2 className="mt-8 max-w-3xl text-4xl font-semibold leading-tight tracking-[-0.04em] text-black md:text-6xl">
-              Building systems,
-              <br />
-              algorithms and products
-              <br />
-              that scale.
-            </h2>
-
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-neutral-600">
-              Focused on software engineering, problem solving, full-stack
-              development and designing scalable digital systems.
+            <p className="max-w-2xl text-xl leading-relaxed text-neutral-600">
+              BHMS student turned software engineer.
+              Focused on algorithms, full stack development,
+              scalable systems and continuous learning.
             </p>
 
-            <div className="mt-12 flex flex-wrap gap-4">
-              <button className="rounded-full bg-black px-8 py-4 text-white transition hover:scale-[1.03]">
-                View Projects
-              </button>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <a
+                href="#projects"
+                className="
+                  rounded-full
+                  bg-black
+                  px-8
+                  py-4
+                  text-white
+                "
+              >
+                View Work
+              </a>
 
-              <button className="rounded-full border border-neutral-300 bg-white px-8 py-4 text-black transition hover:bg-neutral-100">
-                Resume
-              </button>
-            </div>
-
-            <div className="mt-16 grid grid-cols-3 gap-8 border-t border-[#e7e4dd] pt-10">
-              <div>
-                <div className="text-4xl font-bold">250+</div>
-                <div className="mt-2 text-sm text-neutral-500">
-                  Problems Solved
-                </div>
-              </div>
-
-              <div>
-                <div className="text-4xl font-bold">15+</div>
-                <div className="mt-2 text-sm text-neutral-500">
-                  Projects Built
-                </div>
-              </div>
-
-              <div>
-                <div className="text-4xl font-bold">3+</div>
-                <div className="mt-2 text-sm text-neutral-500">
-                  Years Learning
-                </div>
-              </div>
+              <a
+                href="#contact"
+                className="
+                  rounded-full
+                  border
+                  border-black/10
+                  px-8
+                  py-4
+                "
+              >
+                Contact
+              </a>
             </div>
           </div>
-          
-          <div className="mt-16">
-            <Marquee />
-          </div>
-          
-          <div className="mt-20">
-            <HorizontalReveal />
-          </div>
-          
+
           <div>
             <AlgorithmVisual />
+          </div>
+        </div>
+
+        <div className="mt-24 border-t border-black/10 pt-10">
+          <div className="grid grid-cols-3 gap-6">
+            <div>
+              <div className="text-4xl font-black md:text-6xl">
+                250+
+              </div>
+
+              <div className="mt-2 text-sm text-neutral-500">
+                Problems Solved
+              </div>
+            </div>
+
+            <div>
+              <div className="text-4xl font-black md:text-6xl">
+                15+
+              </div>
+
+              <div className="mt-2 text-sm text-neutral-500">
+                Projects
+              </div>
+            </div>
+
+            <div>
+              <div className="text-4xl font-black md:text-6xl">
+                3+
+              </div>
+
+              <div className="mt-2 text-sm text-neutral-500">
+                Years Learning
+              </div>
+            </div>
           </div>
         </div>
       </div>
