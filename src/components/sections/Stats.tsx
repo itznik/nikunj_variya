@@ -1,5 +1,11 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
+
+import { fadeUp } from "@/animations/fadeUp";
 
 export default function Stats() {
   return (
@@ -12,7 +18,14 @@ export default function Stats() {
         />
 
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-          <div
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
             className="
               rounded-[40px]
               bg-zinc-950
@@ -27,10 +40,11 @@ export default function Stats() {
             <h3
               className="
                 mt-6
-                text-[5rem]
+                text-[4rem]
                 font-bold
                 leading-none
                 tracking-tight
+                md:text-[5rem]
               "
             >
               250+
@@ -41,11 +55,11 @@ export default function Stats() {
             </p>
 
             <p className="mt-8 max-w-lg leading-relaxed text-zinc-400">
-              Consistent practice across arrays, trees,
-              graphs, recursion, dynamic programming and
-              algorithmic problem solving.
+              Consistent practice across arrays, linked lists,
+              trees, graphs, recursion, dynamic programming and
+              optimization techniques.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid gap-8">
             <Metric
@@ -65,7 +79,14 @@ export default function Stats() {
           </div>
         </div>
 
-        <div
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.3,
+          }}
           className="
             mt-8
             rounded-[40px]
@@ -73,7 +94,7 @@ export default function Stats() {
             p-10
           "
         >
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-10 md:grid-cols-3">
             <FocusCard
               title="Current Focus"
               content="Data Structures & Algorithms"
@@ -89,7 +110,7 @@ export default function Stats() {
               content="Full Stack Products"
             />
           </div>
-        </div>
+        </motion.div>
       </Container>
     </section>
   );
@@ -103,7 +124,13 @@ function Metric({
   label: string;
 }) {
   return (
-    <div
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{
+        once: true,
+      }}
       className="
         rounded-[32px]
         border
@@ -119,7 +146,7 @@ function Metric({
       <p className="mt-3 text-zinc-600">
         {label}
       </p>
-    </div>
+    </motion.div>
   );
 }
 
