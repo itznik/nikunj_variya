@@ -1,7 +1,9 @@
 export const stagger = {
+  hidden: {},
+
   visible: {
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
