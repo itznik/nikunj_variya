@@ -1,5 +1,6 @@
 import AlgorithmVisual from "@/components/visuals/AlgorithmVisual";
 import Marquee from "@/components/visuals/Marquee";
+import HorizontalReveal from "@/components/visuals/HorizontalReveal";
 
 export default function Hero() {
   return (
@@ -66,6 +67,10 @@ export default function Hero() {
           
           <div className="mt-16">
             <Marquee />
+          </div>
+          
+          <div className="mt-20">
+            <HorizontalReveal />
           </div>
           
           <div>
