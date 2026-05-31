@@ -1,73 +1,81 @@
 export const projects = [
   {
     id: "01",
-    title: "Algorithm Visualizer",
-    category: "Data Structures & Algorithms",
+
+    title: "DSA Tracker",
+
+    category: "Algorithms",
 
     description:
-      "Interactive visual learning platform for understanding algorithms through real-time animations.",
+      "A platform for tracking coding progress, problem solving patterns and interview preparation metrics.",
 
     challenge:
-      "Most students struggle to understand how algorithms behave internally.",
+      "Managing hundreds of solved problems while identifying weaknesses across different algorithm categories.",
 
     solution:
-      "Built an interactive visualization system showing algorithm execution step-by-step.",
+      "Built a dashboard that categorizes problems by topic, difficulty and performance trends.",
 
     impact:
-      "Improved conceptual understanding and algorithm intuition.",
+      "Provides a structured approach to DSA preparation and long-term progress tracking.",
 
     technologies: [
       "Next.js",
       "TypeScript",
-      "Framer Motion",
+      "PostgreSQL",
+      "Tailwind",
     ],
   },
 
   {
     id: "02",
+
     title: "Portfolio CMS",
-    category: "Full Stack Development",
+
+    category: "Full Stack",
 
     description:
-      "Custom content management platform for creators and developers.",
+      "A content management system for updating portfolio projects, articles and experience without code changes.",
 
     challenge:
-      "Managing content across multiple platforms is repetitive.",
+      "Maintaining content required constant code deployments.",
 
     solution:
-      "Created a centralized content workflow and publishing system.",
+      "Created a modular CMS architecture with reusable content models and dynamic rendering.",
 
     impact:
-      "Reduced manual publishing effort significantly.",
+      "Reduced content update friction and improved maintainability.",
 
     technologies: [
       "React",
       "Node.js",
+      "Express",
       "MongoDB",
     ],
   },
 
   {
     id: "03",
+
     title: "System Design Explorer",
-    category: "Distributed Systems",
+
+    category: "Architecture",
 
     description:
-      "Interactive educational platform for system design concepts.",
+      "An educational platform for visualizing scalable system architectures and infrastructure patterns.",
 
     challenge:
-      "System design resources are often fragmented and theoretical.",
+      "Understanding distributed systems through static diagrams was difficult.",
 
     solution:
-      "Built visual simulations for architecture concepts.",
+      "Built interactive architecture flows showing request paths and scaling strategies.",
 
     impact:
-      "Made complex systems easier to understand.",
+      "Improved understanding of backend architecture and distributed systems.",
 
     technologies: [
       "Next.js",
-      "PostgreSQL",
       "TypeScript",
+      "Framer Motion",
     ],
   },
 ];
