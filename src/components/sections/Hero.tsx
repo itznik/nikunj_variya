@@ -1,4 +1,5 @@
 import AlgorithmVisual from "@/components/visuals/AlgorithmVisual";
+import Marquee from "@/components/visuals/Marquee";
 
 export default function Hero() {
   return (
@@ -62,7 +63,11 @@ export default function Hero() {
               </div>
             </div>
           </div>
-
+          
+          <div className="mt-16">
+            <Marquee />
+          </div>
+          
           <div>
             <AlgorithmVisual />
           </div>
