@@ -14,6 +14,7 @@ import ScrollProgress from "@/components/visuals/ScrollProgress";
 import NoiseTexture from "@/components/visuals/NoiseTexture";
 import FloatingOrbs from "@/components/visuals/FloatingOrbs";
 import SectionDivider from "@/components/visuals/SectionDivider";
+import WordStack from "@/components/visuals/WordStack";
 
 export default function HomePage() {
   return (
@@ -36,6 +37,10 @@ export default function HomePage() {
         <SectionDivider />
 
         <Projects />
+
+        <SectionDivider />
+
+        <WordStack />
 
         <SectionDivider />
 
