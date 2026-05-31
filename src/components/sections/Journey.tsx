@@ -1,74 +1,77 @@
-import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
-
-const timeline = [
-  {
-    year: "2024",
-    title: "Started Programming",
-    description:
-      "Began learning programming fundamentals and problem solving while pursuing BHMS.",
-  },
-  {
-    year: "2025",
-    title: "Focused on DSA",
-    description:
-      "Built a strong foundation in algorithms, recursion, trees, dynamic programming and optimization.",
-  },
-  {
-    year: "2026",
-    title: "Full Stack Development",
-    description:
-      "Started building modern applications using Next.js, TypeScript and scalable engineering practices.",
-  },
-  {
-    year: "Next",
-    title: "Systems at Scale",
-    description:
-      "Exploring distributed systems, system design and performance engineering.",
-  },
-];
-
 export default function Journey() {
+  const journey = [
+    {
+      year: "2024",
+      title: "Started Programming",
+      description:
+        "Began learning programming fundamentals and web development.",
+    },
+    {
+      year: "2025",
+      title: "Focused on DSA",
+      description:
+        "Deep dive into problem solving, algorithms and interview preparation.",
+    },
+    {
+      year: "2026",
+      title: "Full Stack Development",
+      description:
+        "Building complete applications using modern frontend and backend technologies.",
+    },
+    {
+      year: "NEXT",
+      title: "Distributed Systems",
+      description:
+        "Exploring scalable architecture and system design.",
+    },
+  ];
+
   return (
     <section
       id="journey"
-      className="bg-white py-32"
+      className="bg-[#f5f4ef] py-32"
     >
-      <Container>
-        <SectionHeading
-          label="Journey"
-          title="A timeline of learning, building and continuous improvement."
-        />
+      <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-20">
+        <div className="mb-24">
+          <p className="mb-4 text-xs uppercase tracking-[0.5em] text-neutral-500">
+            Journey
+          </p>
 
-        <div className="relative">
-          <div className="absolute left-[23px] top-0 h-full w-px bg-black/10" />
+          <h2 className="text-5xl font-black leading-none tracking-[-0.05em] md:text-7xl">
+            The path so far.
+          </h2>
+        </div>
 
-          <div className="space-y-16">
-            {timeline.map((item) => (
-              <div
-                key={item.year}
-                className="relative pl-16"
-              >
-                <div className="absolute left-0 top-2 flex h-12 w-12 items-center justify-center rounded-full bg-zinc-950 text-white">
-                  •
-                </div>
+        <div className="space-y-24">
+          {journey.map((item) => (
+            <div
+              key={item.year}
+              className="
+                grid
+                gap-8
+                border-t
+                border-[#e7e4dd]
+                pt-12
+                lg:grid-cols-[240px_1fr]
+              "
+            >
+              <div className="text-6xl font-black tracking-[-0.05em] text-neutral-300 md:text-8xl">
+                {item.year}
+              </div>
 
-                <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
-                  {item.year}
-                </p>
-
-                <h3 className="mt-2 text-3xl font-bold text-zinc-950">
+              <div>
+                <h3 className="text-3xl font-bold tracking-tight md:text-5xl">
                   {item.title}
                 </h3>
 
-                <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600">
+                <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-600">
                   {item.description}
                 </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
