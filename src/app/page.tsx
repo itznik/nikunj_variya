@@ -14,6 +14,7 @@ import BackgroundAccent from "@/components/visuals/BackgroundAccent";
 export default function HomePage() {
   return (
     <main className="bg-[#f5f4ef]">
+      <BackgroundAccent />
       <Navbar />
 
       <Hero />
@@ -23,7 +24,6 @@ export default function HomePage() {
       <Philosophy />
       <Stats />
       <Contact />
-      <BackgroundAccent />
 
       <Footer />
     </main>
