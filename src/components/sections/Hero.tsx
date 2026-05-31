@@ -1,155 +1,73 @@
-"use client";
-
-import { motion } from "framer-motion";
-import Container from "@/components/ui/Container";
+import AlgorithmVisual from "@/components/visuals/AlgorithmVisual";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pt-40 pb-40">
-      <Container>
-        <div className="max-w-7xl">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="
-              text-xs
-              uppercase
-              tracking-[0.4em]
-              text-zinc-500
-            "
-          >
-            Software Engineer · DSA · System Design
-          </motion.p>
+    <section className="relative overflow-hidden px-6 pt-28 pb-24 md:px-12 lg:px-20">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-8">
+          <span className="text-[11px] uppercase tracking-[0.5em] text-neutral-500">
+            Software Engineer • DSA • System Design
+          </span>
+        </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="
-              mt-8
-              font-heading
-              font-bold
-              leading-[0.82]
-              tracking-[-0.08em]
-              text-zinc-950
-              text-[4.5rem]
-              sm:text-[6rem]
-              md:text-[8rem]
-              lg:text-[11rem]
-            "
-          >
-            NIKUNJ
-          </motion.h1>
+        <div className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+          <div>
+            <h1 className="max-w-4xl text-[4rem] font-black leading-[0.9] tracking-[-0.06em] text-black md:text-[6rem] lg:text-[8rem]">
+              NIKUNJ
+            </h1>
 
-          <div className="mt-12 grid gap-16 lg:grid-cols-[1.2fr_0.8fr]">
-            <div>
-              <h2
-                className="
-                  max-w-3xl
-                  text-3xl
-                  font-semibold
-                  leading-tight
-                  tracking-tight
-                  text-zinc-950
-                  md:text-5xl
-                "
-              >
-                Building software through algorithms,
-                systems thinking and relentless curiosity.
-              </h2>
+            <h2 className="mt-8 max-w-3xl text-4xl font-semibold leading-tight tracking-[-0.04em] text-black md:text-6xl">
+              Building systems,
+              <br />
+              algorithms and products
+              <br />
+              that scale.
+            </h2>
 
-              <p
-                className="
-                  mt-8
-                  max-w-2xl
-                  text-lg
-                  leading-relaxed
-                  text-zinc-600
-                "
-              >
-                Focused on data structures, scalable systems and
-                full-stack engineering. I enjoy transforming
-                complexity into clarity.
-              </p>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-neutral-600">
+              Focused on software engineering, problem solving, full-stack
+              development and designing scalable digital systems.
+            </p>
+
+            <div className="mt-12 flex flex-wrap gap-4">
+              <button className="rounded-full bg-black px-8 py-4 text-white transition hover:scale-[1.03]">
+                View Projects
+              </button>
+
+              <button className="rounded-full border border-neutral-300 bg-white px-8 py-4 text-black transition hover:bg-neutral-100">
+                Resume
+              </button>
             </div>
 
-            <div className="flex flex-col justify-end gap-10">
-              <Metric
-                value="250+"
-                label="Problems Solved"
-              />
+            <div className="mt-16 grid grid-cols-3 gap-8 border-t border-[#e7e4dd] pt-10">
+              <div>
+                <div className="text-4xl font-bold">250+</div>
+                <div className="mt-2 text-sm text-neutral-500">
+                  Problems Solved
+                </div>
+              </div>
 
-              <Metric
-                value="15+"
-                label="Projects Built"
-              />
+              <div>
+                <div className="text-4xl font-bold">15+</div>
+                <div className="mt-2 text-sm text-neutral-500">
+                  Projects Built
+                </div>
+              </div>
 
-              <Metric
-                value="3+"
-                label="Years Learning"
-              />
+              <div>
+                <div className="text-4xl font-bold">3+</div>
+                <div className="mt-2 text-sm text-neutral-500">
+                  Years Learning
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="mt-24 border-t border-black/10 pt-8">
-            <div className="flex flex-wrap items-center gap-8 text-sm text-zinc-500">
-              <a
-                href="/resume.pdf"
-                className="hover:text-zinc-950"
-              >
-                Resume
-              </a>
-
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-zinc-950"
-              >
-                GitHub
-              </a>
-
-              <a
-                href="#contact"
-                className="hover:text-zinc-950"
-              >
-                Contact
-              </a>
-
-              <span className="ml-auto">
-                Scroll ↓
-              </span>
-            </div>
+          <div>
+            <AlgorithmVisual />
           </div>
         </div>
-      </Container>
+      </div>
     </section>
-  );
-}
-
-function Metric({
-  value,
-  label,
-}: {
-  value: string;
-  label: string;
-}) {
-  return (
-    <div>
-      <p
-        className="
-          text-5xl
-          font-bold
-          tracking-tight
-          text-zinc-950
-        "
-      >
-        {value}
-      </p>
-
-      <p className="mt-2 text-zinc-500">
-        {label}
-      </p>
-    </div>
   );
 }
