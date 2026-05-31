@@ -15,9 +15,6 @@ import Contact from "@/components/sections/Contact";
 import ScrollProgress from "@/components/visuals/ScrollProgress";
 import NoiseTexture from "@/components/visuals/NoiseTexture";
 
-import WordStack from "@/components/visuals/WordStack";
-import ParallaxSection from "@/components/visuals/ParallaxSection";
-
 export default function HomePage() {
   return (
     <>
@@ -28,34 +25,20 @@ export default function HomePage() {
       <Navbar />
 
       <main className="relative overflow-hidden bg-[#f5f4ef]">
-        {/* Hero */}
         <Hero />
 
-        {/* Featured Project */}
         <Featured />
 
-        {/* Projects */}
         <Projects />
 
-        {/* Transition */}
-        <WordStack />
-
-        {/* Visual Break */}
-        <ParallaxSection />
-
-        {/* Skills */}
         <TechStack />
 
-        {/* Journey */}
         <Journey />
 
-        {/* Philosophy */}
         <Philosophy />
 
-        {/* Metrics */}
         <Stats />
 
-        {/* Contact */}
         <Contact />
       </main>
 
