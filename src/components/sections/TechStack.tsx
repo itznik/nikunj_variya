@@ -1,5 +1,11 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
+
+import { fadeUp } from "@/animations/fadeUp";
 
 import {
   SiNextdotjs,
@@ -20,7 +26,7 @@ const categories = [
   {
     title: "Frontend",
     description:
-      "Building modern, responsive and performant user experiences.",
+      "Building performant, accessible and responsive user experiences.",
     technologies: [
       {
         name: "Next.js",
@@ -48,7 +54,7 @@ const categories = [
   {
     title: "Backend",
     description:
-      "Creating APIs, databases and scalable application logic.",
+      "Designing APIs, application logic and scalable data layers.",
     technologies: [
       {
         name: "Node.js",
@@ -72,7 +78,7 @@ const categories = [
   {
     title: "Engineering",
     description:
-      "Strong focus on fundamentals, tooling and problem solving.",
+      "Strong emphasis on problem solving, tooling and software fundamentals.",
     technologies: [
       {
         name: "Git",
@@ -96,27 +102,35 @@ export default function TechStack() {
         <SectionHeading
           label="Capabilities"
           title="Technologies I use to design and build software."
-          description="Focused on engineering fundamentals, modern web technologies and scalable application development."
+          description="A growing toolkit focused on engineering fundamentals, modern web technologies and scalable application development."
         />
 
         <div className="grid gap-8 lg:grid-cols-3">
           {categories.map((category) => (
-            <div
+            <motion.div
               key={category.title}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{
+                once: true,
+                amount: 0.25,
+              }}
+              whileHover={{
+                y: -6,
+              }}
               className="
                 rounded-[40px]
                 bg-white
                 p-8
                 transition-all
-                duration-300
-                hover:-translate-y-1
               "
             >
               <h3 className="text-3xl font-bold text-zinc-950">
                 {category.title}
               </h3>
 
-              <p className="mt-4 text-zinc-600 leading-relaxed">
+              <p className="mt-4 leading-relaxed text-zinc-600">
                 {category.description}
               </p>
 
@@ -149,7 +163,7 @@ export default function TechStack() {
                   );
                 })}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Container>
