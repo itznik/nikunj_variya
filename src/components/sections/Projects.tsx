@@ -7,6 +7,8 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 import { projects } from "@/data/projects";
 
+import { fadeUp } from "@/animations/fadeUp";
+
 import AlgorithmVisualizerGraphic from "@/components/projects/AlgorithmVisualizerGraphic";
 import CmsGraphic from "@/components/projects/CmsGraphic";
 import SystemDesignGraphic from "@/components/projects/SystemDesignGraphic";
@@ -37,27 +39,19 @@ export default function Projects() {
             return (
               <motion.article
                 key={project.id}
-                initial={{
-                  opacity: 0,
-                  y: 40,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{
                   once: true,
                   amount: 0.25,
                 }}
-                transition={{
-                  duration: 0.6,
-                }}
-                className={`
+                className="
                   grid
                   gap-16
                   lg:grid-cols-2
                   lg:items-center
-                `}
+                "
               >
                 {/* VISUAL */}
 
@@ -68,13 +62,11 @@ export default function Projects() {
                   transition={{
                     duration: 0.25,
                   }}
-                  className={`
-                    ${
-                      reverse
-                        ? "lg:order-2"
-                        : ""
-                    }
-                  `}
+                  className={
+                    reverse
+                      ? "lg:order-2"
+                      : ""
+                  }
                 >
                   <div
                     className="
