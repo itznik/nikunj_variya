@@ -1,110 +1,97 @@
-import Container from "@/components/ui/Container";
-
 export default function Footer() {
   return (
-    <footer className="bg-zinc-950 text-white">
-      <Container>
-        <div className="py-24">
-          <div className="border-b border-white/10 pb-16">
-            <p className="text-xs uppercase tracking-[0.35em] text-zinc-500">
-              Nikunj Variya
-            </p>
-
-            <h2
-              className="
-                mt-6
-                max-w-4xl
-                font-heading
-                text-5xl
-                font-bold
-                leading-[0.9]
-                tracking-[-0.06em]
-                md:text-7xl
-              "
-            >
-              Building software through
-              algorithms, systems thinking
-              and continuous learning.
-            </h2>
+    <footer className="bg-[#0f0f0f] text-white">
+      <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 lg:px-20">
+        <div className="border-b border-white/10 pb-16">
+          <div className="text-xs uppercase tracking-[0.5em] text-white/40">
+            Nikunj Variya
           </div>
 
-          <div
-            className="
-              flex
-              flex-col
-              gap-10
-              pt-12
-              md:flex-row
-              md:items-end
-              md:justify-between
-            "
-          >
-            <div>
-              <p className="text-zinc-400">
-                Software Engineer
-              </p>
+          <h2 className="mt-8 max-w-5xl text-5xl font-black leading-[0.9] tracking-[-0.05em] md:text-8xl">
+            Engineering
+            <br />
+            products,
+            <br />
+            systems &
+            <br />
+            solutions.
+          </h2>
+        </div>
 
-              <p className="mt-2 text-zinc-400">
-                Full Stack Developer
-              </p>
-
-              <p className="mt-2 text-zinc-400">
-                DSA Enthusiast
-              </p>
+        <div className="mt-16 grid gap-10 md:grid-cols-3">
+          <div>
+            <div className="mb-3 text-sm uppercase tracking-[0.3em] text-white/40">
+              Focus
             </div>
 
-            <div className="flex gap-8 text-zinc-400">
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white"
-              >
+            <p className="text-white/60">
+              Software Engineering
+            </p>
+
+            <p className="mt-2 text-white/60">
+              Full Stack Development
+            </p>
+
+            <p className="mt-2 text-white/60">
+              System Design
+            </p>
+          </div>
+
+          <div>
+            <div className="mb-3 text-sm uppercase tracking-[0.3em] text-white/40">
+              Connect
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <a href="mailto:nikvrya@gmail.com">
+                Email
+              </a>
+
+              <a href="#">
                 GitHub
               </a>
 
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white"
-              >
+              <a href="#">
                 LinkedIn
-              </a>
-
-              <a
-                href="mailto:nikvrya@gmail.com"
-                className="hover:text-white"
-              >
-                Email
               </a>
             </div>
           </div>
 
-          <div
-            className="
-              mt-16
-              border-t
-              border-white/10
-              pt-8
-              flex
-              flex-col
-              gap-4
-              text-sm
-              text-zinc-500
-              md:flex-row
-              md:justify-between
-            "
-          >
-            <p>© 2026 Nikunj Variya</p>
+          <div>
+            <div className="mb-3 text-sm uppercase tracking-[0.3em] text-white/40">
+              Built With
+            </div>
 
-            <p>
-              Built with Next.js, TypeScript &
+            <p className="text-white/60">
+              Next.js
+            </p>
+
+            <p className="mt-2 text-white/60">
+              TypeScript
+            </p>
+
+            <p className="mt-2 text-white/60">
               Tailwind CSS
+            </p>
+
+            <p className="mt-2 text-white/60">
+              Framer Motion
             </p>
           </div>
         </div>
-      </Container>
+
+        <div className="mt-20 border-t border-white/10 pt-8">
+          <div className="flex flex-col gap-3 text-sm text-white/40 md:flex-row md:justify-between">
+            <span>
+              © 2026 Nikunj Variya
+            </span>
+
+            <span>
+              Designed & Developed by Nikunj Variya
+            </span>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }
