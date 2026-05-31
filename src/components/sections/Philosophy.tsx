@@ -1,57 +1,72 @@
-import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
-
-const principles = [
-  {
-    number: "01",
-    title: "Algorithmic Thinking",
-    description:
-      "Breaking complex problems into predictable systems and scalable solutions.",
-  },
-  {
-    number: "02",
-    title: "Systems Over Features",
-    description:
-      "Prioritizing architecture, maintainability and long-term scalability.",
-  },
-  {
-    number: "03",
-    title: "Continuous Learning",
-    description:
-      "Growing through curiosity, deliberate practice and consistent experimentation.",
-  },
-];
-
 export default function Philosophy() {
-  return (
-    <section className="bg-[#efede7] py-32">
-      <Container>
-        <SectionHeading
-          label="Philosophy"
-          title="The principles that guide how I solve problems and build software."
-        />
+  const principles = [
+    {
+      number: "01",
+      title: "Think in Systems",
+      description:
+        "Every application is more than code. Understanding architecture, tradeoffs and scale matters more than memorizing frameworks.",
+    },
+    {
+      number: "02",
+      title: "Solve Before Building",
+      description:
+        "Technology is only useful when it solves a real problem. The goal is clarity and outcomes, not complexity.",
+    },
+    {
+      number: "03",
+      title: "Learn Continuously",
+      description:
+        "The best engineers stay curious. Every project becomes an opportunity to improve systems thinking and technical depth.",
+    },
+  ];
 
-        <div className="space-y-8">
+  return (
+    <section className="bg-black py-32 text-white">
+      <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-20">
+        <div className="mb-24">
+          <p className="mb-4 text-xs uppercase tracking-[0.5em] text-white/50">
+            Philosophy
+          </p>
+
+          <h2 className="max-w-5xl text-5xl font-black leading-none tracking-[-0.05em] md:text-7xl">
+            Building software is
+            <br />
+            ultimately about
+            <br />
+            solving problems.
+          </h2>
+        </div>
+
+        <div className="space-y-24">
           {principles.map((item) => (
             <div
               key={item.number}
-              className="rounded-[32px] bg-white p-8"
+              className="
+                grid
+                gap-8
+                border-t
+                border-white/10
+                pt-10
+                lg:grid-cols-[180px_1fr]
+              "
             >
-              <p className="text-sm text-zinc-500">
+              <div className="text-5xl font-black text-white/20">
                 {item.number}
-              </p>
+              </div>
 
-              <h3 className="mt-4 text-3xl font-bold text-zinc-950">
-                {item.title}
-              </h3>
+              <div>
+                <h3 className="text-3xl font-bold md:text-5xl">
+                  {item.title}
+                </h3>
 
-              <p className="mt-4 max-w-3xl text-lg leading-relaxed text-zinc-600">
-                {item.description}
-              </p>
+                <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/60">
+                  {item.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
