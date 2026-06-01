@@ -3,130 +3,70 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center pt-32 pb-24 overflow-hidden linear-grid">
-      <div className="absolute top-0 w-full h-full bg-gradient-to-b from-transparent via-background/50 to-background pointer-events-none z-10" />
+    <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#f6f9fc] text-[#0a2540]">
       
-      <div className="max-w-[1440px] mx-auto w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-20">
+      {/* Stripe Diagonal Color Sweep */}
+      <div className="absolute top-0 right-0 w-[150vw] h-[150vh] origin-top-right -rotate-12 bg-gradient-to-br from-stripe-blurple via-[#bf7cff] to-[#ff6699] opacity-90 z-0 translate-x-[30%] -translate-y-[20%]" />
+      
+      <div className="max-w-[1200px] mx-auto w-full px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-20">
         
-        {/* Left: Monolithic Typography Hierarchy */}
-        <div className="lg:col-span-5 flex flex-col items-start">
-          <div className="flex items-center gap-2 bg-white/[0.02] border border-border-premium px-3 py-1 rounded-sm mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-stripe-indigo animate-pulse" />
-            <span className="text-[10px] font-mono tracking-[0.25em] text-gray-400 uppercase">SYSTEM_STATE: STABLE</span>
-          </div>
+        {/* Left: Massive Typography */}
+        <div className="flex flex-col items-start">
+          <span className="text-sm font-semibold tracking-wide text-stripe-blurple mb-4">
+            Nikunj Variya // System Architect
+          </span>
           
-          <h1 className="text-6xl md:text-8xl font-semibold tracking-tighter leading-[0.85] text-white mb-8">
-            Architecting <br />
-            <span className="text-gray-500 font-medium">Production systems.</span>
+          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9] text-[#0a2540] mb-6">
+            Digital <br />
+            infrastructure <br />
+            <span className="text-stripe-blurple">to scale.</span>
           </h1>
           
-          <p className="text-base text-gray-400 max-w-sm leading-relaxed mb-12 font-normal">
-            Building rigorous, deterministic full-stack applications with absolute precision in state, memory, and data distribution.
+          <p className="text-lg md:text-xl text-[#425466] font-medium max-w-md leading-relaxed mb-8">
+            Flexible, high-performance software architecture. Build products with the most comprehensive set of full-stack integrations.
           </p>
 
-          <div className="flex items-center gap-8 border-t border-border-premium pt-8 w-full max-w-sm">
-            <div className="flex flex-col">
-              <span className="text-[10px] font-mono text-gray-500 uppercase tracking-wider">Engine Edition</span>
-              <span className="text-sm font-medium text-white mt-1">2026.1.0</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[10px] font-mono text-gray-500 uppercase tracking-wider">Core Operations</span>
-              <span className="text-sm font-medium text-white mt-1">Full-Stack / Scale</span>
-            </div>
-          </div>
+          <button className="bg-stripe-blurple text-white px-6 py-3 rounded-full font-semibold hover:bg-[#5851df] transition-all hover:scale-105 shadow-lg flex items-center gap-2">
+            Request Architecture Review <span className="text-xl leading-none">›</span>
+          </button>
         </div>
 
-        {/* Right: Dense High-Fidelity Stripe UI Architecture Map */}
-        <div className="lg:col-span-7 relative w-full h-[620px] flex items-center justify-center">
-          
-          {/* Main Node / Orchestrator Panel */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-12 left-4 w-[340px] bg-surface border border-border-premium rounded-md shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] p-4 z-30"
-          >
-            <div className="flex justify-between items-center border-b border-border-premium pb-3 mb-4">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-red-500/40" />
-                <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
-                <div className="w-2 h-2 rounded-full bg-green-500/40" />
-                <span className="text-[11px] font-mono text-gray-400 ml-1">gateway_router.ts</span>
-              </div>
-              <span className="text-[10px] font-mono text-stripe-indigo bg-stripe-indigo/10 px-2 py-0.5 rounded">EDGE</span>
-            </div>
-            <div className="font-mono text-[11px] text-gray-400 space-y-1.5 bg-black/40 p-3 rounded border border-white/[0.02]">
-  <p className="text-gray-600"><span className="text-stripe-indigo">const</span> upstream = <span className="text-cyber-cyan">Deno.env</span>.get(<span className="text-emerald-500">"NODE_POOL"</span>);</p>
-  <p className="text-gray-400"><span className="text-stripe-indigo">await</span> cluster.<span className="text-amber-400">dispatch</span>(req, {"{"}</p>
-  <p className="text-gray-400">&nbsp;&nbsp;strategy: <span className="text-emerald-500">"weighted_round_robin"</span>,</p>
-  <p className="text-gray-400">&nbsp;&nbsp;fallback: <span className="text-emerald-500">"failover_replica"</span></p>
-  <p className="text-gray-400">{"}"});</p>
-</div>
-          </motion.div>
+        {/* Right: Floating White UI Card (Like the Zenflow receipt in your images) */}
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+          className="relative w-full max-w-[450px] mx-auto bg-white rounded-2xl stripe-shadow p-8 flex flex-col z-20"
+        >
+          <div className="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-stripe-blurple to-stripe-pink flex items-center justify-center text-white font-bold text-xs">NV</div>
+            <span className="font-semibold text-[#0a2540]">Platform Initialization</span>
+          </div>
 
-          {/* Infrastructure Metrics Sub-Window */}
-          <motion.div 
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute bottom-16 right-4 w-[380px] bg-surface border border-border-premium rounded-md shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] p-5 z-20"
-          >
-            <div className="flex justify-between items-center mb-6">
-              <span className="text-xs font-mono tracking-wider text-gray-400">METRICS::REPLICA_POOL</span>
-              <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                HEALTHY
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <span className="text-[#425466] text-sm">Status</span>
+              <span className="bg-[#e3fcf7] text-[#0d9488] px-2 py-1 rounded text-xs font-semibold">Active Engine</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-[#425466] text-sm">Latency</span>
+              <span className="font-mono text-[#0a2540] text-sm">12ms</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-[#425466] text-sm">Core Stack</span>
+              <span className="flex gap-2">
+                 <span className="text-xs font-bold bg-[#f6f9fc] px-2 py-1 rounded border border-gray-200 text-[#0a2540]">React</span>
+                 <span className="text-xs font-bold bg-[#f6f9fc] px-2 py-1 rounded border border-gray-200 text-[#0a2540]">Node</span>
               </span>
             </div>
-            
-            {/* Hardcoded Custom Diagram System Grid */}
-            <div className="space-y-4">
-              <div className="border border-white/[0.02] bg-black/20 rounded p-3 flex justify-between items-center">
-                <div>
-                  <p className="text-[10px] font-mono text-gray-500 uppercase">Primary DB Connection Pool</p>
-                  <p className="text-lg font-semibold text-white mt-0.5">04 / 64 <span className="text-xs text-gray-600 font-normal">active</span></p>
-                </div>
-                <svg className="w-16 h-8 text-stripe-indigo opacity-80" viewBox="0 0 60 20" fill="none">
-                  <path d="M0 15 Q 15 5, 30 12 T 60 2" stroke="currentColor" strokeWidth="1.5" />
-                </svg>
-              </div>
+          </div>
 
-              <div className="border border-white/[0.02] bg-black/20 rounded p-3">
-                <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-2">
-                  <span>CACHE HIT RATE</span>
-                  <span className="text-white">99.42%</span>
-                </div>
-                <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
-                  <motion.div 
-                    initial={{ width: 0 }} 
-                    animate={{ width: "99.42%" }} 
-                    transition={{ duration: 1.2, delay: 0.5 }} 
-                    className="h-full bg-gradient-to-r from-stripe-indigo to-cyber-cyan" 
-                  />
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Deep Layer Background Architectural Connection Map */}
-          <svg className="absolute inset-0 w-full h-full z-0 pointer-events-none" viewBox="0 0 700 600" fill="none">
-            <motion.path 
-              d="M 240 220 C 350 220, 300 420, 440 420" 
-              stroke="url(#stripeGradient)" 
-              strokeWidth="2"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-            />
-            <defs>
-              <linearGradient id="stripeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#635BFF" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.1" />
-              </linearGradient>
-            </defs>
-          </svg>
-          
-        </div>
+          <div className="mt-8 pt-4 border-t border-gray-100 flex justify-between items-end">
+            <span className="text-[#425466] text-sm">Uptime</span>
+            <span className="text-2xl font-bold text-[#0a2540]">99.999%</span>
+          </div>
+        </motion.div>
+        
       </div>
     </section>
   );
