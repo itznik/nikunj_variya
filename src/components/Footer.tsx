@@ -125,11 +125,23 @@ export default function Footer() {
 
           {/* Social Network Targets */}
           <div className="flex items-center gap-6">
-            <a href="https://github.com/itznik" className="text-zinc-500 hover:text-[#00d4ff] hover:-translate-y-1 transition-all duration-300">
-              <FaGithub size={20} />
+            <a 
+              href="https://github.com/itznik" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Visit my GitHub Profile"
+              className="text-zinc-500 hover:text-[#00d4ff] hover:-translate-y-1 transition-all duration-300"
+            >
+              <FaGithub size={20} aria-hidden="true" />
             </a>
-            <a href="https://www.linkedin.com/in/nikunjvariya" className="text-zinc-500 hover:text-[#00d4ff] hover:-translate-y-1 transition-all duration-300">
-              <FaLinkedin size={20} />
+            <a 
+              href="https://linkedin.com/in/nikunjvariya" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Visit my LinkedIn Profile"
+              className="text-zinc-500 hover:text-[#00d4ff] hover:-translate-y-1 transition-all duration-300"
+            >
+              <FaLinkedin size={20} aria-hidden="true" />
             </a>
           </div>
           
