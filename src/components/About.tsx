@@ -3,7 +3,6 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import Image from "next/image"; // Assuming you have a photo to use
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -13,123 +12,141 @@ export default function About() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Scroll-triggered animations for the text and image
-    gsap.fromTo(".about-text", 
-      { y: 30, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power2.out",
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 75%",
+    // Cinematic fade and slide up for text elements
+    gsap.utils.toArray(".about-reveal").forEach((el: any) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1, y: 0, duration: 1, ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+          }
         }
-      }
-    );
-
-    gsap.fromTo(".about-image-container", 
-      { scale: 0.95, opacity: 0, rotationY: 10 },
-      {
-        scale: 1, opacity: 1, rotationY: 0, duration: 1, ease: "power3.out",
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 75%",
-        }
-      }
-    );
-
-    // Floating animation for the telemetry badge
-    gsap.to(".telemetry-badge", {
-      y: -10,
-      duration: 2.5,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
+      );
     });
 
+    // Parallax effect on the image container
+    gsap.fromTo(".profile-parallax", 
+      { y: 50 },
+      {
+        y: -50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        }
+      }
+    );
   }, { scope: container });
 
   return (
-    <section id="about" ref={container} className="w-full bg-white py-24 md:py-32 relative border-t border-gray-100 overflow-hidden">
+    <section id="about" ref={container} className="w-full bg-black py-32 md:py-48 relative overflow-hidden bg-noise border-t border-white/5">
       
-      {/* Subtle Stripe-style background accents */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-stripe-bg to-white rounded-full blur-3xl opacity-50 pointer-events-none -translate-y-1/2 translate-x-1/3" />
+      {/* Deep Ambient Glow */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[400px] bg-[#635bff] rounded-full blur-[200px] opacity-20 pointer-events-none" />
 
-      <div className="max-w-[1200px] mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div className="max-w-[1300px] mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
         
-        {/* LEFT: Engineering Philosophy */}
-        <div className="flex flex-col items-start order-2 lg:order-1">
-          <span className="about-text text-xs font-bold tracking-widest text-[#00d4ff] uppercase mb-4 block bg-[#00d4ff]/10 px-3 py-1.5 rounded-full">
-            03 // The Architect
-          </span>
+        {/* LEFT: System HUD Photo Frame (Col-span-5) */}
+        <div className="lg:col-span-5 relative w-full flex justify-center lg:justify-start order-2 lg:order-1 profile-parallax">
           
-          <h2 className="about-text text-4xl md:text-5xl lg:text-6xl font-bold text-[#0a2540] tracking-tight mb-8">
-            Building systems <br className="hidden md:block" /> that scale.
+          <div className="relative w-full max-w-[400px] aspect-[4/5] flex items-center justify-center group">
+            
+            {/* Raw SVG Viewfinder Corners (No generic border box) */}
+            <svg className="absolute inset-0 w-full h-full z-20 pointer-events-none" viewBox="0 0 400 500" fill="none">
+              {/* Top Left */}
+              <path d="M 0 40 L 0 0 L 40 0" stroke="#00d4ff" strokeWidth="2" />
+              {/* Top Right */}
+              <path d="M 360 0 L 400 0 L 400 40" stroke="#00d4ff" strokeWidth="2" />
+              {/* Bottom Left */}
+              <path d="M 0 460 L 0 500 L 40 500" stroke="#00d4ff" strokeWidth="2" />
+              {/* Bottom Right */}
+              <path d="M 360 500 L 400 500 L 400 460" stroke="#00d4ff" strokeWidth="2" />
+              
+              {/* Telemetry Target */}
+              <circle cx="200" cy="250" r="100" stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="4 4" />
+              <circle cx="200" cy="250" r="2" fill="#ff4db8" className="animate-ping" />
+            </svg>
+
+            {/* The Actual Image Wrapper */}
+            <div className="relative w-[calc(100%-2rem)] h-[calc(100%-2rem)] bg-[#0a0a0a] overflow-hidden">
+              
+              {/* INSTRUCTION: Replace this div with your actual next/image. 
+                The 'mix-blend-luminosity' makes it look cinematic and desaturated.
+                It turns to full color when the user hovers over it.
+              */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a24] to-[#050505] flex items-center justify-center transition-all duration-500 mix-blend-luminosity group-hover:mix-blend-normal">
+                <span className="text-white/20 font-mono text-xs tracking-widest">[ RENDER: /public/photo.jpg ]</span>
+              </div>
+              
+              {/* GSAP Scanline overlay */}
+              <div className="absolute top-0 left-0 w-full h-[20%] scanline mix-blend-screen pointer-events-none" />
+              
+              {/* Vignette Overlay */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)] pointer-events-none" />
+            </div>
+
+            {/* Floating Data Tag */}
+            <div className="absolute -right-6 bottom-12 bg-black border border-white/10 px-3 py-1.5 flex flex-col gap-1 z-30 shadow-[0_0_30px_rgba(0,0,0,1)]">
+              <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-widest">Auth_Identity</span>
+              <span className="text-[10px] font-mono text-[#00d4ff] uppercase tracking-widest flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-[#00d4ff] rounded-full animate-pulse" /> Nikunj Variya
+              </span>
+            </div>
+
+          </div>
+        </div>
+
+        {/* RIGHT: Structural Typography (Col-span-7) */}
+        <div className="lg:col-span-7 flex flex-col items-start order-1 lg:order-2">
+          
+          <div className="about-reveal flex items-center gap-3 mb-8">
+            <span className="w-8 h-[1px] bg-[#ff4db8]" />
+            <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] text-[#ff4db8] uppercase">
+              The Architect
+            </span>
+          </div>
+          
+          <h2 className="about-reveal text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter leading-[0.9] text-white mb-10">
+            Driven by logic. <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff4db8] to-[#635bff]">
+              Obsessed with scale.
+            </span>
           </h2>
           
-          <div className="space-y-6 text-[#425466] text-lg leading-relaxed font-medium">
-            <p className="about-text">
-              I am a Full-Stack Software Engineer focused on constructing resilient, low-latency applications. My engineering philosophy revolves around strict algorithmic efficiency, clean data structures, and uncompromised systemic integrity.
+          <div className="space-y-6 text-lg md:text-xl text-zinc-400 font-medium leading-relaxed max-w-2xl border-l border-white/10 pl-6">
+            <p className="about-reveal">
+              I am a Full-Stack Software Engineer focused on constructing resilient, low-latency applications. My engineering philosophy demands strict algorithmic efficiency, clean data structures, and uncompromised systemic integrity.
             </p>
-            <p className="about-text">
-              Whether I am mapping complex system designs or developing high-throughput APIs, I approach code not just as a set of instructions, but as an orchestrated architecture where every node, query, and cache layer must be optimized for peak performance.
+            <p className="about-reveal">
+              Every system—whether a real-time matching engine or a distributed headless CMS—is approached as a rigorous mathematical problem. I don't just assemble frameworks; I architect complete, deterministic environments engineered for peak execution.
             </p>
           </div>
 
-          {/* Core Competencies Grid */}
-          <div className="about-text grid grid-cols-2 gap-4 mt-10 w-full">
-            <div className="border border-gray-100 bg-[#f6f9fc] rounded-xl p-4 stripe-shadow-sm">
-              <span className="block text-stripe-blurple font-bold mb-1">DSA Excellence</span>
-              <span className="text-xs text-[#425466] font-medium">Space/Time complexity optimization.</span>
+          {/* Core Competencies (Raw Data Look, No Boxes) */}
+          <div className="mt-16 grid grid-cols-2 gap-x-12 gap-y-8 w-full max-w-2xl">
+            <div className="about-reveal flex flex-col gap-2">
+              <span className="font-mono text-3xl text-white font-light tracking-tighter">01</span>
+              <span className="text-sm font-bold text-[#00d4ff] uppercase tracking-widest">Algorithmic Precision</span>
+              <span className="text-xs font-mono text-zinc-500">Space & Time Complexity optimization mapping.</span>
             </div>
-            <div className="border border-gray-100 bg-[#f6f9fc] rounded-xl p-4 stripe-shadow-sm">
-              <span className="block text-stripe-cyan font-bold mb-1">System Design</span>
-              <span className="text-xs text-[#425466] font-medium">Microservices & Distributed architectures.</span>
+            <div className="about-reveal flex flex-col gap-2">
+              <span className="font-mono text-3xl text-white font-light tracking-tighter">02</span>
+              <span className="text-sm font-bold text-[#635bff] uppercase tracking-widest">System Design</span>
+              <span className="text-xs font-mono text-zinc-500">Distributed microservices & horizontal scaling.</span>
             </div>
-          </div>
-        </div>
-
-        {/* RIGHT: Photo & Telemetry UI */}
-        <div className="about-image-container relative w-full aspect-[4/5] md:aspect-square lg:aspect-[4/5] max-w-md mx-auto lg:mx-0 order-1 lg:order-2 perspective-[1000px]">
-          
-          {/* Main Photo Wrapper */}
-          <div className="relative w-full h-full rounded-2xl overflow-hidden stripe-shadow bg-[#0a2540]">
-            
-            {/* REPLACE THIS DIV WITH YOUR ACTUAL NEXT/IMAGE */}
-            {/* Example: <Image src="/nikunj.jpg" alt="Nikunj Variya" fill className="object-cover opacity-90 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" /> */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#0a2540] to-[#1a365d] flex flex-col items-center justify-center">
-              <span className="text-white/20 font-mono text-sm">[ Insert Photo: /public/photo.jpg ]</span>
+            <div className="about-reveal flex flex-col gap-2">
+              <span className="font-mono text-3xl text-white font-light tracking-tighter">03</span>
+              <span className="text-sm font-bold text-[#ff4db8] uppercase tracking-widest">Data Architecture</span>
+              <span className="text-xs font-mono text-zinc-500">Relational logic & high-throughput caching.</span>
             </div>
-            
-            {/* Inner Glass Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a2540]/80 via-transparent to-transparent" />
-          </div>
-
-          {/* Floating Telemetry Badge */}
-          <div className="telemetry-badge absolute -bottom-6 -left-6 md:-left-12 bg-white rounded-xl stripe-shadow p-4 z-20 border border-gray-100 flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-stripe-bg flex items-center justify-center border border-gray-200">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#635bff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-            </div>
-            <div>
-              <div className="text-xs font-bold text-[#0a2540] uppercase tracking-wider mb-0.5">Execution Status</div>
-              <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[10px] font-mono text-[#425466]">Ready for Deployment</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Decorative Code Block */}
-          <div className="absolute -top-6 -right-6 md:-right-8 bg-[#0a2540] rounded-lg stripe-shadow-sm p-3 z-0 border border-[#1a365d]">
-            <pre className="text-[8px] md:text-[10px] font-mono text-stripe-cyan">
-              <code>
-                const engineer = {"{"}{"\n"}
-                {"  "}role: "Full-Stack",{"\n"}
-                {"  "}focus: "Scalability"{"\n"}
-                {"}"};
-              </code>
-            </pre>
           </div>
 
         </div>
+
       </div>
     </section>
   );
