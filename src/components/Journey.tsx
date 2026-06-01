@@ -76,8 +76,9 @@ export default function Journey() {
         </div>
 
         <div className="relative pl-8 md:pl-0">
-          {/* The Boundless SVG Timeline Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gray-200 md:-translate-x-1/2">
+          
+          {/* THE FIX: Added w-[2px] and -translate-x-1/2 to perfectly center the line axis */}
+          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-gray-200">
             <div className="journey-line w-full h-full bg-gradient-to-b from-[#635bff] via-[#ff4db8] to-[#00d4ff]" />
           </div>
 
@@ -87,15 +88,15 @@ export default function Journey() {
               return (
                 <div key={i} className={`journey-node relative w-full flex flex-col md:flex-row items-start ${isEven ? 'md:flex-row-reverse' : ''}`}>
                   
-                  {/* Timeline Glowing Dot */}
-                  <div className="absolute left-[-32px] md:left-1/2 w-4 h-4 rounded-full bg-white border-2 border-[#635bff] md:-translate-x-1/2 mt-1.5 shadow-[0_0_10px_rgba(99,91,255,0.5)] z-10" />
+                  {/* THE FIX: Added uniform -translate-x-1/2 so the dot's center aligns flawlessly with the line's center */}
+                  <div className="absolute left-[-32px] md:left-1/2 w-[14px] h-[14px] rounded-full bg-[#f6f9fc] border-[2px] border-[#635bff] -translate-x-1/2 mt-[6px] shadow-[0_0_12px_rgba(99,91,255,0.5)] z-10" />
                   
-                  {/* Content (No Boxes, Just Typography) */}
+                  {/* Content Typography */}
                   <div className={`w-full md:w-1/2 flex flex-col ${isEven ? 'md:pl-16' : 'md:pr-16 md:items-end md:text-right'}`}>
-                    <span className="font-mono text-xs font-bold text-[#00d4ff] uppercase tracking-widest mb-2">{step.year}</span>
-                    <h3 className="text-2xl font-bold text-[#0a2540] mb-3">{step.title}</h3>
-                    <p className="text-[#425466] leading-relaxed mb-4">{step.description}</p>
-                    <span className="text-[10px] font-mono text-[#635bff] uppercase tracking-wider">{step.tech}</span>
+                    <span className="font-mono text-[10px] md:text-xs font-bold text-[#00d4ff] uppercase tracking-widest mb-2">{step.year}</span>
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#0a2540] mb-3 tracking-tight">{step.title}</h3>
+                    <p className="text-[#425466] text-sm md:text-base leading-relaxed mb-4">{step.description}</p>
+                    <span className="text-[9px] md:text-[10px] font-mono text-[#635bff] uppercase tracking-wider">{step.tech}</span>
                   </div>
                   
                 </div>
