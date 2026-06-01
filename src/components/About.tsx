@@ -91,7 +91,7 @@ export default function About() {
 
             {/* Floating Data Tag */}
             <div className="absolute -right-6 bottom-12 bg-black border border-white/10 px-3 py-1.5 flex flex-col gap-1 z-30 shadow-[0_0_30px_rgba(0,0,0,1)]">
-              <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-widest">Auth_Identity</span>
+              <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-widest">Verified</span>
               <span className="text-[10px] font-mono text-[#00d4ff] uppercase tracking-widest flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#00d4ff] rounded-full animate-pulse" /> Nikunj Variya
               </span>
@@ -122,7 +122,7 @@ export default function About() {
               I am a Full-Stack Software Engineer focused on constructing resilient, low-latency applications. My engineering philosophy demands strict algorithmic efficiency, clean data structures, and uncompromised systemic integrity.
             </p>
             <p className="about-reveal">
-              Every system—whether a real-time matching engine or a distributed headless CMS—is approached as a rigorous mathematical problem. I don't just assemble frameworks; I architect complete, deterministic environments engineered for peak execution.
+              Every system whether a real-time matching engine or a distributed headless CMS is approached as a rigorous mathematical problem. I don't just assemble frameworks; I architect complete, deterministic environments engineered for peak execution.
             </p>
           </div>
 
