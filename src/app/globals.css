@@ -9,10 +9,11 @@
 
 @layer base {
   html, body {
-    background-color: var(--color-stripe-navy);
-    color: #ffffff;
+    background-color: var(--color-stripe-bg);
+    color: #0a2540;
     font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 }
 
@@ -20,15 +21,13 @@
   .stripe-shadow {
     box-shadow: 0 50px 100px -20px rgba(50,50,93,0.25), 0 30px 60px -30px rgba(0,0,0,0.3);
   }
-  .mesh-gradient-dark {
+  .stripe-shadow-sm {
+    box-shadow: 0 13px 27px -5px rgba(50,50,93,0.25), 0 8px 16px -8px rgba(0,0,0,0.3);
+  }
+  .mesh-gradient-light {
     background-image: 
       radial-gradient(at 80% 0%, hsla(242, 100%, 70%, 0.15) 0px, transparent 50%),
       radial-gradient(at 20% 100%, hsla(190, 100%, 50%, 0.15) 0px, transparent 50%);
     filter: blur(80px);
-  }
-  .glass-panel {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
   }
 }
