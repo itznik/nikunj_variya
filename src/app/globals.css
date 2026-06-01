@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
-/* Tailwind v4 replaces the config file with this @theme block.
-  This injects our dark mode design system.
-*/
 @theme {
-  --color-background: #050505;
-  --color-surface: #0A0A0A;
-  --color-surfaceBorder: rgba(255, 255, 255, 0.08);
-  --color-muted: #8F8F91;
-  --color-accent: #E2E2E2;
+  --color-background: #030303;
+  --color-surface: #09090B;
+  --color-surface-hover: #121216;
+  --color-border-premium: rgba(255, 255, 255, 0.05);
+  --color-stripe-indigo: #635BFF;
+  --color-cyber-cyan: #06B6D4;
 }
 
-/* Recreating our custom background grid utility */
-@layer utilities {
-  .bg-grid-pattern {
-    background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
-  }
-}
-
-/* Force dark mode base styles */
 @layer base {
   html, body {
-    background-color: var(--color-background);
-    color: var(--color-accent);
+    background-color: #030303;
+    color: #F5F5F7;
+    font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
   }
+}
+
+/* Custom Micro-Grid for true Linear layout alignment */
+.linear-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
 }
