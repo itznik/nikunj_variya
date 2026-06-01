@@ -7,14 +7,14 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="flex flex-col w-full relative">
+    // THE FIX: w-full, max-w-[100vw], and overflow-x-hidden strictly enforce bounds.
+    <main className="flex flex-col w-full max-w-[100vw] overflow-x-hidden relative bg-[#f6f9fc]">
       <Navbar />
       <Hero />
       <Work />
       <Skills />
       <About />
       <Footer />
-      {/* We will add Work, Skills, About, Contact here in the next steps */}
     </main>
   );
 }
