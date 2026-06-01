@@ -117,7 +117,7 @@ export default function Hero() {
           </h1>
           
           <p className="reveal-text text-lg md:text-2xl text-[#425466] font-medium max-w-xl leading-relaxed mb-12">
-            I architect complete digital ecosystems. From raw algorithm optimization and distributed system design, to flawless, high-performance user interfaces.
+            I build scalable MERN stack applications, optimize complex algorithms, and architect distributed systems. From backend logic to high-performance user interfaces.
           </p>
 
           <div className="reveal-text flex flex-col sm:flex-row gap-8 items-start sm:items-center">
@@ -127,7 +127,7 @@ export default function Hero() {
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </div>
               <span className="relative overflow-hidden">
-                <span className="block group-hover:-translate-y-full transition-transform duration-300">Analyze Systems</span>
+                <span className="block group-hover:-translate-y-full transition-transform duration-300">View Projects</span>
                 <span className="absolute top-0 left-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 text-[#635bff]">Analyze Systems</span>
               </span>
             </button>
