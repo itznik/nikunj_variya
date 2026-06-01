@@ -1,146 +1,131 @@
 "use client";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 export default function Hero() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden bg-background">
-      {/* Linear-style Ambient Glow - Deep and subtle, not a cheap gradient */}
-      <div className="absolute top-[-20%] left-[20%] w-[60%] h-[50%] bg-[radial-gradient(ellipse_at_center,_var(--color-accent)_0%,_transparent_70%)] opacity-[0.03] blur-3xl pointer-events-none" />
-
-      <div className="max-w-[1400px] mx-auto w-full px-6 md:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <section className="relative w-full min-h-screen flex items-center justify-center pt-32 pb-24 overflow-hidden linear-grid">
+      <div className="absolute top-0 w-full h-full bg-gradient-to-b from-transparent via-background/50 to-background pointer-events-none z-10" />
+      
+      <div className="max-w-[1440px] mx-auto w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-20">
         
-        {/* Left Column: Apple-style Massive Typography & Linear-style Data */}
-        <div className="lg:col-span-5 flex flex-col z-20 relative">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="flex items-center gap-2 bg-surfaceBorder/30 border border-surfaceBorder px-2.5 py-1 rounded-full">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] font-mono text-accent/70 tracking-widest uppercase">System Online</span>
-            </div>
-            <span className="text-[10px] font-mono text-muted tracking-widest uppercase">
-              V.2.0.4 // Architecture
-            </span>
+        {/* Left: Monolithic Typography Hierarchy */}
+        <div className="lg:col-span-5 flex flex-col items-start">
+          <div className="flex items-center gap-2 bg-white/[0.02] border border-border-premium px-3 py-1 rounded-sm mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-stripe-indigo animate-pulse" />
+            <span className="text-[10px] font-mono tracking-[0.25em] text-gray-400 uppercase">SYSTEM_STATE: STABLE</span>
           </div>
+          
+          <h1 className="text-6xl md:text-8xl font-semibold tracking-tighter leading-[0.85] text-white mb-8">
+            Architecting <br />
+            <span className="text-gray-500 font-medium">Production systems.</span>
+          </h1>
+          
+          <p className="text-base text-gray-400 max-w-sm leading-relaxed mb-12 font-normal">
+            Building rigorous, deterministic full-stack applications with absolute precision in state, memory, and data distribution.
+          </p>
 
-          <motion.h1 
-            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
-            className="text-6xl md:text-8xl font-medium tracking-tighter leading-[0.9] text-accent mb-6"
-          >
-            Diagnostic <br />
-            <span className="text-muted">Engineering.</span>
-          </motion.h1>
-
-          <motion.p 
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-base text-muted/80 max-w-sm leading-relaxed mb-10"
-          >
-            Bridging the clinical diagnostic logic of medicine with highly scalable, low-latency full-stack product architecture.
-          </motion.p>
-
-          {/* Dense, Technical Action Area */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.2 }} className="flex gap-6 items-center">
-             <button className="bg-accent text-background px-6 py-3 text-sm font-medium hover:bg-accent/90 transition-colors">
-               Initialize Protocol
-             </button>
-             <div className="flex flex-col gap-1 font-mono text-[10px] text-muted">
-               <span className="flex justify-between w-32"><span>Latency:</span> <span className="text-accent">12ms</span></span>
-               <span className="flex justify-between w-32"><span>Throughput:</span> <span className="text-accent">99.9%</span></span>
-             </div>
-          </motion.div>
+          <div className="flex items-center gap-8 border-t border-border-premium pt-8 w-full max-w-sm">
+            <div className="flex flex-col">
+              <span className="text-[10px] font-mono text-gray-500 uppercase tracking-wider">Engine Edition</span>
+              <span className="text-sm font-medium text-white mt-1">2026.1.0</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[10px] font-mono text-gray-500 uppercase tracking-wider">Core Operations</span>
+              <span className="text-sm font-medium text-white mt-1">Full-Stack / Scale</span>
+            </div>
+          </div>
         </div>
 
-        {/* Right Column: Stripe-style Custom Architecture Diagram */}
-        <div className="lg:col-span-7 relative h-[600px] w-full flex items-center justify-end select-none">
+        {/* Right: Dense High-Fidelity Stripe UI Architecture Map */}
+        <div className="lg:col-span-7 relative w-full h-[620px] flex items-center justify-center">
           
-          {mounted && (
-            <div className="relative w-full max-w-[700px] h-full border border-surfaceBorder/30 bg-surface/20 rounded-2xl overflow-hidden backdrop-blur-sm flex items-center justify-center">
-              
-              {/* Complex SVG Data Flow Network */}
-              <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.05))' }}>
-                {/* Main Node to Sub Nodes Paths */}
-                <path d="M 200,300 C 350,300 350,150 500,150" fill="none" stroke="var(--color-surfaceBorder)" strokeWidth="1" />
-                <path d="M 200,300 C 350,300 350,450 500,450" fill="none" stroke="var(--color-surfaceBorder)" strokeWidth="1" />
-                <path d="M 500,150 L 600,150" fill="none" stroke="var(--color-surfaceBorder)" strokeWidth="1" strokeDasharray="4 4" />
-                <path d="M 500,450 L 600,450" fill="none" stroke="var(--color-surfaceBorder)" strokeWidth="1" strokeDasharray="4 4" />
-
-                {/* Animated Data Packets (Moving along paths) */}
-                <motion.circle r="2" fill="var(--color-accent)"
-                  initial={{ offsetDistance: "0%" }}
-                  animate={{ offsetDistance: "100%" }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                  style={{ offsetPath: "path('M 200,300 C 350,300 350,150 500,150')" }}
-                />
-                <motion.circle r="2" fill="var(--color-accent)"
-                  initial={{ offsetDistance: "0%" }}
-                  animate={{ offsetDistance: "100%" }}
-                  transition={{ duration: 3.5, repeat: Infinity, ease: "linear", delay: 1 }}
-                  style={{ offsetPath: "path('M 200,300 C 350,300 350,450 500,450')" }}
-                />
-              </svg>
-
-              {/* Central Processor UI Component (Left) */}
-              <motion.div 
-                initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 0.3 }}
-                className="absolute left-[80px] top-[260px] w-64 bg-[#0A0A0A] border border-[#222] shadow-2xl rounded-lg p-4 z-10"
-              >
-                <div className="flex justify-between items-center mb-4 border-b border-[#222] pb-2">
-                  <span className="text-xs font-mono text-accent">Root_Balancer</span>
-                  <div className="flex gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-[#222]" />
-                    <div className="w-2 h-2 rounded-full bg-[#222]" />
-                    <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="h-1.5 w-full bg-[#1A1A1A] rounded overflow-hidden">
-                    <motion.div className="h-full bg-accent/50" animate={{ width: ["40%", "70%", "45%"] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} />
-                  </div>
-                  <div className="flex justify-between text-[9px] font-mono text-muted uppercase">
-                    <span>CPU Load</span>
-                    <span>Active</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Sub Node UI 1 (Top Right) */}
-              <motion.div 
-                initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5, delay: 0.5 }}
-                className="absolute right-[80px] top-[110px] w-48 bg-[#0A0A0A] border border-[#222] shadow-xl rounded-lg p-3 z-10"
-              >
-                <span className="text-[10px] font-mono text-muted block mb-2">DB_Cluster_01</span>
-                <div className="text-xs text-accent font-medium">PostgreSQL High-Avail</div>
-                <div className="mt-2 text-[9px] font-mono text-emerald-500 border border-emerald-500/20 bg-emerald-500/10 inline-block px-1.5 py-0.5 rounded">SYNCED</div>
-              </motion.div>
-
-              {/* Sub Node UI 2 (Bottom Right) */}
-              <motion.div 
-                initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5, delay: 0.6 }}
-                className="absolute right-[80px] top-[410px] w-48 bg-[#0A0A0A] border border-[#222] shadow-xl rounded-lg p-3 z-10"
-              >
-                <span className="text-[10px] font-mono text-muted block mb-2">Cache_Layer</span>
-                <div className="text-xs text-accent font-medium">Redis Distributed</div>
-                <div className="mt-2 text-[9px] font-mono text-amber-500 border border-amber-500/20 bg-amber-500/10 inline-block px-1.5 py-0.5 rounded">PURGING</div>
-              </motion.div>
-
-              {/* Floating Code/Log Terminal */}
-              <motion.div
-                initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.8 }}
-                className="absolute bottom-6 left-6 w-72 bg-[#050505] border border-[#222] rounded-md p-3 font-mono text-[9px] text-muted leading-relaxed z-20 shadow-2xl"
-              >
-                <div className="flex gap-2 mb-2 opacity-50">
-                   <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                   <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
-                   <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                </div>
-                <p><span className="text-emerald-500">➜</span> [OK] Client connection established</p>
-                <p><span className="text-emerald-500">➜</span> [OK] Resolving diagnostic path</p>
-                <p className="text-accent/50 animate-pulse">_ Waiting for handshake...</p>
-              </motion.div>
+          {/* Main Node / Orchestrator Panel */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-12 left-4 w-[340px] bg-surface border border-border-premium rounded-md shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] p-4 z-30"
+          >
+            <div className="flex justify-between items-center border-b border-border-premium pb-3 mb-4">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-red-500/40" />
+                <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
+                <div className="w-2 h-2 rounded-full bg-green-500/40" />
+                <span className="text-[11px] font-mono text-gray-400 ml-1">gateway_router.ts</span>
+              </div>
+              <span className="text-[10px] font-mono text-stripe-indigo bg-stripe-indigo/10 px-2 py-0.5 rounded">EDGE</span>
             </div>
-          )}
+            <div className="font-mono text-[11px] text-gray-400 space-y-1.5 bg-black/40 p-3 rounded border border-white/[0.02]">
+              <p className="text-gray-600"><span className="text-stripe-indigo">const</span> upstream = <span className="text-cyber-cyan">Deno.env</span>.get(<span className="text-emerald-500">"NODE_POOL"</span>);</p>
+              <p className="text-gray-400"><span className="text-stripe-indigo">await</span> cluster.<span className="text-amber-400">dispatch</span>(req, {</p>
+              <p className="text-gray-400">  strategy: <span className="text-emerald-500">"weighted_round_robin"</span>,</p>
+              <p className="text-gray-400">  fallback: <span className="text-emerald-500">"failover_replica"</span></p>
+              <p className="text-gray-400">});</p>
+            </div>
+          </motion.div>
+
+          {/* Infrastructure Metrics Sub-Window */}
+          <motion.div 
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute bottom-16 right-4 w-[380px] bg-surface border border-border-premium rounded-md shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] p-5 z-20"
+          >
+            <div className="flex justify-between items-center mb-6">
+              <span className="text-xs font-mono tracking-wider text-gray-400">METRICS::REPLICA_POOL</span>
+              <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                HEALTHY
+              </span>
+            </div>
+            
+            {/* Hardcoded Custom Diagram System Grid */}
+            <div className="space-y-4">
+              <div className="border border-white/[0.02] bg-black/20 rounded p-3 flex justify-between items-center">
+                <div>
+                  <p className="text-[10px] font-mono text-gray-500 uppercase">Primary DB Connection Pool</p>
+                  <p className="text-lg font-semibold text-white mt-0.5">04 / 64 <span className="text-xs text-gray-600 font-normal">active</span></p>
+                </div>
+                <svg className="w-16 h-8 text-stripe-indigo opacity-80" viewBox="0 0 60 20" fill="none">
+                  <path d="M0 15 Q 15 5, 30 12 T 60 2" stroke="currentColor" strokeWidth="1.5" />
+                </svg>
+              </div>
+
+              <div className="border border-white/[0.02] bg-black/20 rounded p-3">
+                <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-2">
+                  <span>CACHE HIT RATE</span>
+                  <span className="text-white">99.42%</span>
+                </div>
+                <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+                  <motion.div 
+                    initial={{ width: 0 }} 
+                    animate={{ width: "99.42%" }} 
+                    transition={{ duration: 1.2, delay: 0.5 }} 
+                    className="h-full bg-gradient-to-r from-stripe-indigo to-cyber-cyan" 
+                  />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Deep Layer Background Architectural Connection Map */}
+          <svg className="absolute inset-0 w-full h-full z-0 pointer-events-none" viewBox="0 0 700 600" fill="none">
+            <motion.path 
+              d="M 240 220 C 350 220, 300 420, 440 420" 
+              stroke="url(#stripeGradient)" 
+              strokeWidth="2"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+            />
+            <defs>
+              <linearGradient id="stripeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#635BFF" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.1" />
+              </linearGradient>
+            </defs>
+          </svg>
+          
         </div>
       </div>
     </section>
