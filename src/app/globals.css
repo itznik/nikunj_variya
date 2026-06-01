@@ -1,27 +1,39 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #030303;
-  --color-surface: #09090B;
-  --color-surface-hover: #121216;
-  --color-border-premium: rgba(255, 255, 255, 0.05);
-  --color-stripe-indigo: #635BFF;
-  --color-cyber-cyan: #06B6D4;
+  --color-stripe-navy: #0a2540;
+  --color-stripe-blurple: #635bff;
+  --color-stripe-cyan: #00d4ff;
+  --color-stripe-pink: #ff4db8;
+  --color-stripe-bg: #f6f9fc;
 }
 
 @layer base {
   html, body {
-    background-color: #030303;
-    color: #F5F5F7;
+    /* Stripe's signature deep navy for dark sections */
+    background-color: var(--color-stripe-navy);
+    color: #ffffff;
     font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    overflow-x: hidden;
   }
 }
 
-/* Custom Micro-Grid for true Linear layout alignment */
-.linear-grid {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+@layer utilities {
+  /* This is the EXACT shadow Stripe uses for their floating cards */
+  .stripe-shadow {
+    box-shadow: 0 50px 100px -20px rgba(50,50,93,0.25), 0 30px 60px -30px rgba(0,0,0,0.3);
+  }
+  
+  /* The mesh gradient sweep seen in your first and last screenshots */
+  .mesh-gradient {
+    background-image: 
+      radial-gradient(at 80% 0%, hsla(289, 100%, 74%, 0.35) 0px, transparent 50%),
+      radial-gradient(at 20% 100%, hsla(242, 100%, 70%, 0.35) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(190, 100%, 50%, 0.25) 0px, transparent 50%);
+    filter: blur(80px);
+  }
+
+  /* Soft glowing text for metrics */
+  .text-glow {
+    text-shadow: 0 0 40px rgba(99, 91, 255, 0.6);
+  }
 }
