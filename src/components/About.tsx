@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -72,22 +73,23 @@ export default function About() {
             </svg>
 
             {/* The Actual Image Wrapper */}
-            <div className="relative w-[calc(100%-2rem)] h-[calc(100%-2rem)] bg-[#0a0a0a] overflow-hidden">
-              
-              {/* INSTRUCTION: Replace this div with your actual next/image. 
-                The 'mix-blend-luminosity' makes it look cinematic and desaturated.
-                It turns to full color when the user hovers over it.
-              */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a24] to-[#050505] flex items-center justify-center transition-all duration-500 mix-blend-luminosity group-hover:mix-blend-normal">
-                <span className="text-white/20 font-mono text-xs tracking-widest">[ RENDER: /public/photo.jpg ]</span>
-              </div>
-              
-              {/* GSAP Scanline overlay */}
-              <div className="absolute top-0 left-0 w-full h-[20%] scanline mix-blend-screen pointer-events-none" />
-              
-              {/* Vignette Overlay */}
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)] pointer-events-none" />
-            </div>
+<div className="relative w-[calc(100%-2rem)] h-[calc(100%-2rem)] bg-[#0a0a0a] overflow-hidden">
+  
+  {/* Your Actual Photo */}
+  <Image 
+    src="/profile_photo.webp" 
+    alt="Nikunj Variya" 
+    fill 
+    className="object-cover transition-all duration-500 mix-blend-luminosity opacity-80 group-hover:mix-blend-normal group-hover:opacity-100 group-hover:scale-105"
+  />
+  
+  {/* GSAP Scanline overlay */}
+  <div className="absolute top-0 left-0 w-full h-[20%] scanline mix-blend-screen pointer-events-none z-10" />
+  
+  {/* Vignette Overlay */}
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)] pointer-events-none z-20" />
+</div>
+
 
             {/* Floating Data Tag */}
             <div className="absolute -right-6 bottom-12 bg-black border border-white/10 px-3 py-1.5 flex flex-col gap-1 z-30 shadow-[0_0_30px_rgba(0,0,0,1)]">
