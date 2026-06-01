@@ -3,24 +3,23 @@ import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 
 export default function Navbar() {
-  const navWrapperRef = useRef<HTMLDivElement>(null);
+  // We apply the ref to the INNER nav, not the fixed wrapper.
+  const navRef = useRef<HTMLElement>(null);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // GSAP Scroll Logic
   useEffect(() => {
     const handleScroll = () => {
-      // Prevent hiding if the user is currently navigating the mobile menu
       if (isMobileMenuOpen) return;
 
       const currentScrollY = window.scrollY;
       
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down: We animate the wrapper using yPercent to prevent transform clashes
-        gsap.to(navWrapperRef.current, { yPercent: -150, opacity: 0, duration: 0.4, ease: "power2.inOut" });
+        // Hide: Only animates the inner element, leaving the wrapper perfectly centered
+        gsap.to(navRef.current, { y: -100, opacity: 0, duration: 0.4, ease: "power2.inOut" });
       } else {
-        // Scrolling up
-        gsap.to(navWrapperRef.current, { yPercent: 0, opacity: 1, duration: 0.4, ease: "power2.out" });
+        // Show
+        gsap.to(navRef.current, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" });
       }
       
       setLastScrollY(currentScrollY);
@@ -30,7 +29,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY, isMobileMenuOpen]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -41,17 +39,17 @@ export default function Navbar() {
 
   return (
     <>
-      {/* 1. THE WRAPPER (Bulletproof Positioning)
-        'inset-x-0' locks the container to the exact width of the viewport.
-        Flexbox handles the centering, keeping GSAP away from the X-axis.
+      {/* 1. THE WRAPPER: Handles 100% width and centering. GSAP never touches this. 
       */}
-      <div 
-        ref={navWrapperRef} 
-        className="fixed top-0 inset-x-0 pt-4 md:pt-6 px-4 z-50 flex justify-center pointer-events-none box-border"
-      >
-        <nav className="pointer-events-auto w-full max-w-[900px] bg-[#0a2540] border border-white/10 shadow-[0_20px_40px_rgba(10,37,64,0.5)] rounded-full px-5 py-3 flex items-center justify-between">
-          
-          {/* LEFT: System Node (Identity) */}
+      <div className="fixed top-4 md:top-6 inset-x-0 w-full px-4 z-50 flex justify-center pointer-events-none box-border">
+        
+        {/* 2. THE COMMAND PILL: GSAP only animates this element up and down. 
+        */}
+        <nav 
+          ref={navRef}
+          className="pointer-events-auto w-full max-w-[900px] bg-[#0a2540] border border-white/10 shadow-[0_20px_40px_rgba(10,37,64,0.5)] rounded-full px-4 md:px-5 py-2.5 flex items-center justify-between"
+        >
+          {/* LEFT: Identity */}
           <div className="flex items-center gap-3 shrink-0">
             <div className="relative flex items-center justify-center w-6 h-6">
               <svg className="absolute inset-0 w-full h-full animate-[spin_6s_linear_infinite]" viewBox="0 0 24 24">
@@ -64,7 +62,7 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* CENTER: Architectural Links (Desktop Only) */}
+          {/* CENTER: Links (Desktop) */}
           <div className="hidden md:flex items-center gap-10">
             {['Work', 'Skills', 'About'].map((item) => (
               <a 
@@ -78,15 +76,13 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* RIGHT: Connect Protocol & Mobile Toggle */}
+          {/* RIGHT: Controls */}
           <div className="flex items-center gap-4 shrink-0">
-            
             <div className="hidden sm:flex items-center gap-2 border-r border-white/10 pr-4">
               <span className="text-[8px] font-mono text-zinc-400 uppercase tracking-widest">Ping</span>
               <span className="text-[9px] font-mono text-[#00d4ff]">12ms</span>
             </div>
             
-            {/* Desktop Connect Button */}
             <a href="#contact" className="hidden md:flex relative group overflow-hidden bg-white/10 border border-white/20 rounded-full px-5 py-2 text-[10px] font-mono text-white uppercase tracking-widest hover:border-[#00d4ff]/50 transition-colors duration-300">
               <span className="relative z-10 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#00d4ff] rounded-full animate-pulse shadow-[0_0_8px_#00d4ff]" />
@@ -95,7 +91,6 @@ export default function Navbar() {
               <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-[#00d4ff]/20 to-transparent -translate-x-full group-hover:animate-[scan_1.5s_ease-in-out_infinite]" />
             </a>
 
-            {/* Mobile Menu Toggle Button */}
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white shrink-0 hover:bg-white/20 transition-colors"
@@ -116,14 +111,11 @@ export default function Navbar() {
                 )}
               </svg>
             </button>
-            
           </div>
-
         </nav>
       </div>
 
-      {/* 2. THE MOBILE HUD OVERLAY
-      */}
+      {/* 3. MOBILE HUD OVERLAY */}
       <div 
         className={`fixed inset-0 z-40 bg-[#030303]/95 backdrop-blur-2xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out ${
           isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -133,7 +125,6 @@ export default function Navbar() {
         <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-[#00d4ff] rounded-full blur-[100px] opacity-10" />
 
         <div className="flex flex-col items-center gap-10 z-10">
-          
           <span className="font-mono text-[10px] text-[#00d4ff] uppercase tracking-[0.4em] mb-4 flex items-center gap-2">
             <span className="w-4 h-[1px] bg-[#00d4ff]" /> System Menu <span className="w-4 h-[1px] bg-[#00d4ff]" />
           </span>
@@ -160,7 +151,6 @@ export default function Navbar() {
               Execute Protocol
             </a>
           </div>
-
         </div>
       </div>
     </>
