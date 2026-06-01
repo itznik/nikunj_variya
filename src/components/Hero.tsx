@@ -47,8 +47,6 @@ export default function Hero() {
       
       {/* 
         THE VISUALIZER: Massive Edge-to-Edge SVG Geometry
-        We place this absolutely so it acts as an integrated graphic background, 
-        interacting directly with the typography without being trapped in a box.
       */}
       <div className="absolute top-0 right-0 w-[150vw] md:w-[80vw] h-[100vh] translate-x-[20%] md:translate-x-[10%] opacity-80 pointer-events-none flex items-center justify-center">
         <svg viewBox="0 0 800 800" className="w-full h-full max-w-[1200px]" preserveAspectRatio="xMidYMid slice">
