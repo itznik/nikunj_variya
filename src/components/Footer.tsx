@@ -84,7 +84,7 @@ export default function Footer() {
         <div className="flex flex-col items-center text-center mb-24">
           <span className="contact-reveal flex items-center gap-3 font-mono text-[10px] md:text-xs text-[#00d4ff] uppercase tracking-[0.3em] mb-8">
             <span className="w-2 h-2 bg-[#00d4ff] rounded-full animate-ping" />
-            System Runtime :: Ready
+            Open for New Opportunities
           </span>
           
           <h2 className="contact-reveal text-6xl md:text-8xl lg:text-[8rem] font-bold tracking-tighter leading-[0.85] text-white mb-10">
@@ -96,7 +96,7 @@ export default function Footer() {
             {/* The "Anti-Button" - A raw, glowing execution protocol */}
             <a href="mailto:your-email@example.com" className="group relative inline-flex items-center gap-4 text-white font-mono text-sm md:text-base uppercase tracking-widest px-8 py-4 bg-white/5 border border-white/10 hover:border-[#00d4ff]/50 hover:bg-[#00d4ff]/10 transition-all duration-500 overflow-hidden backdrop-blur-md">
               <span className="relative z-10 flex items-center gap-3">
-                <FaEnvelope className="text-[#00d4ff]" /> Execute Handshake
+                <FaEnvelope className="text-[#00d4ff]" /> Get in Touch
               </span>
               {/* Scanline hover effect */}
               <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-[#00d4ff]/20 to-transparent -translate-x-full group-hover:animate-[scan_1.5s_ease-in-out_infinite]" />
@@ -117,10 +117,10 @@ export default function Footer() {
             </div>
             <span className="hidden md:block text-zinc-700">|</span>
             <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full" /> NODE: SURAT_IN
+              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full" /> SURAT
             </span>
             <span className="hidden md:block text-zinc-700">|</span>
-            <span>© {new Date().getFullYear()} ALL SYSTEMS ACTIVE.</span>
+            <span>© {new Date().getFullYear()} All Rights Reserved.</span>
           </div>
 
           {/* Social Network Targets */}
