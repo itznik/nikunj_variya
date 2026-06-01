@@ -1,55 +1,109 @@
 "use client";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+const journeySteps = [
+  {
+    year: "Phase 01",
+    title: "Algorithmic Foundation",
+    description: "Mastered Data Structures and Algorithms. Focused on time/space complexity optimization, problem-solving, and efficient data manipulation.",
+    tech: "DSA // Logic"
+  },
+  {
+    year: "Phase 02",
+    title: "Full-Stack MERN Mastery",
+    description: "Built end-to-end applications using MongoDB, Express, React, and Node.js. Developed responsive UIs and robust RESTful APIs.",
+    tech: "React // Node.js // MongoDB"
+  },
+  {
+    year: "Phase 03",
+    title: "System Design & Scale",
+    description: "Transitioned to Next.js and distributed architectures. Implemented caching layers, PostgreSQL databases, and cloud deployments for production-ready systems.",
+    tech: "Next.js // PostgreSQL // AWS"
+  }
+];
 
 export default function Journey() {
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    // Draw the timeline line as you scroll
+    gsap.fromTo(".journey-line", 
+      { scaleY: 0 },
+      {
+        scaleY: 1,
+        transformOrigin: "top center",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".journey-container",
+          start: "top center",
+          end: "bottom center",
+          scrub: true,
+        }
+      }
+    );
+
+    // Fade in text nodes
+    gsap.utils.toArray(".journey-node").forEach((node: any) => {
+      gsap.fromTo(node,
+        { opacity: 0, x: 30 },
+        {
+          opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+          scrollTrigger: {
+            trigger: node,
+            start: "top 75%",
+          }
+        }
+      );
+    });
+  }, { scope: container });
+
   return (
-    <section id="journey" className="w-full bg-[#f6f9fc] py-24 md:py-32 relative text-[#0a2540]">
-      <div className="max-w-[800px] mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">Execution Trace.</h2>
-          <p className="text-[#425466] text-lg">The systemic progression from biological diagnostics to digital architecture.</p>
+    <section id="journey" ref={container} className="w-full bg-[#f6f9fc] py-32 relative overflow-hidden">
+      <div className="max-w-[1000px] mx-auto px-6 relative z-10 journey-container">
+        
+        <div className="mb-20 text-center md:text-left">
+          <span className="text-[10px] font-bold tracking-widest text-[#635bff] uppercase mb-4 block">The Path</span>
+          <h2 className="text-5xl md:text-6xl font-bold text-[#0a2540] tracking-tight">
+            Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#635bff] to-[#00d4ff]">Journey.</span>
+          </h2>
         </div>
 
-        <div className="relative border-l-2 border-stripe-blurple/20 ml-4 md:ml-8 space-y-16">
-          
-          {/* Node 1: Foundation */}
-          <div className="relative pl-8 md:pl-12">
-            <div className="absolute -left-[9px] top-1 w-4 h-4 bg-white border-4 border-stripe-blurple rounded-full shadow-[0_0_0_4px_rgba(99,91,255,0.1)]" />
-            <span className="text-xs font-bold tracking-widest text-stripe-blurple uppercase mb-1 block">Root Protocol</span>
-            <h3 className="text-2xl font-bold mb-2">The Medical Lineage</h3>
-            <p className="text-[#425466] leading-relaxed">
-              Before the code, there was clinical rigor. Alongside my sister, I entered the medical field (BHMS/Radiology) backed by the unwavering foundational support of our father. It taught me how to isolate failures in the most complex system known: the human body.
-            </p>
+        <div className="relative pl-8 md:pl-0">
+          {/* The Boundless SVG Timeline Line */}
+          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gray-200 md:-translate-x-1/2">
+            <div className="journey-line w-full h-full bg-gradient-to-b from-[#635bff] via-[#ff4db8] to-[#00d4ff]" />
           </div>
 
-          {/* Node 2: Pivot */}
-          <div className="relative pl-8 md:pl-12">
-            <div className="absolute -left-[9px] top-1 w-4 h-4 bg-white border-4 border-stripe-cyan rounded-full shadow-[0_0_0_4px_rgba(0,212,255,0.1)]" />
-            <span className="text-xs font-bold tracking-widest text-stripe-cyan uppercase mb-1 block">Context Switch</span>
-            <h3 className="text-2xl font-bold mb-2">Diagnostic Engineering</h3>
-            <p className="text-[#425466] leading-relaxed">
-              Applying the scientific method to software. Studying toxicology and case analysis rewired my brain to handle system design, data structures, and edge-case debugging. The diagnostic pipeline remained; the medium shifted to Next.js, Node, and Python.
-            </p>
+          <div className="flex flex-col gap-16 md:gap-24">
+            {journeySteps.map((step, i) => {
+              const isEven = i % 2 === 0;
+              return (
+                <div key={i} className={`journey-node relative w-full flex flex-col md:flex-row items-start ${isEven ? 'md:flex-row-reverse' : ''}`}>
+                  
+                  {/* Timeline Glowing Dot */}
+                  <div className="absolute left-[-32px] md:left-1/2 w-4 h-4 rounded-full bg-white border-2 border-[#635bff] md:-translate-x-1/2 mt-1.5 shadow-[0_0_10px_rgba(99,91,255,0.5)] z-10" />
+                  
+                  {/* Content (No Boxes, Just Typography) */}
+                  <div className={`w-full md:w-1/2 flex flex-col ${isEven ? 'md:pl-16' : 'md:pr-16 md:items-end md:text-right'}`}>
+                    <span className="font-mono text-xs font-bold text-[#00d4ff] uppercase tracking-widest mb-2">{step.year}</span>
+                    <h3 className="text-2xl font-bold text-[#0a2540] mb-3">{step.title}</h3>
+                    <p className="text-[#425466] leading-relaxed mb-4">{step.description}</p>
+                    <span className="text-[10px] font-mono text-[#635bff] uppercase tracking-wider">{step.tech}</span>
+                  </div>
+                  
+                </div>
+              );
+            })}
           </div>
-
-          {/* Node 3: Current State */}
-          <div className="relative pl-8 md:pl-12">
-            <div className="absolute -left-[9px] top-1 w-4 h-4 bg-white border-4 border-[#ff4db8] rounded-full shadow-[0_0_0_4px_rgba(255,77,184,0.1)]" />
-            <span className="text-xs font-bold tracking-widest text-[#ff4db8] uppercase mb-1 block">Current State</span>
-            <h3 className="text-2xl font-bold mb-3">Building the Infrastructure</h3>
-            <p className="text-[#425466] leading-relaxed mb-4">
-              Now focused on architecting full-stack web products and sophisticated algorithms. Balancing high-performance engineering with personal constants.
-            </p>
-            {/* Terminal Easter Egg */}
-            <div className="bg-[#0a2540] text-gray-300 rounded-md p-3 font-mono text-[10px] md:text-xs shadow-lg inline-block w-full max-w-sm">
-              <span className="text-emerald-400">➜</span> ~ ./run_diagnostics<br/>
-              <span className="text-stripe-blurple">[sys]</span> mounting core modules...<br/>
-              <span className="text-stripe-blurple">[sys]</span> establishing connection to Priya... <span className="text-emerald-400">OK</span><br/>
-              <span className="text-stripe-blurple">[sys]</span> launching audio_buffer: VORTEX
-            </div>
-          </div>
-
         </div>
+
       </div>
     </section>
   );
