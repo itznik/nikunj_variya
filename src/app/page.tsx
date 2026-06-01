@@ -1,33 +1,15 @@
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import Hero from "@/components/Hero";
+import Work from "@/components/Work";
+import Ecosystem from "@/components/Ecosystem";
+import Contact from "@/components/Contact";
 
-import Hero from "@/components/sections/Hero";
-import Projects from "@/components/sections/Projects";
-import About from "@/components/sections/About";
-import Contact from "@/components/sections/Contact";
-
-import ScrollProgress from "@/components/visuals/ScrollProgress";
-import NoiseTexture from "@/components/visuals/NoiseTexture";
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <>
-      <ScrollProgress />
-      <NoiseTexture />
-
-      <Navbar />
-
-      <main className="bg-[#F6F4EE] overflow-hidden">
-        <Hero />
-
-        <Projects />
-
-        <About />
-
-        <Contact />
-      </main>
-
-      <Footer />
-    </>
+    <main className="flex flex-col w-full relative">
+      <Hero />
+      <Work />
+      <Ecosystem />
+      <Contact />
+    </main>
   );
 }
