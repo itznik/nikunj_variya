@@ -42,21 +42,23 @@ export default function Navbar() {
   return (
     <>
       {/* 
-        1. THE COMMAND PILL (Always visible, floats on top)
+        1. THE COMMAND PILL (Bulletproof Positioning)
+        Using inset-x-0 ensures it spans exactly the viewport width without overflowing.
       */}
-      <div ref={navRef} className="fixed top-4 md:top-6 left-0 w-full z-50 flex justify-center px-4 pointer-events-none">
+      <div ref={navRef} className="fixed top-4 md:top-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
         
-        <nav className="pointer-events-auto bg-[#030303]/60 backdrop-blur-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.4)] rounded-full px-3 py-2 md:px-4 md:py-2 flex items-center justify-between w-full max-w-4xl transition-all duration-500 hover:border-white/20 hover:bg-[#030303]/80">
+        {/* Solid Navy Pill for maximum contrast and premium feel */}
+        <nav className="pointer-events-auto w-full max-w-4xl bg-[#0a2540] border border-white/10 shadow-[0_20px_40px_rgba(10,37,64,0.5)] rounded-full px-4 py-2.5 flex items-center justify-between">
 
           {/* LEFT: System Node (Identity) */}
-          <div className="flex items-center gap-3 pl-2 z-50">
+          <div className="flex items-center gap-3">
             <div className="relative flex items-center justify-center w-6 h-6">
               <svg className="absolute inset-0 w-full h-full animate-[spin_6s_linear_infinite]" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="11" stroke="#00d4ff" strokeWidth="1" strokeDasharray="4 8" fill="none" opacity="0.6" />
+                <circle cx="12" cy="12" r="11" stroke="#00d4ff" strokeWidth="1.5" strokeDasharray="4 8" fill="none" opacity="0.8" />
               </svg>
               <span className="w-1.5 h-1.5 bg-[#00d4ff] rounded-full shadow-[0_0_10px_#00d4ff]" />
             </div>
-            <span className="font-mono text-[10px] md:text-xs font-bold text-white tracking-widest uppercase">
+            <span className="font-mono text-xs font-bold text-white tracking-widest uppercase truncate max-w-[120px] sm:max-w-none">
               Nikunj.V
             </span>
           </div>
@@ -67,24 +69,24 @@ export default function Navbar() {
               <a 
                 key={item} 
                 href={`#${item.toLowerCase()}`} 
-                className="group relative font-mono text-[9px] text-zinc-400 uppercase tracking-[0.25em] hover:text-white transition-colors duration-300"
+                className="group relative font-mono text-[10px] text-[#adbdcc] uppercase tracking-[0.25em] hover:text-white transition-colors duration-300"
               >
                 {item}
-                <span className="absolute -bottom-3 left-1/2 w-0 h-[1px] bg-[#635bff] group-hover:w-full group-hover:left-0 transition-all duration-300" />
+                <span className="absolute -bottom-3 left-1/2 w-0 h-[1px] bg-[#00d4ff] group-hover:w-full group-hover:left-0 transition-all duration-300" />
               </a>
             ))}
           </div>
 
           {/* RIGHT: Connect Protocol & Mobile Toggle */}
-          <div className="flex items-center gap-3 md:gap-4 z-50">
+          <div className="flex items-center gap-4">
             
             <div className="hidden sm:flex items-center gap-2 border-r border-white/10 pr-4">
-              <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-widest">Ping</span>
-              <span className="text-[9px] font-mono text-[#ff4db8]">12ms</span>
+              <span className="text-[8px] font-mono text-zinc-400 uppercase tracking-widest">Ping</span>
+              <span className="text-[9px] font-mono text-[#00d4ff]">12ms</span>
             </div>
             
             {/* Desktop Connect Button */}
-            <a href="mailto:your-email@example.com" className="hidden md:flex relative group overflow-hidden bg-white/5 border border-white/10 rounded-full px-5 py-2.5 text-[10px] font-mono text-white uppercase tracking-widest hover:border-[#00d4ff]/50 transition-colors duration-300">
+            <a href="mailto:your-email@example.com" className="hidden md:flex relative group overflow-hidden bg-white/10 border border-white/20 rounded-full px-5 py-2 text-[10px] font-mono text-white uppercase tracking-widest hover:border-[#00d4ff]/50 transition-colors duration-300">
               <span className="relative z-10 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#00d4ff] rounded-full animate-pulse shadow-[0_0_8px_#00d4ff]" />
                 Connect
@@ -95,7 +97,7 @@ export default function Navbar() {
             {/* Mobile Menu Toggle Button */}
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 text-white"
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white shrink-0 hover:bg-white/20 transition-colors"
               aria-label="Toggle Menu"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300">
