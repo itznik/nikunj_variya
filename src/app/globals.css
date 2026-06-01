@@ -1,47 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-linear-bg: #000000;
-  --color-linear-surface: #0a0a0a;
+  --color-stripe-navy: #0a2540;
+  --color-stripe-slate: #425466;
   --color-stripe-blurple: #635bff;
   --color-stripe-cyan: #00d4ff;
   --color-stripe-magenta: #ff4db8;
+  --color-stripe-bg: #f6f9fc;
 }
 
 @layer base {
   html, body {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: var(--color-stripe-bg);
+    color: var(--color-stripe-navy);
     font-family: var(--font-geist-sans), -apple-system, sans-serif;
     overflow-x: hidden;
   }
 }
 
 @layer utilities {
-  /* Apple/Linear style glowing text */
-  .text-gradient-hero {
-    background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+  .text-gradient {
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Deep boundless glows instead of container borders */
-  .glow-cyan {
-    box-shadow: 0 0 80px -20px rgba(0, 212, 255, 0.4);
-  }
-  .glow-magenta {
-    box-shadow: 0 0 100px -20px rgba(255, 77, 184, 0.3);
-  }
-
-  /* 3D Isometric Transforms */
-  .preserve-3d {
-    transform-style: preserve-3d;
-  }
-  .perspective-container {
-    perspective: 1200px;
-  }
-  .isometric-tilt {
-    transform: rotateX(60deg) rotateY(0deg) rotateZ(-45deg);
   }
 }
