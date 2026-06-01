@@ -5,127 +5,91 @@ import { useGSAP } from "@gsap/react";
 
 export default function Hero() {
   const container = useRef<HTMLDivElement>(null);
-  const nodesRef = useRef<HTMLDivElement[]>([]);
 
   useGSAP(() => {
     gsap.fromTo(".hero-text", 
-      { y: 40, opacity: 0 }, 
-      { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out" }
+      { y: 50, opacity: 0 }, 
+      { y: 0, opacity: 1, duration: 1.2, stagger: 0.1, ease: "power3.out" }
     );
 
-    nodesRef.current.forEach((node, i) => {
-      if (!node) return;
-      gsap.to(node, {
-        y: "random(-10, 10)",
-        x: "random(-5, 5)",
-        duration: "random(2.5, 4)",
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: i * 0.2,
-      });
-    });
+    // Floating 3D layers animation
+    gsap.to(".layer-1", { z: 40, y: -10, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    gsap.to(".layer-2", { z: 80, y: -20, duration: 3.5, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 0.2 });
+    gsap.to(".layer-3", { z: 120, y: -30, duration: 4, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 0.4 });
   }, { scope: container });
 
   return (
-    <section ref={container} className="relative w-full min-h-[100svh] flex items-center justify-center overflow-hidden bg-[#f6f9fc] pt-24 pb-12 lg:pt-0 lg:pb-0">
+    <section ref={container} className="relative w-full min-h-[100svh] flex items-center justify-center overflow-hidden bg-black pt-20">
       
-      {/* Stripe-style Diagonal Gradient Background */}
-      <div className="absolute top-0 right-0 w-[200vw] lg:w-[150vw] h-[150vh] origin-top-right -rotate-12 bg-gradient-to-br from-stripe-blurple via-[#bf7cff] to-[#ff4db8] opacity-10 lg:opacity-15 z-0 translate-x-[20%] lg:translate-x-[30%] -translate-y-[10%]" />
-      
-      <div className="max-w-[1200px] mx-auto w-full px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      {/* Intense Boundless Glows (Stripe/Linear vibe) */}
+      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-stripe-blurple rounded-full blur-[120px] opacity-20 pointer-events-none" />
+      <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-stripe-cyan rounded-full blur-[120px] opacity-10 pointer-events-none" />
+
+      <div className="max-w-[1400px] mx-auto w-full px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
         
-        {/* LEFT: Typography */}
-        <div className="flex flex-col items-start z-20 mt-8 lg:mt-0">
-          <span className="hero-text text-[10px] md:text-xs font-bold tracking-widest text-stripe-blurple uppercase mb-4 bg-stripe-blurple/10 px-3 py-1.5 rounded-full border border-stripe-blurple/20">
-            System Design & Algorithms
-          </span>
+        {/* Typography - Absolute Apple Scale */}
+        <div className="flex flex-col items-start z-20">
+          <div className="hero-text flex items-center gap-3 mb-8">
+            <span className="w-2 h-2 bg-[#00d4ff] rounded-full animate-pulse glow-cyan" />
+            <span className="font-mono text-xs text-[#00d4ff] uppercase tracking-[0.3em]">Full-Stack Architecture</span>
+          </div>
           
-          <h1 className="hero-text text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.95] text-[#0a2540] mb-6">
-            Digital <br />
-            infrastructure <br className="hidden md:block" />
-            <span className="text-stripe-blurple">to scale.</span>
+          <h1 className="hero-text text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] mb-8 text-gradient-hero">
+            Engineered <br />
+            to scale.
           </h1>
           
-          <p className="hero-text text-base md:text-lg text-[#425466] font-medium max-w-md leading-relaxed mb-8">
-            Architecting high-performance data structures, distributed systems, and low-latency full-stack applications.
+          <p className="hero-text text-lg md:text-xl text-zinc-400 font-medium max-w-lg leading-relaxed mb-10">
+            I don't just write code. I design resilient data structures, architect distributed systems, and build UIs that feel flawless.
           </p>
 
-          <div className="hero-text">
-            <button className="bg-[#0a2540] text-white px-6 md:px-8 py-3.5 md:py-4 rounded-full text-sm md:text-base font-bold hover:bg-[#1a365d] transition-all shadow-lg flex items-center gap-2">
-              Explore Architecture <span className="text-xl leading-none">›</span>
-            </button>
-          </div>
+          <button className="hero-text group relative px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden">
+            <span className="relative z-10 flex items-center gap-2">
+              Initialize Sequence <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-stripe-cyan to-stripe-blurple opacity-0 group-hover:opacity-20 transition-opacity" />
+          </button>
         </div>
 
-        {/* RIGHT: Fixed Responsive Floating UI */}
-        <div className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center lg:justify-end">
-          
-          {/* We wrap the entire UI cluster in a relative div that centers it */}
-          <div className="relative w-full max-w-[320px] md:max-w-[400px] aspect-square flex items-center justify-center">
+        {/* The 3D Isometric Visualizer - NO BOXES */}
+        <div className="relative w-full h-[500px] md:h-[600px] perspective-container flex items-center justify-center lg:justify-end">
+          <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] preserve-3d isometric-tilt">
             
-            {/* Background SVG Connectors */}
-            <svg className="absolute inset-0 w-full h-full z-0 opacity-20" viewBox="0 0 400 400">
-              <path d="M 200 200 L 80 120" stroke="#0a2540" strokeWidth="2" strokeDasharray="4 4" />
-              <path d="M 200 200 L 320 100" stroke="#0a2540" strokeWidth="2" strokeDasharray="4 4" />
-              <path d="M 200 200 L 200 340" stroke="#0a2540" strokeWidth="2" strokeDasharray="4 4" />
-            </svg>
-
-            {/* Central Main Node (Larger, better text contrast) */}
-            <div className="relative w-[260px] md:w-[320px] bg-white rounded-2xl stripe-shadow p-5 md:p-6 z-20 border border-gray-100 flex flex-col gap-4">
-              <div className="flex justify-between items-center border-b border-gray-100 pb-3">
-                <span className="text-xs md:text-sm font-bold text-[#0a2540] uppercase tracking-wide">Root Execution</span>
-                <span className="flex items-center gap-1.5 bg-[#e3fcf7] text-[#0d9488] px-2 py-0.5 rounded text-[10px] font-bold">
-                  <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-                  ACTIVE
-                </span>
-              </div>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center text-xs md:text-sm font-mono border-b border-gray-50 pb-2">
-                  <span className="text-[#425466]">Time Complexity</span>
-                  <span className="text-stripe-blurple font-bold bg-stripe-blurple/10 px-2 py-0.5 rounded">O(1)</span>
-                </div>
-                <div className="flex justify-between items-center text-xs md:text-sm font-mono border-b border-gray-50 pb-2">
-                  <span className="text-[#425466]">Space Complexity</span>
-                  <span className="text-[#00d4ff] font-bold bg-[#00d4ff]/10 px-2 py-0.5 rounded">O(n)</span>
-                </div>
-                <div className="flex justify-between items-center text-xs md:text-sm font-mono">
-                  <span className="text-[#425466]">Data Pipeline</span>
-                  <span className="text-[#0a2540] font-bold">Synced</span>
-                </div>
-              </div>
-
-              {/* Orbiting Nodes placed RELATIVE to the Main Card so they never overlap it */}
-              
-              {/* Top Left Node */}
-              <div 
-                ref={(el) => { if (el) nodesRef.current[0] = el; }}
-                className="absolute -top-10 -left-6 md:-left-12 bg-[#0a2540] text-white px-4 py-2 rounded-lg font-mono text-[10px] md:text-xs stripe-shadow-sm whitespace-nowrap"
-              >
-                Data Pipeline
-              </div>
-
-              {/* Top Right Node */}
-              <div 
-                ref={(el) => { if (el) nodesRef.current[1] = el; }}
-                className="absolute -top-8 -right-6 md:-right-10 bg-white text-[#0a2540] border border-gray-200 px-4 py-2 rounded-lg font-mono text-[10px] md:text-xs stripe-shadow-sm whitespace-nowrap flex items-center gap-2"
-              >
-                Load Balancer
-              </div>
-
-              {/* Bottom Node (Redis Cache - fixed!) */}
-              <div 
-                ref={(el) => { if (el) nodesRef.current[2] = el; }}
-                className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gradient-to-r from-stripe-blurple to-[#ff4db8] text-white px-5 py-2 rounded-lg font-mono text-[10px] md:text-xs stripe-shadow-sm whitespace-nowrap"
-              >
-                Redis Cache Layer
-              </div>
-
+            {/* Layer 1: Database (Bottom) */}
+            <div className="layer-1 absolute inset-0 bg-black/40 border border-stripe-blurple/30 backdrop-blur-md rounded-2xl flex items-center justify-center preserve-3d transform transition-transform shadow-[0_20px_50px_rgba(99,91,255,0.2)]">
+              <div className="absolute -left-12 bottom-4 text-[10px] font-mono text-stripe-blurple -rotate-90 origin-bottom-left tracking-widest uppercase">PostgreSQL / Base</div>
+              <svg className="w-24 h-24 text-stripe-blurple/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
             </div>
+
+            {/* Layer 2: API/Backend (Middle) */}
+            <div className="layer-2 absolute inset-0 bg-black/40 border border-stripe-cyan/40 backdrop-blur-md rounded-2xl flex items-center justify-center preserve-3d transform transition-transform glow-cyan">
+              <div className="absolute -left-12 bottom-4 text-[10px] font-mono text-stripe-cyan -rotate-90 origin-bottom-left tracking-widest uppercase">Node.js / Logic</div>
+              
+              {/* Data Flow Lines */}
+              <div className="w-full h-full relative overflow-hidden rounded-2xl">
+                <div className="absolute top-1/4 w-full h-[1px] bg-gradient-to-r from-transparent via-stripe-cyan to-transparent opacity-50" />
+                <div className="absolute top-2/4 w-full h-[1px] bg-gradient-to-r from-transparent via-stripe-cyan to-transparent opacity-50" />
+                <div className="absolute top-3/4 w-full h-[1px] bg-gradient-to-r from-transparent via-stripe-cyan to-transparent opacity-50" />
+                {/* Moving Packet */}
+                <div className="absolute top-2/4 left-0 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_#fff] animate-[ping_2s_linear_infinite]" />
+              </div>
+            </div>
+
+            {/* Layer 3: Frontend/UI (Top) */}
+            <div className="layer-3 absolute inset-0 bg-white/5 border border-white/20 backdrop-blur-xl rounded-2xl flex flex-col p-6 preserve-3d transform transition-transform shadow-[0_0_40px_rgba(255,255,255,0.05)]">
+              <div className="absolute -left-12 bottom-4 text-[10px] font-mono text-white -rotate-90 origin-bottom-left tracking-widest uppercase">Next.js / Client</div>
+              <div className="flex gap-2 mb-4">
+                <div className="w-2 h-2 rounded-full bg-red-500/50" />
+                <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
+                <div className="w-2 h-2 rounded-full bg-green-500/50" />
+              </div>
+              <div className="w-3/4 h-4 bg-white/10 rounded-md mb-3" />
+              <div className="w-full h-20 bg-white/5 rounded-md border border-white/10 flex items-center justify-center text-[10px] font-mono text-white/50">UI_RENDERED</div>
+            </div>
+
           </div>
         </div>
       </div>
     </section>
   );
 }
-
