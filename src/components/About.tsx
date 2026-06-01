@@ -77,7 +77,7 @@ export default function About() {
   
   {/* Your Actual Photo */}
   <Image 
-    src="/profile_photo.jpg" 
+    src="/profile-photo.jpg" 
     alt="Nikunj Variya" 
     fill 
     className="object-cover transition-all duration-500 mix-blend-luminosity opacity-80 group-hover:mix-blend-normal group-hover:opacity-100 group-hover:scale-105"
