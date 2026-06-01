@@ -1,11 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+/* Tailwind v4 replaces the config file with this @theme block.
+  This injects our dark mode design system.
+*/
+@theme {
+  --color-background: #050505;
+  --color-surface: #0A0A0A;
+  --color-surfaceBorder: rgba(255, 255, 255, 0.08);
+  --color-muted: #8F8F91;
+  --color-accent: #E2E2E2;
+}
+
+/* Recreating our custom background grid utility */
+@layer utilities {
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  }
+}
+
+/* Force dark mode base styles */
 @layer base {
   html, body {
-    /* Hard-code the dark background so light mode CANNOT override it */
-    background-color: #050505;
-    color: #E2E2E2;
+    background-color: var(--color-background);
+    color: var(--color-accent);
   }
 }
