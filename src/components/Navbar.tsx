@@ -151,7 +151,7 @@ export default function Navbar() {
               className="relative overflow-hidden bg-white/5 border border-white/20 rounded-full px-8 py-4 text-xs font-mono text-white uppercase tracking-widest flex items-center gap-3"
             >
               <span className="w-2 h-2 bg-[#ff4db8] rounded-full animate-pulse shadow-[0_0_10px_#ff4db8]" />
-              Execute Protocol
+              Get in Touch
             </a>
           </div>
 
