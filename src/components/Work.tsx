@@ -1,204 +1,136 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-const projects = [
-  {
-    tag: "ALGORITHMIC ENGINE",
-    color: "text-stripe-cyan bg-[#00d4ff]/10 border-[#00d4ff]/20",
-    borderActive: "border-stripe-cyan",
-    title: "DSA Tracker",
-    description: "A high-performance algorithmic tracking engine. Built to visualize complex data structures and manage progressive learning metrics with zero latency.",
-    tech: ["Next.js", "PostgreSQL", "Redis Cache"],
-  },
-  {
-    tag: "DISTRIBUTED ARCHITECTURE",
-    color: "text-[#ff4db8] bg-[#ff4db8]/10 border-[#ff4db8]/20",
-    borderActive: "border-[#ff4db8]",
-    title: "Portfolio CMS",
-    description: "A headless content management system built on aggressive edge caching. Handles high-throughput payload delivery across global CDNs.",
-    tech: ["TypeScript", "MongoDB", "AWS Edge"],
-  },
-  {
-    tag: "SYSTEM SIMULATION",
-    color: "text-stripe-blurple bg-stripe-blurple/10 border-stripe-blurple/20",
-    borderActive: "border-stripe-blurple",
-    title: "System Design Explorer",
-    description: "An interactive canvas mapping large-scale system architectures. Employs complex state management to evaluate thousands of concurrent nodes.",
-    tech: ["React Flow", "Supabase", "WebSockets"],
-  }
-];
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function Work() {
   const container = useRef<HTMLDivElement>(null);
-  const graphicRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
 
-  // GSAP Animation triggers every time the activeIndex changes
   useGSAP(() => {
-    if (!graphicRef.current) return;
-    
-    // Snappy fade and scale effect for the graphic swap
-    gsap.fromTo(graphicRef.current, 
-      { opacity: 0, scale: 0.98 }, 
-      { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }
-    );
-  }, { dependencies: [activeIndex], scope: container });
+    // Parallax effect for the massive background typography
+    gsap.to(".bg-text", {
+      y: -150,
+      ease: "none",
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      }
+    });
 
-  // Bespoke Visualizations
-  const Graphic1 = () => (
-    <div className="w-full h-full bg-[#0a1930] rounded-2xl flex items-center justify-center relative overflow-hidden border border-[#1a365d] stripe-shadow">
-      <div className="absolute top-6 left-6 bg-[#0a2540] border border-[#1a365d] px-3 py-1 rounded font-mono text-[10px] text-stripe-cyan shadow-lg z-10">
-        MEMORY_ALLOC: 0.4ms
-      </div>
-      <div className="flex items-end justify-center gap-2 md:gap-3 h-1/2 w-full px-8">
-        {[40, 80, 50, 100, 30, 90, 60, 75].map((h, i) => (
-          <div key={i} className="w-4 md:w-6 bg-stripe-cyan rounded-t-sm opacity-80" style={{ height: `${h}%` }} />
-        ))}
-      </div>
-      <div className="absolute bottom-6 bg-[#0a2540]/80 backdrop-blur-sm border border-[#1a365d] px-4 py-2 rounded font-mono text-xs text-white">
-        O(n log n) Execution
-      </div>
-    </div>
-  );
-
-  const Graphic2 = () => (
-    <div className="w-full h-full bg-gradient-to-br from-[#1a103c] to-[#0a1930] rounded-2xl flex items-center justify-center relative overflow-hidden border border-[#2d2159] stripe-shadow">
-      <div className="absolute top-6 left-6 bg-[#0a2540] border border-[#2d2159] px-3 py-1 rounded font-mono text-[10px] text-[#ff4db8] shadow-lg z-10">
-        EDGE_REPLICATION: ACTIVE
-      </div>
-      <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border border-[#ff4db8]/20 flex items-center justify-center">
-        <div className="absolute w-full h-full rounded-full border border-dashed border-[#ff4db8]/40 animate-[spin_20s_linear_infinite]" />
-        <div className="absolute w-3/4 h-3/4 rounded-full border border-[#ff4db8]/10" />
-        <div className="w-12 h-12 bg-[#ff4db8] rounded-full shadow-[0_0_30px_#ff4db8] z-10 flex items-center justify-center">
-          <div className="w-4 h-4 bg-white rounded-full animate-ping" />
-        </div>
-        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rounded-full shadow-[0_0_15px_#ff4db8]" />
-        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rounded-full shadow-[0_0_15px_#ff4db8]" />
-        <div className="absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-[0_0_15px_#ff4db8]" />
-      </div>
-    </div>
-  );
-
-    const Graphic3 = () => (
-    <div className="w-full h-full bg-[#051120] rounded-2xl flex items-center justify-center relative overflow-hidden border border-[#1a365d] stripe-shadow">
-      <div className="absolute top-6 left-6 bg-[#0a2540] border border-[#1a365d] px-3 py-1 rounded font-mono text-[10px] text-stripe-blurple shadow-lg z-10">
-        SYS_TOPOLOGY_MAP
-      </div>
-      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
-        <path d="M 150 250 L 350 150" stroke="#1a365d" strokeWidth="2" strokeDasharray="4 4" />
-        <path d="M 150 250 L 350 350" stroke="#1a365d" strokeWidth="2" strokeDasharray="4 4" />
-        <circle cx="150" cy="250" r="12" fill="#635bff" />
-        <circle cx="350" cy="150" r="12" fill="#635bff" />
-        <circle cx="350" cy="350" r="12" fill="#635bff" />
-      </svg>
-      
-      {/* Percentage-based positioning so they scale perfectly on mobile */}
-      <div className="absolute top-1/2 left-[30%] -translate-x-[110%] -translate-y-1/2 bg-[#0a2540] border border-[#1a365d] px-2 md:px-3 py-1 rounded text-[8px] md:text-[10px] font-mono text-white whitespace-nowrap z-10 shadow-lg">
-        Load Balancer
-      </div>
-      <div className="absolute top-[30%] left-[70%] translate-x-[15px] -translate-y-1/2 bg-[#0a2540] border border-[#1a365d] px-2 md:px-3 py-1 rounded text-[8px] md:text-[10px] font-mono text-white whitespace-nowrap z-10 shadow-lg">
-        Microservice A
-      </div>
-      <div className="absolute top-[70%] left-[70%] translate-x-[15px] -translate-y-1/2 bg-[#0a2540] border border-[#1a365d] px-2 md:px-3 py-1 rounded text-[8px] md:text-[10px] font-mono text-white whitespace-nowrap z-10 shadow-lg">
-        Microservice B
-      </div>
-    </div>
-  );
-
-  const Graphics = [Graphic1, Graphic2, Graphic3];
-  const ActiveGraphic = Graphics[activeIndex];
+    // Fade up execution for each project row
+    gsap.utils.toArray(".project-row").forEach((row: any) => {
+      gsap.fromTo(row, 
+        { opacity: 0, y: 100 },
+        {
+          opacity: 1, y: 0, duration: 1, ease: "power3.out",
+          scrollTrigger: {
+            trigger: row,
+            start: "top 80%",
+          }
+        }
+      );
+    });
+  }, { scope: container });
 
   return (
-    <section id="work" ref={container} className="w-full bg-[#0a2540] relative z-20 border-t border-[#1a365d] py-24">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#1a365d]/40 via-[#0a2540] to-[#0a2540] pointer-events-none" />
+    <section id="work" ref={container} className="w-full bg-black relative py-32 overflow-hidden border-t border-white/5">
+      
+      {/* Massive Background Typography (Linear Style) */}
+      <div className="absolute top-10 left-[-5%] text-[15vw] font-bold text-white/[0.02] tracking-tighter leading-none whitespace-nowrap bg-text select-none pointer-events-none z-0">
+        SYSTEMS ARCHITECTURE
+      </div>
 
-      <div className="max-w-[1200px] mx-auto px-6 relative z-10">
+      <div className="max-w-[1200px] mx-auto px-6 relative z-10 flex flex-col gap-40">
         
-        <div className="mb-16 text-center md:text-left">
-          <span className="text-xs font-bold tracking-widest text-[#adbdcc] uppercase mb-4 block">01 // Proven Systems</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-            Deployed Architectures.
-          </h2>
-        </div>
-
-        {/* DESKTOP VIEW: Interactive Console Layout */}
-        <div className="hidden md:grid grid-cols-12 gap-12 h-[550px]">
-          
-          {/* Left: Tab List */}
-          <div className="col-span-5 flex flex-col gap-4 h-full justify-center">
-            {projects.map((project, index) => {
-              const isActive = activeIndex === index;
-              return (
-                <div 
-                  key={index} 
-                  onClick={() => setActiveIndex(index)}
-                  className={`cursor-pointer p-6 rounded-xl border transition-all duration-300 ${
-                    isActive 
-                      ? `bg-[#1a365d]/60 ${project.borderActive} shadow-lg` 
-                      : `bg-[#0a2540] border-transparent hover:border-[#1a365d] hover:bg-[#1a365d]/30 opacity-70 hover:opacity-100`
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className={`text-2xl font-bold ${isActive ? 'text-white' : 'text-[#adbdcc]'}`}>
-                      {project.title}
-                    </h3>
-                    <span className={`text-[10px] font-bold font-mono px-2 py-1 rounded border ${isActive ? project.color : 'text-[#adbdcc] border-[#2a4365] bg-[#1a365d]'}`}>
-                      {project.tag}
-                    </span>
-                  </div>
-                  
-                  {/* Expand content smoothly when active */}
-                  <div className={`overflow-hidden transition-all duration-400 ${isActive ? 'max-h-48 opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
-                    <p className="text-[#adbdcc] text-sm leading-relaxed mb-4">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 font-mono text-[10px]">
-                      {project.tech.map((tech, i) => (
-                        <span key={i} className="bg-[#0a2540] border border-[#2a4365] px-2 py-1 rounded text-[#e2e8f0]">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+        {/* Project 1: Boundless Row */}
+        <div className="project-row flex flex-col lg:flex-row items-center gap-16 lg:gap-24 w-full">
+          <div className="w-full lg:w-5/12 flex flex-col items-start">
+            <span className="font-mono text-xs text-[#00d4ff] uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+              <span className="w-4 h-[1px] bg-[#00d4ff]" /> Algorithmic Engine
+            </span>
+            <h3 className="text-5xl md:text-6xl font-bold tracking-tighter text-white mb-6">DSA Tracker.</h3>
+            <p className="text-lg text-zinc-400 leading-relaxed mb-8">
+              A sub-millisecond execution engine mapping array traversals and time complexity visually. Zero rendering latency, built on absolute state control.
+            </p>
+            <div className="flex gap-4 font-mono text-xs text-zinc-500 uppercase tracking-widest border-l-2 border-white/10 pl-4">
+              <span>Next.js</span> • <span>PostgreSQL</span> • <span>O(1)</span>
+            </div>
           </div>
-
-          {/* Right: Active Graphic Container */}
-          <div className="col-span-7 h-full">
-            <div ref={graphicRef} className="w-full h-full">
-              <ActiveGraphic />
+          
+          {/* Custom Visualizer (No border-radius generic card, raw UI in the void) */}
+          <div className="w-full lg:w-7/12 relative h-[400px] flex items-center justify-center">
+            {/* Ambient Glow */}
+            <div className="absolute inset-0 bg-[#00d4ff] blur-[150px] opacity-10 rounded-full" />
+            
+            {/* The Interface Component */}
+            <div className="w-full h-full bg-[#050505] border-t border-white/10 flex flex-col relative z-10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
+              <div className="w-full h-10 border-b border-white/5 flex items-center px-4 justify-between bg-white/[0.02]">
+                <div className="flex gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-zinc-800" />
+                  <div className="w-2 h-2 rounded-full bg-zinc-800" />
+                </div>
+                <span className="font-mono text-[9px] text-zinc-600 uppercase">Memory Allocation Trace</span>
+              </div>
+              <div className="flex-1 p-8 flex flex-col justify-end gap-2">
+                 {/* Raw SVG Graphing */}
+                 <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+                    <path d="M 0 100 C 30 80, 50 10, 100 5" fill="none" stroke="#00d4ff" strokeWidth="1" strokeDasharray="2 2" />
+                    <path d="M 0 100 L 100 0" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+                 </svg>
+                 <div className="w-full flex justify-between text-[10px] font-mono text-zinc-500 mt-4 border-t border-white/5 pt-2">
+                   <span>n = 10,000</span>
+                   <span className="text-[#00d4ff]">0.02ms</span>
+                 </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* MOBILE VIEW: Stacked Cards (Unchanged, keeps native swipe behavior safe) */}
-        <div className="flex md:hidden flex-col gap-16">
-          {projects.map((project, index) => {
-            const CurrentGraphic = Graphics[index];
-            return (
-              <div key={index} className="flex flex-col">
-                <span className={`text-[10px] font-bold font-mono px-3 py-1.5 rounded border inline-block w-max ${project.color} mb-4`}>
-                  {project.tag}
-                </span>
-                <h3 className="text-3xl font-bold text-white mb-4">{project.title}</h3>
-                <p className="text-[#adbdcc] text-base leading-relaxed mb-6">{project.description}</p>
-                
-                <div className="flex flex-wrap gap-2 font-mono text-[10px] mb-8">
-                  {project.tech.map((tech, i) => (
-                    <span key={i} className="bg-[#1a365d] border border-[#2a4365] px-2 py-1 rounded text-[#e2e8f0]">{tech}</span>
-                  ))}
-                </div>
+        {/* Project 2: Boundless Row (Reversed) */}
+        <div className="project-row flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-24 w-full">
+          <div className="w-full lg:w-5/12 flex flex-col items-start">
+            <span className="font-mono text-xs text-stripe-magenta uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+              <span className="w-4 h-[1px] bg-stripe-magenta" /> Distributed Data
+            </span>
+            <h3 className="text-5xl md:text-6xl font-bold tracking-tighter text-white mb-6">Portfolio CMS.</h3>
+            <p className="text-lg text-zinc-400 leading-relaxed mb-8">
+              Headless delivery via edge networks. Cryptographically secure asset caching across multiple availability zones ensures instantaneous payload resolution.
+            </p>
+            <div className="flex gap-4 font-mono text-xs text-zinc-500 uppercase tracking-widest border-l-2 border-white/10 pl-4">
+              <span>MongoDB</span> • <span>AWS CDN</span> • <span>Edge</span>
+            </div>
+          </div>
+          
+          {/* Visualizer: Glowing Edge Map */}
+          <div className="w-full lg:w-7/12 relative h-[400px] flex items-center justify-center">
+             <div className="absolute inset-0 bg-stripe-magenta blur-[150px] opacity-10 rounded-full" />
+             
+             <div className="relative w-full h-full flex items-center justify-center z-10">
+               {/* Central Core */}
+               <div className="w-16 h-16 bg-black border border-stripe-magenta/30 shadow-[0_0_40px_rgba(255,77,184,0.3)] flex items-center justify-center rotate-45 z-20">
+                 <div className="w-2 h-2 bg-stripe-magenta rounded-full animate-ping" />
+               </div>
+               
+               {/* Radiating Lines connecting to Edge Nodes */}
+               <svg className="absolute inset-0 w-full h-full z-10" viewBox="0 0 400 400">
+                 <path d="M 200 200 L 100 100" stroke="rgba(255,77,184,0.4)" strokeWidth="1" strokeDasharray="4 4" />
+                 <path d="M 200 200 L 300 100" stroke="rgba(255,77,184,0.4)" strokeWidth="1" strokeDasharray="4 4" />
+                 <path d="M 200 200 L 100 300" stroke="rgba(255,77,184,0.4)" strokeWidth="1" strokeDasharray="4 4" />
+                 <path d="M 200 200 L 300 300" stroke="rgba(255,77,184,0.4)" strokeWidth="1" strokeDasharray="4 4" />
+               </svg>
 
-                <div className="w-full h-[300px]">
-                  <CurrentGraphic />
-                </div>
-              </div>
-            );
-          })}
+               {/* Text Tags in the void */}
+               <div className="absolute top-[15%] left-[15%] font-mono text-[9px] text-zinc-500 uppercase">EU-West-1</div>
+               <div className="absolute bottom-[15%] right-[15%] font-mono text-[9px] text-zinc-500 uppercase">US-East-2</div>
+             </div>
+          </div>
         </div>
 
       </div>
