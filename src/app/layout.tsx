@@ -1,40 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import type { Metadata } from "next";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-geist-sans" });
 
 export const metadata: Metadata = {
-  title: "Nikunj Variya",
-
-  description:
-    "Software engineer focused on data structures, algorithms, system design and full-stack development.",
-
-  keywords: [
-    "Nikunj Variya",
-    "Software Engineer",
-    "DSA",
-    "Algorithms",
-    "System Design",
-    "Next.js",
-  ],
-
-  openGraph: {
-    title: "Nikunj Variya",
-    description:
-      "Software engineer focused on algorithms and scalable systems.",
-    type: "website",
-  },
+  title: "Nikunj Variya | Software Engineer & Architect",
+  description: "Full-stack engineering, system design, and product architecture.",
 };
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-heading",
-});
 
 export default function RootLayout({
   children,
@@ -42,10 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
-      >
+    <html lang="en" className="dark bg-background text-accent antialiased selection:bg-white/20">
+      <body className={`${inter.variable} font-sans min-h-screen overflow-x-hidden`}>
+        {/* Ambient background glow - completely static, no slop */}
+        <div className="fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/[0.03] via-background to-background"></div>
         {children}
       </body>
     </html>
