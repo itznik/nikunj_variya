@@ -81,7 +81,7 @@ export default function Work() {
     </div>
   );
 
-  const Graphic3 = () => (
+    const Graphic3 = () => (
     <div className="w-full h-full bg-[#051120] rounded-2xl flex items-center justify-center relative overflow-hidden border border-[#1a365d] stripe-shadow">
       <div className="absolute top-6 left-6 bg-[#0a2540] border border-[#1a365d] px-3 py-1 rounded font-mono text-[10px] text-stripe-blurple shadow-lg z-10">
         SYS_TOPOLOGY_MAP
@@ -93,9 +93,17 @@ export default function Work() {
         <circle cx="350" cy="150" r="12" fill="#635bff" />
         <circle cx="350" cy="350" r="12" fill="#635bff" />
       </svg>
-      <div className="absolute top-1/2 left-[80px] -translate-y-1/2 bg-[#0a2540] border border-[#1a365d] px-3 py-1 rounded text-[10px] font-mono text-white">Load Balancer</div>
-      <div className="absolute top-[150px] right-[40px] -translate-y-1/2 bg-[#0a2540] border border-[#1a365d] px-3 py-1 rounded text-[10px] font-mono text-white">Microservice A</div>
-      <div className="absolute top-[350px] right-[40px] -translate-y-1/2 bg-[#0a2540] border border-[#1a365d] px-3 py-1 rounded text-[10px] font-mono text-white">Microservice B</div>
+      
+      {/* Percentage-based positioning so they scale perfectly on mobile */}
+      <div className="absolute top-1/2 left-[30%] -translate-x-[110%] -translate-y-1/2 bg-[#0a2540] border border-[#1a365d] px-2 md:px-3 py-1 rounded text-[8px] md:text-[10px] font-mono text-white whitespace-nowrap z-10 shadow-lg">
+        Load Balancer
+      </div>
+      <div className="absolute top-[30%] left-[70%] translate-x-[15px] -translate-y-1/2 bg-[#0a2540] border border-[#1a365d] px-2 md:px-3 py-1 rounded text-[8px] md:text-[10px] font-mono text-white whitespace-nowrap z-10 shadow-lg">
+        Microservice A
+      </div>
+      <div className="absolute top-[70%] left-[70%] translate-x-[15px] -translate-y-1/2 bg-[#0a2540] border border-[#1a365d] px-2 md:px-3 py-1 rounded text-[8px] md:text-[10px] font-mono text-white whitespace-nowrap z-10 shadow-lg">
+        Microservice B
+      </div>
     </div>
   );
 
