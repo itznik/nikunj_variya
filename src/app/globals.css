@@ -1,34 +1,47 @@
 @import "tailwindcss";
 
 @theme {
-  --color-stripe-navy: #0a2540;
+  --color-linear-bg: #000000;
+  --color-linear-surface: #0a0a0a;
   --color-stripe-blurple: #635bff;
   --color-stripe-cyan: #00d4ff;
-  --color-stripe-bg: #f6f9fc;
+  --color-stripe-magenta: #ff4db8;
 }
 
 @layer base {
   html, body {
-    /* Force the light Stripe background */
-    background-color: var(--color-stripe-bg);
-    color: var(--color-stripe-navy);
-    font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: var(--font-geist-sans), -apple-system, sans-serif;
     overflow-x: hidden;
-    scroll-behavior: smooth;
   }
 }
 
 @layer utilities {
-  .stripe-shadow {
-    box-shadow: 0 30px 60px -12px rgba(50,50,93,0.25), 0 18px 36px -18px rgba(0,0,0,0.3);
+  /* Apple/Linear style glowing text */
+  .text-gradient-hero {
+    background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  .stripe-shadow-sm {
-    box-shadow: 0 13px 27px -5px rgba(50,50,93,0.25), 0 8px 16px -8px rgba(0,0,0,0.3);
+
+  /* Deep boundless glows instead of container borders */
+  .glow-cyan {
+    box-shadow: 0 0 80px -20px rgba(0, 212, 255, 0.4);
   }
-  .mesh-gradient-light {
-    background-image: 
-      radial-gradient(at 80% 0%, hsla(289, 100%, 74%, 0.35) 0px, transparent 50%),
-      radial-gradient(at 20% 100%, hsla(242, 100%, 70%, 0.35) 0px, transparent 50%);
-    filter: blur(80px);
+  .glow-magenta {
+    box-shadow: 0 0 100px -20px rgba(255, 77, 184, 0.3);
+  }
+
+  /* 3D Isometric Transforms */
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .perspective-container {
+    perspective: 1200px;
+  }
+  .isometric-tilt {
+    transform: rotateX(60deg) rotateY(0deg) rotateZ(-45deg);
   }
 }
