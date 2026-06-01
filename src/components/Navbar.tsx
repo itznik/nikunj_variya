@@ -38,11 +38,6 @@ export default function Navbar() {
 
   return (
     <>
-      {/* THE FIX: Pure CSS Pinning.
-        left-4 right-4 locks it strictly within the viewport on mobile.
-        mx-auto and max-w-[900px] perfectly center it on desktop.
-        No wrappers needed. No overflow possible.
-      */}
       <nav 
         ref={navRef}
         className="fixed top-4 left-4 right-4 mx-auto max-w-[900px] z-50 bg-[#0a2540] border border-white/10 shadow-[0_20px_40px_rgba(10,37,64,0.5)] rounded-full px-4 md:px-6 py-2.5 flex items-center justify-between"
@@ -57,7 +52,7 @@ export default function Navbar() {
             <span className="w-1.5 h-1.5 bg-[#00d4ff] rounded-full shadow-[0_0_10px_#00d4ff]" />
           </div>
           <span className="font-mono text-xs font-bold text-white tracking-widest uppercase">
-            Nikunj.V
+            NV
           </span>
         </div>
 
@@ -129,7 +124,7 @@ export default function Navbar() {
         <div className="flex flex-col items-center gap-10 z-10">
           
           <span className="font-mono text-[10px] text-[#00d4ff] uppercase tracking-[0.4em] mb-4 flex items-center gap-2">
-            <span className="w-4 h-[1px] bg-[#00d4ff]" /> System Menu <span className="w-4 h-[1px] bg-[#00d4ff]" />
+            <span className="w-4 h-[1px] bg-[#00d4ff]" /> System Navigation <span className="w-4 h-[1px] bg-[#00d4ff]" />
           </span>
 
           {['Work', 'Skills', 'About'].map((item, i) => (
