@@ -56,12 +56,12 @@ export default function Hero() {
               <span className="text-[10px] font-mono text-stripe-indigo bg-stripe-indigo/10 px-2 py-0.5 rounded">EDGE</span>
             </div>
             <div className="font-mono text-[11px] text-gray-400 space-y-1.5 bg-black/40 p-3 rounded border border-white/[0.02]">
-              <p className="text-gray-600"><span className="text-stripe-indigo">const</span> upstream = <span className="text-cyber-cyan">Deno.env</span>.get(<span className="text-emerald-500">"NODE_POOL"</span>);</p>
-              <p className="text-gray-400"><span className="text-stripe-indigo">await</span> cluster.<span className="text-amber-400">dispatch</span>(req, {</p>
-              <p className="text-gray-400">  strategy: <span className="text-emerald-500">"weighted_round_robin"</span>,</p>
-              <p className="text-gray-400">  fallback: <span className="text-emerald-500">"failover_replica"</span></p>
-              <p className="text-gray-400">});</p>
-            </div>
+  <p className="text-gray-600"><span className="text-stripe-indigo">const</span> upstream = <span className="text-cyber-cyan">Deno.env</span>.get(<span className="text-emerald-500">"NODE_POOL"</span>);</p>
+  <p className="text-gray-400"><span className="text-stripe-indigo">await</span> cluster.<span className="text-amber-400">dispatch</span>(req, {"{"}</p>
+  <p className="text-gray-400">&nbsp;&nbsp;strategy: <span className="text-emerald-500">"weighted_round_robin"</span>,</p>
+  <p className="text-gray-400">&nbsp;&nbsp;fallback: <span className="text-emerald-500">"failover_replica"</span></p>
+  <p className="text-gray-400">{"}"});</p>
+</div>
           </motion.div>
 
           {/* Infrastructure Metrics Sub-Window */}
