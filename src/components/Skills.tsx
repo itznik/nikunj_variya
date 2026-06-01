@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { 
   SiNextdotjs, SiReact, SiTypescript, SiNodedotjs, 
   SiPostgresql, SiMongodb, SiTailwindcss, SiFramer, 
-  SiPython, SiSupabase, SiFirebase, SiAmazonwebservices 
+  SiPython, SiSupabase, SiFirebase, SiAmazonaws 
 } from "react-icons/si";
 
 if (typeof window !== "undefined") {
@@ -25,7 +25,7 @@ const techStack = [
   { name: "Python", icon: SiPython, color: "group-hover:text-[#3776AB]" },
   { name: "Supabase", icon: SiSupabase, color: "group-hover:text-[#3ECF8E]" },
   { name: "Firebase", icon: SiFirebase, color: "group-hover:text-[#FFCA28]" },
-  { name: "AWS", icon: SiAmazonwebservices, color: "group-hover:text-[#232F3E]" },
+  { name: "AWS", icon: SiAmazonaws, color: "group-hover:text-[#232F3E]" },
 ];
 
 export default function Skills() {
