@@ -94,7 +94,7 @@ export default function Footer() {
 
           <div className="contact-reveal">
             {/* The "Anti-Button" - A raw, glowing execution protocol */}
-            <a href="mailto:your-email@example.com" className="group relative inline-flex items-center gap-4 text-white font-mono text-sm md:text-base uppercase tracking-widest px-8 py-4 bg-white/5 border border-white/10 hover:border-[#00d4ff]/50 hover:bg-[#00d4ff]/10 transition-all duration-500 overflow-hidden backdrop-blur-md">
+            <a href="mailto:nikvrya@gmail.com" className="group relative inline-flex items-center gap-4 text-white font-mono text-sm md:text-base uppercase tracking-widest px-8 py-4 bg-white/5 border border-white/10 hover:border-[#00d4ff]/50 hover:bg-[#00d4ff]/10 transition-all duration-500 overflow-hidden backdrop-blur-md">
               <span className="relative z-10 flex items-center gap-3">
                 <FaEnvelope className="text-[#00d4ff]" /> Get in Touch
               </span>
@@ -125,10 +125,10 @@ export default function Footer() {
 
           {/* Social Network Targets */}
           <div className="flex items-center gap-6">
-            <a href="#" className="text-zinc-500 hover:text-[#00d4ff] hover:-translate-y-1 transition-all duration-300">
+            <a href="https://github.com/itznik" className="text-zinc-500 hover:text-[#00d4ff] hover:-translate-y-1 transition-all duration-300">
               <FaGithub size={20} />
             </a>
-            <a href="#" className="text-zinc-500 hover:text-[#00d4ff] hover:-translate-y-1 transition-all duration-300">
+            <a href="https://www.linkedin.com/in/nikunjvariya" className="text-zinc-500 hover:text-[#00d4ff] hover:-translate-y-1 transition-all duration-300">
               <FaLinkedin size={20} />
             </a>
           </div>
